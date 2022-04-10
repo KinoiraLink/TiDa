@@ -1,4 +1,6 @@
 ﻿using System;
+using TiDa.Services;
+using TiDa.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,8 +11,8 @@ namespace TiDa
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            DependencyService.Register<MockDataStore>();
+            MainPage = new AppShell();
         }
 
         protected override void OnStart()

@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace TiDa
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace TiDa.Views
 {
-    public partial class MainPage : Shell
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class TestViwePage : ContentPage
     {
-        public MainPage()
+        public TestViwePage()
         {
             InitializeComponent();
         }

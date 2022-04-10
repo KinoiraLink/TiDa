@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TiDa.AppShell"
+             xmlns:local="clr-namespace:TiDa.Views;assembly=TiDa"
+             xmlns:system="clr-namespace:System;assembly=netstandard">
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+
+            <!--
+            Default Styles for all Flyout Items
+            https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/flyout#flyoutitem-and-menuitem-style-classes
+            -->
+            <Style Class="FlyoutItemLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"></Setter>
+            </Style>
+            <Style Class="FlyoutItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{x:OnPlatform UWP=Transparent, iOS=White}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <!--
+            Custom Style you can apply to any Flyout Item
+            -->
+            <Style Class="MenuItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+    <Shell.FlyoutHeader>
+        <ContentView>
+            <Grid BackgroundColor="#00A6A6"
+                  HeightRequest="56">
+                <Label Text="TODO"
+                       FontSize="50"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center" />
+            </Grid>
+        </ContentView>
+    </Shell.FlyoutHeader>
+    <FlyoutItem  Title="首页">
+        <Tab Icon="task.png" Title="清单">
+            <ShellContent Title ="一般" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
+            <ShellContent Title="周期">
+                <ContentPage >
+                </ContentPage>
+            </ShellContent>
+            <ShellContent Title="记录">
+                <ContentPage >
+                </ContentPage>
+            </ShellContent>
+            <ShellContent Title="目标">
+                <ContentPage >
+                </ContentPage>
+            </ShellContent>
+        </Tab>
+        <Tab Icon="book.png" Title="书札">
+            <ShellContent>
+                <ContentPage >
+                </ContentPage>
+            </ShellContent>
+        </Tab>
+        <Tab Icon="home.png" Title="我的">
+            <ShellContent>
+                <local:TestViwePage>
+                </local:TestViwePage>
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="我的账号">
+        <Tab>
+            <ShellContent>
+                <ContentPage >
+                </ContentPage>
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="设置">
+        <Tab>
+            <ShellContent>
+                <ContentPage >
+                </ContentPage>
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="帮助">
+        <Tab>
+            <ShellContent>
+                <ContentPage >
+                </ContentPage>
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="关于">
+        <Tab>
+            <ShellContent>
+                <ContentPage >
+                </ContentPage>
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
+    <Shell.FlyoutFooter>
+        <!--<ContentView.TranslationY>
+            <OnPlatform x:TypeArguments="system:Double">
+                <On Platform="UWP" Value="-200" />
+                <On Platform="Android" Value="-280"></On>
+            </OnPlatform>
+        </ContentView.TranslationY>-->
+        <ContentView>
+            
+            <Grid BackgroundColor="#00A6A6"
+                         HeightRequest="56">
+                <Grid.TranslationY>
+                    <OnPlatform x:TypeArguments="system:Double">
+                        <On Platform="UWP" Value="-200" />
+                        <On Platform="Android" Value="-280" />
+                    </OnPlatform>
+                </Grid.TranslationY>
+                <Button Text="退出登录"
+                        FontSize="15"
+                        BackgroundColor="#00A6A6"
+                />
+            </Grid>
+        </ContentView>
+    </Shell.FlyoutFooter>
+
+
+</Shell>
