@@ -15,6 +15,7 @@ namespace TiDa.Views
         public TestViwePage()
         {
             InitializeComponent();
+            TestLabel.Text = TestDatePick.Date.Year+"."+ TestDatePick.Date.Month+"";
         }
     }
 }

@@ -154,7 +154,7 @@
                 <Grid.TranslationY>
                     <OnPlatform x:TypeArguments="system:Double">
                         <On Platform="UWP" Value="-200" />
-                        <On Platform="Android" Value="-280" />
+                        <On Platform="Android" Value="-0" />
                     </OnPlatform>
                 </Grid.TranslationY>
                 <Button Text="退出登录"

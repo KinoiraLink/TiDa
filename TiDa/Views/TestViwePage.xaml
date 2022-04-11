@@ -4,9 +4,10 @@
              x:Class="TiDa.Views.TestViwePage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="我的"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <DatePicker Format="D" 
+                        x:Name="TestDatePick"
+                         ></DatePicker>
+            <Label x:Name="TestLabel"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
