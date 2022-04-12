@@ -26,7 +26,13 @@ namespace TiDa.Services
         /// 获取一般task列表
         /// </summary>
         /// <returns></returns>
-        Task<List<CommonTask>> GetCommonTaskAsync();
+        Task<List<CommonTask>> GetCommonsTasksAsync();
+
+        Task<CommonTask> GetCommonTaskAsync(CommonTask commonTask);
+
+        Task SaveCommonTaskAsync(CommonTask commonTask);
+
+        Task DeleteCommonTaskAsync(CommonTask commonTask);
     }
 
     public static class CommonTaskStorageConstants

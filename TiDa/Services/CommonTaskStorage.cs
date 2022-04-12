@@ -48,14 +48,15 @@ namespace TiDa.Services
         /// </summary>
         public async Task InitializeAsync()
         {
-            using (var dbFileStream = new FileStream(CommonTaskDbPath, FileMode.Create))
-            {
-                using (var dbAssertStream =
-                       Assembly.GetExecutingAssembly().GetManifestResourceStream(DbName))
-                {
-                    await dbAssertStream.CopyToAsync(dbFileStream);
-                }
-            }
+            //using (var dbFileStream = new FileStream(CommonTaskDbPath, FileMode.Create))
+            //{
+            //    using (var dbAssertStream =
+            //           Assembly.GetExecutingAssembly().GetManifestResourceStream(DbName))
+            //    {
+            //        await dbAssertStream.CopyToAsync(dbFileStream);
+            //    }
+            //}
+            await Connection.CreateTableAsync<CommonTask>();
 
             _preferenceStorage.Set(CommonTaskStorageConstants.VersionKey, CommonTaskStorageConstants.Version);
         }
@@ -71,10 +72,25 @@ namespace TiDa.Services
         /// 获取一般task列表
         /// </summary>
         /// <returns></returns>
-        public Task<List<CommonTask>> GetCommonTaskAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<List<CommonTask>> GetCommonsTasksAsync()
+        => await Connection.Table<CommonTask>().ToListAsync();
+
+
+        public async Task<CommonTask> GetCommonTaskAsync(CommonTask commonTask)
+            => //await Connection.GetAsync<CommonTask>(commonTask);
+            await Connection.Table<CommonTask>().FirstOrDefaultAsync( c =>c.Id==commonTask.Id);
+
+
+        public async Task SaveCommonTaskAsync(CommonTask commonTask)
+        => await Connection.InsertOrReplaceAsync(commonTask);
+
+        public async Task DeleteCommonTaskAsync(CommonTask commonTask)
+            => await Connection.DeleteAsync(commonTask);
+
+
+
+
+
 
 
 
@@ -87,5 +103,11 @@ namespace TiDa.Services
         {
             _preferenceStorage = preferenceStorage;
         }
+
+        /// <summary>
+        /// 关闭数据库
+        /// </summary>
+        /// <returns></returns>
+        public async Task CloseAsync() => await Connection.CloseAsync();
     }
 }

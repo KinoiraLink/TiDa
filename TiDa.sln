@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiDa.UWP", "TiDa.UWP\TiDa.U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiDa.Android", "TiDa.Android\TiDa.Android.csproj", "{410A44B2-E0CB-4FF2-B05B-8DF6DCF05712}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiDa", "TiDa\TiDa.csproj", "{8CED89DE-BFBF-42B2-AD39-17DB3EEFB5D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TiDa", "TiDa\TiDa.csproj", "{8CED89DE-BFBF-42B2-AD39-17DB3EEFB5D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTiDaProject", "TestTiDaProject\TestTiDaProject.csproj", "{E27CD298-F8A5-4189-B78F-71158A620971}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,22 @@ Global
 		{8CED89DE-BFBF-42B2-AD39-17DB3EEFB5D4}.Release|x86.ActiveCfg = Release|Any CPU
 		{8CED89DE-BFBF-42B2-AD39-17DB3EEFB5D4}.Release|x86.Build.0 = Release|Any CPU
 		{8CED89DE-BFBF-42B2-AD39-17DB3EEFB5D4}.Release|x86.Deploy.0 = Release|Any CPU
+		{E27CD298-F8A5-4189-B78F-71158A620971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E27CD298-F8A5-4189-B78F-71158A620971}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E27CD298-F8A5-4189-B78F-71158A620971}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E27CD298-F8A5-4189-B78F-71158A620971}.Debug|ARM.Build.0 = Debug|Any CPU
+		{E27CD298-F8A5-4189-B78F-71158A620971}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E27CD298-F8A5-4189-B78F-71158A620971}.Debug|x64.Build.0 = Debug|Any CPU
+		{E27CD298-F8A5-4189-B78F-71158A620971}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E27CD298-F8A5-4189-B78F-71158A620971}.Debug|x86.Build.0 = Debug|Any CPU
+		{E27CD298-F8A5-4189-B78F-71158A620971}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E27CD298-F8A5-4189-B78F-71158A620971}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E27CD298-F8A5-4189-B78F-71158A620971}.Release|ARM.ActiveCfg = Release|Any CPU
+		{E27CD298-F8A5-4189-B78F-71158A620971}.Release|ARM.Build.0 = Release|Any CPU
+		{E27CD298-F8A5-4189-B78F-71158A620971}.Release|x64.ActiveCfg = Release|Any CPU
+		{E27CD298-F8A5-4189-B78F-71158A620971}.Release|x64.Build.0 = Release|Any CPU
+		{E27CD298-F8A5-4189-B78F-71158A620971}.Release|x86.ActiveCfg = Release|Any CPU
+		{E27CD298-F8A5-4189-B78F-71158A620971}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
