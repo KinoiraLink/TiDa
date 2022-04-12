@@ -80,7 +80,7 @@
     </Shell.FlyoutHeader>
     <FlyoutItem  Title="首页">
         <Tab Icon="task.png" Title="清单">
-            <ShellContent Title ="一般" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
+            <ShellContent Title ="一般" Route="CommonTasksView" ContentTemplate="{DataTemplate local:CommonTasksView}" />
             <ShellContent Title="周期">
                 <ContentPage >
                 </ContentPage>

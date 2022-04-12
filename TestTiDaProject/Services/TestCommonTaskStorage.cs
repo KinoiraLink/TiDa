@@ -13,9 +13,9 @@ namespace TestTiDaProject.Services
 {
     public class TestCommonTaskStorage
     {
-        [SetUp,TearDown]
-        public static void RemoveDatebaseFile() =>
-            CommonTaskStorageHelper.RemoveDatabaseFile();
+        //[SetUp, TearDown]
+        //public static void RemoveDatebaseFile() =>
+        //    CommonTaskStorageHelper.RemoveDatabaseFile();
 
         [Test]
         public async Task TaskInitialize()
