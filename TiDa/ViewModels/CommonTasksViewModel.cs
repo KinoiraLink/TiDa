@@ -24,8 +24,19 @@ namespace TiDa.ViewModels
         public CommonTasksViewModel(ICommonTaskStorage commonTaskStorage)
         {
             _commonTaskStorage = commonTaskStorage;
+            _commonTaskStorage.UpdateMode += _commonTaskStorage_UpdateMode;
             
         }
+
+        private void _commonTaskStorage_UpdateMode(object sender, commonTaskStroageUpdateEventArgs e)
+        {
+            throw new NotImplementedException();
+            //Todo 修改
+            //Todo 删除 
+            //Todo 完成
+            //Todo 添加
+        }
+
         //******** 绑定属性
 
         public ObservableRangeCollection<CommonTask> CommonTaskCollection { get; } =

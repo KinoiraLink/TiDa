@@ -41,6 +41,9 @@ namespace TiDa.Services
         /// 偏好存储
         /// </summary>
         private IPreferenceStorage _preferenceStorage;
+
+        
+
         //******** 继承方法
 
         /// <summary>
@@ -82,13 +85,22 @@ namespace TiDa.Services
 
 
         public async Task SaveCommonTaskAsync(CommonTask commonTask)
-        => await Connection.InsertOrReplaceAsync(commonTask);
+        {
+            UpdateMode?.Invoke(this,new commonTaskStroageUpdateEventArgs(commonTask));
+            await Connection.InsertOrReplaceAsync(commonTask);
+            
+        }
+        //=> await Connection.InsertOrReplaceAsync(commonTask);
 
         public async Task DeleteCommonTaskAsync(CommonTask commonTask)
-            => await Connection.DeleteAsync(commonTask);
+        {
+            UpdateMode?.Invoke(this, new commonTaskStroageUpdateEventArgs(commonTask));
+            await Connection.DeleteAsync(commonTask);
+        }
+        //=> await Connection.DeleteAsync(commonTask);
 
 
-
+        public event EventHandler<commonTaskStroageUpdateEventArgs> UpdateMode;
 
 
 

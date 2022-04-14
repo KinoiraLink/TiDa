@@ -33,6 +33,9 @@ namespace TiDa.Services
         Task SaveCommonTaskAsync(CommonTask commonTask);
 
         Task DeleteCommonTaskAsync(CommonTask commonTask);
+
+        event EventHandler<commonTaskStroageUpdateEventArgs> UpdateMode;
+
     }
 
     public static class CommonTaskStorageConstants
@@ -50,5 +53,18 @@ namespace TiDa.Services
         /// 收藏数据库版本号的键。
         /// </summary>
         public const string VersionKey = nameof(CommonTaskStorageConstants) + "." + nameof(Version);
+    }
+
+    public class commonTaskStroageUpdateEventArgs : EventArgs
+    {
+        /// <summary>
+        /// 一般task的状态更新：删除or完成
+        /// </summary>
+        public CommonTask UpdateCommonTask { get; }
+
+        public commonTaskStroageUpdateEventArgs(CommonTask updateCommonTask)
+        {
+            UpdateCommonTask = updateCommonTask;
+        }
     }
 }
