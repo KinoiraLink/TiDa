@@ -2,7 +2,6 @@
 using MvvmHelpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
@@ -31,16 +30,7 @@ namespace TiDa.ViewModels
 
         private void _commonTaskStorage_UpdateMode(object sender, commonTaskStroageUpdateEventArgs e)
         {
-            if (CommonTaskCollection.Contains(e.UpdateCommonTask))
-            {
-                CommonTaskCollection.Remove(CommonTaskCollection.FirstOrDefault(c => c.Id == e.UpdateCommonTask.Id));
-                CommonTaskCollection.Add(e.UpdateCommonTask);
-            }
-            else
-            {
-                CommonTaskCollection.Add(e.UpdateCommonTask);
-            }
-
+            throw new NotImplementedException();
             //Todo 修改
             //Todo 删除 
             //Todo 完成
