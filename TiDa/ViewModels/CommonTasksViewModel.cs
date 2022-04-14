@@ -54,6 +54,26 @@ namespace TiDa.ViewModels
 
         public async Task PageAppearingCommandFunction()
         {
+            var canRun = false;
+
+            //二次加锁
+            if (!_isLoaded)//A,B
+            {
+                lock (_isLoadedLock)//(A in,B blocked) or (A blocked,B in)
+                {
+                    if (!_isLoaded)
+                    {
+                        canRun = true;
+                        _isLoaded = true;
+                    }
+                }
+            }
+
+            if (!canRun)
+            {
+                return;
+            }
+
             CommonTaskCollection.Clear();
             //Todo 零时清页
             if (!_commonTaskStorage.IsInitialized())
@@ -63,5 +83,17 @@ namespace TiDa.ViewModels
             CommonTaskCollection.AddRange(await _commonTaskStorage.GetCommonsTasksAsync());
         }
 
+
+        //******** 私有变量
+        /// <summary>
+        ///页面是否已加载
+        /// </summary>
+        private volatile bool _isLoaded;//volatile禁用Cpu编译器的优化
+
+
+        /// <summary>
+        /// 页面是否已加载锁
+        /// </summary>
+        private readonly object _isLoadedLock = new object();
     }
 }
