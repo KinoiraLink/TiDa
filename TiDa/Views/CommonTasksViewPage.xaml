@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TiDa.Views.CommonTasksViewPage"
+             xmlns:b ="clr-namespace:Behaviors;assembly=Behaviors"
+             BindingContext="{Binding  CommonTasksViewModel,Source={StaticResource ViewModelLocator}}">
+    <ContentPage.Behaviors>
+        <b:EventHandlerBehavior EventName="Appearing">
+            <b:ActionCollection>
+                <b:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </b:ActionCollection>
+        </b:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+    <ScrollView>
+        <Grid Padding="0" Margin="0" RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height ="8*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <ListView Grid.Row="0" ItemsSource="{Binding CommonTaskCollection}" x:Name="LV" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="0" Margin="0" RowSpacing="0" ColumnSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height ="1*" />
+                                    <RowDefinition Height="3*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="9*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2" 
+                                   BackgroundColor="#00BFBF" 
+                                   Text="{Binding TaskDate}"
+                                   VerticalOptions="Center"/>
+                                <Button Grid.Row="1" Grid.Column="1"  BackgroundColor="#D1EAEA" Padding="0" Margin="0" />
+                                <Grid  Grid.Row="1" Grid.Column="0" 
+                                   Padding="0" Margin="0" 
+                                   RowSpacing="0" ColumnSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height ="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="8*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <CheckBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" 
+                                          IsChecked="{Binding Done}" Margin="8,0,0,0"/>
+                                    <Label Grid.Row="0" Grid.Column="1"  
+                                       Text="{Binding TaskTitle}" FontSize="Title" />
+                                    <Label Grid.Row="0" Grid.Column="2" 
+                                       Text="{Binding TaskTime}" TextColor="#45E6CB" Margin="0,16,0,0" />
+                                    <Label Grid.Row="1" Grid.Column="1"  
+                                       Text="{Binding TaskDescribe}"  />
+                                </Grid>
+                                <!--<StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0"   BackgroundColor="White" Margin="0" >
+
+                                <CheckBox  IsChecked="{Binding Done}"  />
+                                <Label  Text="{Binding TaskTitle}" />
+                                <Label Text="{Binding TaskTime}" TextColor="#45E6CB" TranslationX="500" />
+                                <Label  Text="{Binding TaskDescribe}"  />
+                            </StackLayout>-->
+                            </Grid>
+                        </ViewCell>
+                        <!--<TextCell Text="{Binding TaskTitle}" Detail="{Binding TaskDescribe}">
+                    </TextCell>-->
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <BoxView Grid.Row="1" BackgroundColor="Bisque" />
+        </Grid>
+    </ScrollView>
+    
+</ContentPage>

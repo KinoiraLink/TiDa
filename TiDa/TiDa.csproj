@@ -35,6 +35,9 @@
     <EmbeddedResource Update="Views\CommonTasksView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\CommonTasksViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\ItemDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
