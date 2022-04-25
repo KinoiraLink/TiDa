@@ -83,7 +83,10 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\drawable\Exmenu.png" />
+    <Content Include="Resources\drawable\Exnew.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TiDa\TiDa.csproj">
       <Project>{B5B4F561-9C73-4C8B-904B-96D1B1281D85}</Project>

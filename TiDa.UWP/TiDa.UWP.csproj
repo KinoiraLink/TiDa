@@ -133,6 +133,8 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="about.png" />
     <Content Include="book.png" />
+    <Content Include="Exmenu.png" />
+    <Content Include="Exnew.png" />
     <Content Include="home.png" />
     <Content Include="logo.png" />
     <Content Include="MainMenu.png" />

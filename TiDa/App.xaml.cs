@@ -12,6 +12,11 @@ namespace TiDa
         {
             InitializeComponent();
             DependencyService.Register<MockDataStore>();
+            DependencyService.Register<CommonTaskDataStorage>();
+            DependencyService.Register<ICommonTaskStorage,CommonTaskStorage>();
+            DependencyService.Register<IPreferenceStorage,PreferenceStoragecs>();
+
+
             MainPage = new AppShell();
         }
 

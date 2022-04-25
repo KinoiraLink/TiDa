@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -48,6 +49,11 @@ namespace TiDa.Services
             return await Task.FromResult(true);
         }
 
+        public async Task<int> DeleteItemAsync(Item item)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Item> GetItemAsync(string id)
         {
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
@@ -56,6 +62,16 @@ namespace TiDa.Services
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(items);
+        }
+
+        public Task InitializeAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsInitialized()
+        {
+            throw new NotImplementedException();
         }
     }
 }

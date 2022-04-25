@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TiDa.Models;
 using TiDa.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace TiDa.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CommonTasksViewPage : ContentPage
+    public partial class NewItemPage : ContentPage
     {
-        
-        public CommonTasksViewPage()
+        public Item Item { get; set; }
+
+        public NewItemPage()
         {
             InitializeComponent();
-
+            BindingContext = new NewItemViewModel();
         }
     }
 }

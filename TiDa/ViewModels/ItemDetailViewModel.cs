@@ -11,21 +11,6 @@ namespace TiDa.ViewModels
     public class ItemDetailViewModel : BaseViewModel
     {
         private string itemId;
-        private string text;
-        private string description;
-        public string Id { get; set; }
-
-        public string Text
-        {
-            get => text;
-            set => SetProperty(ref text, value);
-        }
-
-        public string Description
-        {
-            get => description;
-            set => SetProperty(ref description, value);
-        }
 
         public string ItemId
         {
@@ -36,18 +21,66 @@ namespace TiDa.ViewModels
             set
             {
                 itemId = value;
-                LoadItemId(value);
+                //LoadItemId(value);
+                LoadTaskId(value);
             }
         }
+
+
+        private string _taskTitle;
+
+        public string TaskTitle
+        {
+            get => _taskTitle;
+            set => SetProperty(ref _taskTitle, value);
+        }
+
+        private string _taskDescribe;
+
+        public string TaskDescribe
+        {
+            get => _taskDescribe;
+            set => SetProperty( ref _taskDescribe, value);
+        }
+        private string text;
+
+        public string Text
+        {
+            get => text;
+            set => SetProperty(ref text, value);
+        }
+
+        private string description;
+
+        public string Description
+        {
+            get => description;
+            set => SetProperty(ref description, value);
+        }
+
+        
 
         public async void LoadItemId(string itemId)
         {
             try
             {
                 var item = await DataStore.GetItemAsync(itemId);
-                Id = item.Id;
+              //  Id = item.Id;
                 Text = item.Text;
                 Description = item.Description;
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Failed to Load Item");
+            }
+        }
+        public async void LoadTaskId(string itemId)
+        {
+            try
+            {
+                var commonTask = await CommonDataStore.GetItemAsync(itemId);
+                TaskTitle = commonTask.TaskTitle;
+                TaskDescribe = commonTask.TaskDescribe;
             }
             catch (Exception)
             {

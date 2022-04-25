@@ -6,10 +6,11 @@ namespace TiDa.Views
 {
     public partial class ItemDetailPage : ContentPage
     {
+        private ItemDetailViewModel _ItemDetailViewModel;
         public ItemDetailPage()
         {
             InitializeComponent();
-            BindingContext = new ItemDetailViewModel();
+            BindingContext = _ItemDetailViewModel = new ItemDetailViewModel(); ;
         }
     }
 }

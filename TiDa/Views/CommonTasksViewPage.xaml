@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TiDa.Views.CommonTasksViewPage"
              xmlns:b ="clr-namespace:Behaviors;assembly=Behaviors"
+             NavigationPage.HasNavigationBar="True"
              BindingContext="{Binding  CommonTasksViewModel,Source={StaticResource ViewModelLocator}}">
     <ContentPage.Behaviors>
         <b:EventHandlerBehavior EventName="Appearing">
@@ -11,12 +12,13 @@
             </b:ActionCollection>
         </b:EventHandlerBehavior>
     </ContentPage.Behaviors>
-    <ScrollView>
-        <Grid Padding="0" Margin="0" RowSpacing="0" ColumnSpacing="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height ="8*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="" IconImageSource="Exnew.png" />
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <StackLayout>
+            <ScrollView>
             <ListView Grid.Row="0" ItemsSource="{Binding CommonTaskCollection}" x:Name="LV" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -30,11 +32,11 @@
                                     <ColumnDefinition Width="9*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2" 
+                                <Label Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="1" 
                                    BackgroundColor="#00BFBF" 
                                    Text="{Binding TaskDate}"
                                    VerticalOptions="Center"/>
-                                <Button Grid.Row="1" Grid.Column="1"  BackgroundColor="#D1EAEA" Padding="0" Margin="0" />
+                                <Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"  Background="#0000" Padding="0" Margin="8,8,8,8" ImageSource="Exmenu.png" />
                                 <Grid  Grid.Row="1" Grid.Column="0" 
                                    Padding="0" Margin="0" 
                                    RowSpacing="0" ColumnSpacing="0">
@@ -56,22 +58,24 @@
                                     <Label Grid.Row="1" Grid.Column="1"  
                                        Text="{Binding TaskDescribe}"  />
                                 </Grid>
-                                <!--<StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0"   BackgroundColor="White" Margin="0" >
-
-                                <CheckBox  IsChecked="{Binding Done}"  />
-                                <Label  Text="{Binding TaskTitle}" />
-                                <Label Text="{Binding TaskTime}" TextColor="#45E6CB" TranslationX="500" />
-                                <Label  Text="{Binding TaskDescribe}"  />
-                            </StackLayout>-->
                             </Grid>
                         </ViewCell>
-                        <!--<TextCell Text="{Binding TaskTitle}" Detail="{Binding TaskDescribe}">
-                    </TextCell>-->
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <BoxView Grid.Row="1" BackgroundColor="Bisque" />
-        </Grid>
-    </ScrollView>
-    
+        </ScrollView>
+        </StackLayout>
+        
+        <StackLayout Orientation="Vertical"
+                      BackgroundColor="#24000000"
+                      VerticalOptions="End"
+                      HeightRequest="200"
+                      Margin="0,0,0,56">
+            <Entry Text="标题"></Entry>
+            <Editor Text="描述"></Editor>
+            <DatePicker ></DatePicker>
+            <TimePicker ></TimePicker>
+        </StackLayout>
+    </StackLayout>
+
 </ContentPage>

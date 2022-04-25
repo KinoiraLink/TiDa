@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TiDa.AppShell"
              xmlns:local="clr-namespace:TiDa.Views;assembly=TiDa"
-             xmlns:system="clr-namespace:System;assembly=netstandard">
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             >
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
@@ -81,15 +82,13 @@
     <FlyoutItem  Title="首页">
         <Tab Icon="task.png" Title="清单">
             <ShellContent Title ="一般" Route="CommonTasksView" ContentTemplate="{DataTemplate local:CommonTasksViewPage}" />
-            <ShellContent Title="周期">
-                <ContentPage >
-                </ContentPage>
+            <ShellContent Title="周期" Route="" ContentTemplate="{DataTemplate local:ItemsPage}">
             </ShellContent>
             <ShellContent Title="记录">
                 <ContentPage >
                 </ContentPage>
             </ShellContent>
-            <ShellContent Title="目标">
+            <ShellContent Title="目标" >
                 <ContentPage >
                 </ContentPage>
             </ShellContent>

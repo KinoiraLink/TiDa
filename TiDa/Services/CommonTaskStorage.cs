@@ -51,14 +51,6 @@ namespace TiDa.Services
         /// </summary>
         public async Task InitializeAsync()
         {
-            //using (var dbFileStream = new FileStream(CommonTaskDbPath, FileMode.Create))
-            //{
-            //    using (var dbAssertStream =
-            //           Assembly.GetExecutingAssembly().GetManifestResourceStream(DbName))
-            //    {
-            //        await dbAssertStream.CopyToAsync(dbFileStream);
-            //    }
-            //}
             await Connection.CreateTableAsync<CommonTask>();
 
             _preferenceStorage.Set(CommonTaskStorageConstants.VersionKey, CommonTaskStorageConstants.Version);
