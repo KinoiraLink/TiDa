@@ -16,6 +16,18 @@ namespace TiDa
             InitializeComponent();
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            Routing.RegisterRoute(nameof(WeekTaskPage),typeof(WeekTaskPage));
+            //Test
+            //Todo be to Delete
+            Routing.RegisterRoute(nameof(NewCommonTaskPopupPage), typeof(NewCommonTaskPopupPage));
+           // Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+           Routing.RegisterRoute(nameof(JumpPage),typeof(JumpPage));
         }
+
+        private async void Button_OnClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync($"//MarkPage");
+        }
+
     }
 }

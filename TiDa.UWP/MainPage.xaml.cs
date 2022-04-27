@@ -22,6 +22,7 @@ namespace TiDa.UWP
             this.InitializeComponent();
 
             LoadApplication(new TiDa.App());
+            
         }
     }
 }

@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Rg.Plugins.Popup.Services;
 using TiDa.Models;
 using TiDa.Views;
 using TiDa.ViewModels;
 using Xamarin.Forms;
+using Rg.Plugins.Popup.Extensions;
+using TiDa.Services;
+using Xamarin.Essentials;
 
 namespace TiDa.ViewModels
 {
@@ -13,16 +18,20 @@ namespace TiDa.ViewModels
     {
         private Item _selectedItem;
 
-        private CommonTask _selectedTaskId;
+        
 
+        PreferenceStoragecs _preferenceStorage;
+
+        private CommonTask _selectedTaskId;
         public CommonTask SelectedTaskId
         {
             get => _selectedTaskId;
             set
             {
                 SetProperty(ref _selectedTaskId, value);
-                OnCommonTaskSelected(value);
+                //OnCommonTaskSelected(value);
                 DeleteCmmonTaskCommandFunction(value);
+
             }
         }
         
@@ -35,10 +44,15 @@ namespace TiDa.ViewModels
         public Command LoadItemsCommand { get; }
 
         public Command DeleteCmmonTaskCommand { get; }
+
+        public Command  AddorUpCommonTaskCommand { get; }
+
         public Command AddItemCommand { get; }
         public Command<Item> ItemTapped { get; }
 
-        public Command<CommonTask> CommonTapped { get; }
+        public Command CommonTapped { get; }
+
+
 
         public ItemsViewModel()
         {
@@ -47,16 +61,34 @@ namespace TiDa.ViewModels
             CommonTasks = new ObservableCollection<CommonTask>();
             LoadCommonTask = new Command(async () => await LoadCommonTaskFunction());
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            CommonTapped = new Command<CommonTask>(OnCommonTaskSelected);
+            CommonTapped = new Command(OnCommonTaskSelected);
             //ItemTapped = new Command<Item>(OnItemSelected);
 
-            AddItemCommand = new Command(OnAddItem);
+           // AddItemCommand = new Command<CommonTask>(OnAddItem);
 
             DeleteCmmonTaskCommand = new Command<CommonTask>(DeleteCmmonTaskCommandFunction);
+            AddorUpCommonTaskCommand = new Command<CommonTask>(AddorUpCommonTaskCommandFunction);
+        }
+
+        
+
+        async void AddorUpCommonTaskCommandFunction(CommonTask common)
+        {
+            if (common!=null)
+            {
+                
+                Preferences.Set("NavPara", common.Id);
+            }
+            else
+            {
+                Preferences.Set("NavPara", 0);
+            }
+            await PopupNavigation.Instance.PushAsync(new NewCommonTaskPopupPage());
         }
 
         async void DeleteCmmonTaskCommandFunction(CommonTask common)
         {
+
             IsBusy = true;
 
             try
@@ -71,10 +103,10 @@ namespace TiDa.ViewModels
             {
                 IsBusy = false;
             }
-            
+
         }
 
-        async Task LoadCommonTaskFunction()
+        public async Task LoadCommonTaskFunction()
         {
             IsBusy = true;
 
@@ -143,9 +175,15 @@ namespace TiDa.ViewModels
             }
         }
 
-        private async void OnAddItem(object obj)
+        private async void OnAddItem(Command obj)
         {
-            await Shell.Current.GoToAsync(nameof(NewItemPage));
+            //await Shell.Current.GoToAsync(nameof(NewItemPage));
+            
+            Preferences.Set("NavPara",12);
+            await PopupNavigation.Instance.PushAsync(new NewCommonTaskPopupPage());
+
+
+
         }
 
         async void OnItemSelected(Item item)
@@ -157,11 +195,9 @@ namespace TiDa.ViewModels
             await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
         }
 
-        async void OnCommonTaskSelected(CommonTask commonTask)
+        async void OnCommonTaskSelected()
         {
-            if(commonTask == null)return;
-            await Shell.Current.GoToAsync(
-                $"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={commonTask.Id}");
+            await Shell.Current.GoToAsync($"{nameof(JumpPage)}");
         }
     }
 }

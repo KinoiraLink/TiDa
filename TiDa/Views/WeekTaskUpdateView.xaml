@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+        xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+        xmlns:vm ="clr-namespace:TiDa.ViewModels;assembly=TiDa"
+        x:Class="TiDa.Views.WeekTaskUpdateView">
+    <pages:PopupPage.BindingContext>
+        <vm:WeekTaskUpdateViewModel />
+    </pages:PopupPage.BindingContext>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            PositionIn="Center" 
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.7"
+            DurationIn="400"
+            DurationOut="300"
+            EasingOut="SinIn"
+            EasingIn="SinOut"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="0" BackgroundColor="White">
+
+        <Grid BackgroundColor="White" Margin="72">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Text="标题：" Grid.Row="0" Grid.Column="0" />
+            <Entry Grid.Row="0" Grid.Column="1"  Text="{Binding TaskTitle}" />
+            <Label Grid.Row="1" Grid.Column="0" Text="描述：" />
+            <Editor Grid.Row="1" Grid.Column="1" Text="{Binding TaskDescribe}" HeightRequest="56" />
+            <Label Grid.Row="2" Grid.Column="0" Text="时间：" />
+            <TimePicker Grid.Row="2" Grid.Column="1" Time="{Binding TaskTime}" />
+            <Label Grid.Row="3" Grid.Column="0" Text="地点：" />
+            <Entry Grid.Row="3" Grid.Column="1" Text="{Binding Site}" />
+            <!--<ImageButton Grid.Row="4" Grid.Column="0" Source="Exmenu.png" Command="{Binding CancelCommand}" />-->
+            <Label Grid.Row="4" Grid.Column="0" Text="退出" BackgroundColor="#00BFBF">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CancelCommand}"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Grid.Row="4" Grid.Column="1" Text="保存" BackgroundColor="#00BFBF">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SaveCommand}"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+    </StackLayout>
+</pages:PopupPage>

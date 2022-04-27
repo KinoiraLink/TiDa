@@ -61,15 +61,25 @@ namespace TiDa.Services
         }
 
         //******** 继承方法
-        public Task<bool> AddItemAsync(CommonTask item)
+        public Task<bool> AddItemAsync(CommonTask c)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task InserItemAsync(CommonTask commonTask)
+        {
+            await Connection.InsertAsync(commonTask);
         }
 
         public async Task<bool> DeleteItemAsync(string id)
         {
             throw new NotImplementedException();
 
+        }
+
+        public async Task InsertorReplace(CommonTask commonTask)
+        {
+            await Connection.UpdateAsync(commonTask);
         }
 
         public async Task<int> DeleteItemAsync(CommonTask commonTask)

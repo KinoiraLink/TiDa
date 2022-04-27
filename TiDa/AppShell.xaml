@@ -82,7 +82,7 @@
     <FlyoutItem  Title="首页">
         <Tab Icon="task.png" Title="清单">
             <ShellContent Title ="一般" Route="CommonTasksView" ContentTemplate="{DataTemplate local:CommonTasksViewPage}" />
-            <ShellContent Title="周期" Route="" ContentTemplate="{DataTemplate local:ItemsPage}">
+            <ShellContent Title="周期" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}">
             </ShellContent>
             <ShellContent Title="记录">
                 <ContentPage >
@@ -92,6 +92,8 @@
                 <ContentPage >
                 </ContentPage>
             </ShellContent>
+            <ShellContent Title="测试" Route="WeekTaskPage" ContentTemplate="{DataTemplate local:WeekTaskPage}" />
+            <ShellContent Title="测试2" Route="MarkDownViewPage" ContentTemplate="{DataTemplate local:MarkDownViewPage}" />
         </Tab>
         <Tab Icon="book.png" Title="书札">
             <ShellContent>
@@ -139,6 +141,19 @@
             </ShellContent>
         </Tab>
     </FlyoutItem>
+    <!--
+        TabBar lets you define content that won't show up in a flyout menu. When this content is active
+        the flyout menu won't be available. This is useful for creating areas of the application where 
+        you don't want users to be able to navigate away from. If you would like to navigate to this 
+        content you can do so by calling 
+        await Shell.Current.GoToAsync("//LoginPage");
+    -->
+    <TabBar>
+        <ShellContent Route="MarkPage" ContentTemplate="{DataTemplate local:MarkDownViewPage}" />
+    </TabBar>
+    <TabBar>
+        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
+    </TabBar>
     <Shell.FlyoutFooter>
         <!--<ContentView.TranslationY>
             <OnPlatform x:TypeArguments="system:Double">
@@ -159,9 +174,14 @@
                 <Button Text="退出登录"
                         FontSize="15"
                         BackgroundColor="#00A6A6"
+
+                        Clicked="Button_OnClicked"
                 />
+                
             </Grid>
+            
         </ContentView>
+        
     </Shell.FlyoutFooter>
 
 

@@ -8,39 +8,70 @@
              x:Name="BrowseItemsPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
-    </ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding  AddorUpCommonTaskCommand}" />
+        <ToolbarItem Text="Refresh" Command="{Binding CommonTapped}" />
+    </ContentPage.ToolbarItems> 
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
     <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadCommonTask}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView x:Name="ItemsListView"
-                ItemsSource="{Binding CommonTasks}"
-                SelectionMode="None">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Padding="10" x:DataType="model:CommonTask">
-                        <Label Text="{Binding TaskTitle}" 
-                            LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="16"
-                            TextColor="Black"/>
-                        <Label Text="{Binding TaskDescribe}" 
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13"
-                            TextColor="Black"/>
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=  CommonTapped}"		
-                                CommandParameter="{Binding .}">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <StackLayout>
+            <ScrollView>
+                <ListView Grid.Row="0" ItemsSource="{Binding CommonTasks}" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="0" Margin="0" RowSpacing="0" ColumnSpacing="0" x:DataType="model:CommonTask">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height ="1*" />
+                                        <RowDefinition Height="3*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="9*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="1" 
+                                   BackgroundColor="#00BFBF" 
+                                   Text="{Binding TaskDate}"
+                                   VerticalOptions="Center"/>
+                                    <Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"  
+                                            Background="#0000" 
+                                            Padding="0" Margin="8" 
+                                            ImageSource="Exmenu.png" 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}},Path=DeleteCmmonTaskCommand}"
+                                            CommandParameter="{Binding .}"/>
+                                    <Grid  Grid.Row="1" Grid.Column="0" 
+                                   Padding="0" Margin="0" 
+                                   RowSpacing="0" ColumnSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height ="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="8*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <CheckBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" 
+                                          IsChecked="{Binding Done}" Margin="8,0,0,0"/>
+                                        <Label Grid.Row="0" Grid.Column="1"  
+                                       Text="{Binding TaskTitle}" FontSize="Title" />
+                                        <Label Grid.Row="0" Grid.Column="2" 
+                                       Text="{Binding TaskTime}" TextColor="#45E6CB" Margin="0,16,0,0" />
+                                        <Label Grid.Row="1" Grid.Column="1"  
+                                       Text="{Binding TaskDescribe}"  />
+                                    </Grid>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}},Path=AddorUpCommonTaskCommand}" 
+                                                              CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+        </StackLayout>
     </RefreshView>
 </ContentPage>

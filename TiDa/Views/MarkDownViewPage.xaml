@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+
+             xmlns:md="clr-namespace:MdView;assembly=MdView"
+             xmlns:mdt="clr-namespace:MdView.Templates;assembly=MdView"
+
+             Shell.NavBarIsVisible="False"
+             x:Class="TiDa.Views.MarkDownViewPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="保存"  />
+        <ToolbarItem Text="取消" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid Margin="8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="5*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ScrollView Grid.Row="1" Grid.Column="0" x:Name="EditorScroll" >
+                <Editor  x:Name="Editor" TextChanged="Editor_OnTextChanged" ></Editor>
+            </ScrollView>
+            <ScrollView Grid.Row="1" Grid.Column="1" x:Name="MdScroll" BindingContext="x:Reference Name=EditorScroll" ScaleY="{Binding Path=ScrollY}">
+                <md:MdView x:Name="MdView" />
+            </ScrollView>
+            
+         
+</Grid>
+    </ContentPage.Content>
+</ContentPage>

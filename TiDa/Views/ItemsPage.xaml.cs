@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using TiDa.Models;
 using TiDa.ViewModels;
 using TiDa.Views;
-using TiDa.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

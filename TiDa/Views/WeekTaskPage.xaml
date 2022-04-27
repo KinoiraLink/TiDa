@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TiDa.ViewModels;assembly=TiDa"  
+             xmlns:model="clr-namespace:TiDa.Models;assembly=TiDa"  
+             x:Class="TiDa.Views.WeekTaskPage">
+    <RefreshView x:DataType="local:WeekTaskViewModel" Command="{Binding LoadWeekTask}" IsRefreshing="{Binding IsBusy}" >
+        <Grid ColumnSpacing="0" BackgroundColor="#FFFFFF"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height ="Auto" />
+                <RowDefinition Height ="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" FontSize="Title" Text="周一" HorizontalTextAlignment="Center" />
+                <Label Grid.Row="0" Grid.Column="1" FontSize="Title" Text="周二" HorizontalTextAlignment="Center"/>
+                <Label Grid.Row="0" Grid.Column="2" FontSize="Title" Text="周三" HorizontalTextAlignment="Center"/>
+                <Label Grid.Row="0" Grid.Column="3" FontSize="Title" Text="周四" HorizontalTextAlignment="Center"/>
+                <Label Grid.Row="0" Grid.Column="4" FontSize="Title" Text="周五" HorizontalTextAlignment="Center"/>
+                <Label Grid.Row="0" Grid.Column="5" FontSize="Title" Text="周六" HorizontalTextAlignment="Center"/>
+                <Label Grid.Row="0" Grid.Column="6" FontSize="Title" Text="周日" HorizontalTextAlignment="Center"/>
+                <ListView Grid.Row="1" Grid.Column="0" BackgroundColor="#F2F2F2" VerticalScrollBarVisibility="Never"  ItemsSource="{Binding MonWeekTasks}" x:Name="ListView1" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:WeekTask">
+                            <ViewCell>
+                                <StackLayout HeightRequest="52" >
+                                    <Label Text="{Binding TaskTitle}" TextColor="CornflowerBlue" HorizontalOptions="Center" FontSize="14" HeightRequest="16"/>
+                                    <Label Text="{Binding TaskTime}"  TextColor="CadetBlue" HorizontalOptions="Center"  FontSize="10"  HeightRequest="12" />
+                                    <Label Text="{Binding Site}" TextColor="Orange" HorizontalOptions="Center" FontSize="10"  HeightRequest="12" />
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type local:WeekTaskViewModel}},Path=TaskTapped}" 
+                                                              CommandParameter="{Binding .}" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView Grid.Row="1" Grid.Column="1" BackgroundColor="#FFFFFF" VerticalScrollBarVisibility="Never" ItemsSource="{Binding TueWeekTasks}" x:Name="ListView2">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:WeekTask">
+                            <ViewCell>
+                            <StackLayout HeightRequest="52" >
+                                <Label Text="{Binding TaskTitle}" TextColor="CornflowerBlue" HorizontalOptions="Center" FontSize="14" HeightRequest="16"/>
+                                <Label Text="{Binding TaskTime}"  TextColor="CadetBlue" HorizontalOptions="Center"  FontSize="10"  HeightRequest="12" />
+                                <Label Text="{Binding Site}" TextColor="Orange" HorizontalOptions="Center" FontSize="10"  HeightRequest="12" />
+                            </StackLayout>
+                        </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView Grid.Row="1" Grid.Column="2" BackgroundColor="#F2F2F2" VerticalScrollBarVisibility="Never" ItemsSource="{Binding WedWeekTasks}" x:Name="ListView3">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:WeekTask">
+                            <ViewCell>
+                            <StackLayout HeightRequest="52" >
+                                <Label Text="{Binding TaskTitle}" TextColor="CornflowerBlue" HorizontalOptions="Center" FontSize="14" HeightRequest="16"/>
+                                <Label Text="{Binding TaskTime}"  TextColor="CadetBlue" HorizontalOptions="Center"  FontSize="10"  HeightRequest="12" />
+                                <Label Text="{Binding Site}" TextColor="Orange" HorizontalOptions="Center" FontSize="10"  HeightRequest="12" />
+                            </StackLayout>
+                        </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView Grid.Row="1" Grid.Column="3" BackgroundColor="#FFFFFF" VerticalScrollBarVisibility="Never" ItemsSource="{Binding ThurWeekTasks}" x:Name="ListView4">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:WeekTask">
+                            <ViewCell>
+                            <StackLayout HeightRequest="52" >
+                                <Label Text="{Binding TaskTitle}" TextColor="CornflowerBlue" HorizontalOptions="Center" FontSize="14" HeightRequest="16"/>
+                                <Label Text="{Binding TaskTime}"  TextColor="CadetBlue" HorizontalOptions="Center"  FontSize="10"  HeightRequest="12" />
+                                <Label Text="{Binding Site}" TextColor="Orange" HorizontalOptions="Center" FontSize="10"  HeightRequest="12" />
+                            </StackLayout>
+
+                        </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView Grid.Row="1" Grid.Column="4" BackgroundColor="#F2F2F2" VerticalScrollBarVisibility="Never" ItemsSource="{Binding FriWeekTasks}" x:Name="ListView5">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:WeekTask">
+                            <ViewCell>
+                            <StackLayout HeightRequest="52" >
+                                <Label Text="{Binding TaskTitle}" TextColor="CornflowerBlue" HorizontalOptions="Center" FontSize="14" HeightRequest="16"/>
+                                <Label Text="{Binding TaskTime}"  TextColor="CadetBlue" HorizontalOptions="Center"  FontSize="10"  HeightRequest="12" />
+                                <Label Text="{Binding Site}" TextColor="Orange" HorizontalOptions="Center" FontSize="10"  HeightRequest="12" />
+                            </StackLayout>
+                        </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView Grid.Row="1" Grid.Column="5" BackgroundColor="#FFFFFF" VerticalScrollBarVisibility="Never" ItemsSource="{Binding SatWeekTasks}" x:Name="ListView6">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:WeekTask">
+                            <ViewCell>
+                                <StackLayout HeightRequest="52" >
+                                    <Label Text="{Binding TaskTitle}" TextColor="CornflowerBlue" HorizontalOptions="Center" FontSize="14" HeightRequest="16"/>
+                                    <Label Text="{Binding TaskTime}"  TextColor="CadetBlue" HorizontalOptions="Center"  FontSize="10"  HeightRequest="12" />
+                                    <Label Text="{Binding Site}" TextColor="Orange" HorizontalOptions="Center" FontSize="10"  HeightRequest="12" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView Grid.Row="1" Grid.Column="6" BackgroundColor="#F2F2F2" VerticalScrollBarVisibility="Never" ItemsSource="{Binding SunWeekTasks}" x:Name="ListView7">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:WeekTask">
+                            <ViewCell>
+                                <StackLayout HeightRequest="52" >
+                                    <Label Text="{Binding TaskTitle}" TextColor="CornflowerBlue" HorizontalOptions="Center" FontSize="14" HeightRequest="16"/>
+                                    <Label Text="{Binding TaskTime}"  TextColor="CadetBlue" HorizontalOptions="Center"  FontSize="10"  HeightRequest="12" />
+                                    <Label Text="{Binding Site}" TextColor="Orange" HorizontalOptions="Center" FontSize="10"  HeightRequest="12" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+        </Grid>
+    </RefreshView>
+</ContentPage>

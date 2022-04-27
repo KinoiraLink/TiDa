@@ -14,6 +14,8 @@ namespace TiDa.ViewModels
 
         public IDataStore<CommonTask> CommonDataStore => DependencyService.Get<IDataStore<CommonTask>>();
 
+        public IDataStore<WeekTask> WeekDataStore => DependencyService.Get<IDataStore<WeekTask>>();
+
         bool isBusy = false;
         public bool IsBusy
         {

@@ -32,6 +32,11 @@ namespace TiDa.Services
             return await Task.FromResult(true);
         }
 
+        public async Task InserItemAsync(Item item)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<bool> UpdateItemAsync(Item item)
         {
             var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
@@ -47,6 +52,11 @@ namespace TiDa.Services
             items.Remove(oldItem);
 
             return await Task.FromResult(true);
+        }
+
+        public async Task InsertorReplace(Item item)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<int> DeleteItemAsync(Item item)
