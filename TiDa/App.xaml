@@ -30,6 +30,9 @@
             <Style TargetType="Label" Class ="AndroidLabel" >
                 <Setter Property="TextColor" Value="Black"></Setter>
             </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black"></Setter>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

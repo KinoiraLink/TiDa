@@ -20,13 +20,13 @@ namespace TiDa.Views
 
         public async void Jumpto()
         {
-            await Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync("..",false);
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            await Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync("..",false);
         }
 
         private async  void Button_OnClicked(object sender, EventArgs e)

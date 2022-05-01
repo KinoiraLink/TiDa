@@ -19,7 +19,10 @@ namespace TiDa
             DependencyService.Register<ICommonTaskStorage,CommonTaskStorage>();
             DependencyService.Register<IPreferenceStorage,PreferenceStoragecs>();
             DependencyService.Register<IDataStore<WeekTask>,WeekTaskDataStorage>();
+            DependencyService.Register<IDataStore<MarkDownTask>, MarkDownTaskDataStorage>();
+            
             DependencyService.Register<WeekTaskViewModel>();
+            DependencyService.Register<MarkDownViewModel>();
 
             MainPage = new AppShell();
         }

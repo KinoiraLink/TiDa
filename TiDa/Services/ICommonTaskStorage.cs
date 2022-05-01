@@ -72,6 +72,23 @@ namespace TiDa.Services
         public const string VersionKey = nameof(WeekTaskStorageConstants) + "." + nameof(Version);
     }
 
+    public static class MarkDownTaskStorageConstants
+    {
+        /// <summary>
+        /// 收藏数据库版本号
+        /// </summary>
+        public const int Version = 1;
+
+        /// <summary>
+        /// 默认版本号
+        /// </summary>
+        public const int DefultVersion = 0;
+        /// <summary>
+        /// 收藏数据库版本号的键。
+        /// </summary>
+        public const string VersionKey = nameof(MarkDownTaskStorageConstants) + "." + nameof(Version);
+    }
+
 
     public class commonTaskStroageUpdateEventArgs : EventArgs
     {

@@ -4,13 +4,17 @@
 
              xmlns:md="clr-namespace:MdView;assembly=MdView"
              xmlns:mdt="clr-namespace:MdView.Templates;assembly=MdView"
-
+             xmlns:local="clr-namespace:TiDa.ViewModels;assembly=TiDa"  
+             xmlns:model="clr-namespace:TiDa.Models;assembly=TiDa"  
              Shell.NavBarIsVisible="False"
              x:Class="TiDa.Views.MarkDownViewPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="保存"  />
-        <ToolbarItem Text="取消" />
+        <ToolbarItem Text="保存" Command="{Binding SaveCommand}" />
+        <ToolbarItem Text="取消" Command="{Binding CancelCommand}" />
     </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <local:MarkDownDetailViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid Margin="8">
             <Grid.RowDefinitions>
@@ -22,10 +26,10 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <ScrollView Grid.Row="1" Grid.Column="0" x:Name="EditorScroll" >
-                <Editor  x:Name="Editor" TextChanged="Editor_OnTextChanged" ></Editor>
+                <Editor  x:Name="Editor" TextChanged="Editor_OnTextChanged" Text="{Binding TaskContent}"></Editor>
             </ScrollView>
-            <ScrollView Grid.Row="1" Grid.Column="1" x:Name="MdScroll" BindingContext="x:Reference Name=EditorScroll" ScaleY="{Binding Path=ScrollY}">
-                <md:MdView x:Name="MdView" />
+            <ScrollView Grid.Row="1" Grid.Column="1" x:Name="MdScroll" >
+                <md:MdView x:Name="MdView" Markdown="{Binding TaskContent}"  />
             </ScrollView>
             
          

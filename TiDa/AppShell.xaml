@@ -93,7 +93,8 @@
                 </ContentPage>
             </ShellContent>
             <ShellContent Title="测试" Route="WeekTaskPage" ContentTemplate="{DataTemplate local:WeekTaskPage}" />
-            <ShellContent Title="测试2" Route="MarkDownViewPage" ContentTemplate="{DataTemplate local:MarkDownViewPage}" />
+            <ShellContent Title="测试2" Route="MDTasksViewPage" ContentTemplate="{DataTemplate local:MarkDownTasksViewPage}" />
+            <ShellContent Title="测试3" Route="TestViewinView" ContentTemplate="{DataTemplate local:TestViewinView}" />
         </Tab>
         <Tab Icon="book.png" Title="书札">
             <ShellContent>

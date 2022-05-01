@@ -22,6 +22,11 @@ namespace TiDa
             Routing.RegisterRoute(nameof(NewCommonTaskPopupPage), typeof(NewCommonTaskPopupPage));
            // Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
            Routing.RegisterRoute(nameof(JumpPage),typeof(JumpPage));
+           Routing.RegisterRoute(nameof(MarkDownViewPage), typeof(MarkDownViewPage));
+           Routing.RegisterRoute(nameof(MarkDownTasksViewPage), typeof(MarkDownTasksViewPage));
+            
+
+
         }
 
         private async void Button_OnClicked(object sender, EventArgs e)
