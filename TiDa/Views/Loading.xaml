@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             xmlns:local ="clr-namespace:TiDa.ViewModels;assembly=TiDa"
+             x:Class="TiDa.Views.Loading">
+    <!--<ContentView.TranslationY>
+            <OnPlatform x:TypeArguments="system:Double">
+                <On Platform="UWP" Value="-200" />
+                <On Platform="Android" Value="-280"></On>
+            </OnPlatform>
+        </ContentView.TranslationY>-->
+    <ContentView.BindingContext>
+        <local:LoginPageViewModel />
+    </ContentView.BindingContext>
+    <StackLayout Orientation="Vertical">
+        <Grid BackgroundColor="#00A6A6"  IsVisible="{Binding IsLoginIn}"
+              HeightRequest="56">
+                    <Grid.TranslationY>
+                        <OnPlatform x:TypeArguments="system:Double">
+                            <On Platform="UWP" Value="-200" />
+                            <On Platform="Android" Value="-0" />
+                        </OnPlatform>
+                    </Grid.TranslationY>
+                    <Button Text="登录" 
+                            FontSize="15"
+                            BackgroundColor="#00A6A6"
+
+                            Command="{Binding GoLoginCommand}"
+                    />
+
+                </Grid>
+                <Grid BackgroundColor="#00A6A6" IsVisible="{Binding IsLoginOut}"
+                      HeightRequest="56">
+                    <Grid.TranslationY>
+                        <OnPlatform x:TypeArguments="system:Double">
+                            <On Platform="UWP" Value="-200" />
+                            <On Platform="Android" Value="-0" />
+                        </OnPlatform>
+                    </Grid.TranslationY>
+                    <Button Text="退出登录"
+                            FontSize="15"
+                            BackgroundColor="#00A6A6"
+                            Command="{Binding GoOutCommand}"
+                    />
+
+                </Grid>
+            </StackLayout>
+</ContentView>

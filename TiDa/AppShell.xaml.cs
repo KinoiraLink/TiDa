@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TiDa.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace TiDa
@@ -22,17 +23,10 @@ namespace TiDa
             Routing.RegisterRoute(nameof(NewCommonTaskPopupPage), typeof(NewCommonTaskPopupPage));
            // Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
            Routing.RegisterRoute(nameof(JumpPage),typeof(JumpPage));
-           Routing.RegisterRoute(nameof(MarkDownViewPage), typeof(MarkDownViewPage));
+           Routing.RegisterRoute(nameof(Loading), typeof(Loading));
+            Routing.RegisterRoute(nameof(MarkDownViewPage), typeof(MarkDownViewPage));
            Routing.RegisterRoute(nameof(MarkDownTasksViewPage), typeof(MarkDownTasksViewPage));
-            
-
 
         }
-
-        private async void Button_OnClicked(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync($"//MarkPage");
-        }
-
     }
 }
