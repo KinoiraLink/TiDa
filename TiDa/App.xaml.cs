@@ -1,4 +1,5 @@
 ﻿using System;
+using TiDa.Helpers;
 using TiDa.Models;
 using TiDa.Services;
 using TiDa.ViewModels;
@@ -20,12 +21,15 @@ namespace TiDa
             DependencyService.Register<IPreferenceStorage,PreferenceStoragecs>();
             DependencyService.Register<IDataStore<WeekTask>,WeekTaskDataStorage>();
             DependencyService.Register<IDataStore<MarkDownTask>, MarkDownTaskDataStorage>();
+            DependencyService.Register<IDataStore<SimpleWrPo>, SimpleWrPoDataStorage>();
+
             DependencyService.Register<IWebService<User>,LoginWebService>();
-            
+
             DependencyService.Register<WeekTaskViewModel>();
             DependencyService.Register<MarkDownViewModel>();
 
             MainPage = new AppShell();
+            ResourcesHelper.LoadTheme(Theme.Dark);
         }
 
         protected override void OnStart()

@@ -29,5 +29,6 @@ namespace TiDa.Views
             base.OnAppearing();
             _viewModel.OnAppearing();
         }
+
     }
 }

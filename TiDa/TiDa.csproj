@@ -35,6 +35,9 @@
     <Compile Update="Views\MarkDownTasksViewPage.xaml.cs">
       <DependentUpon>MarkDownTasksViewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\SimpleWrPoEidt.xaml.cs">
+      <DependentUpon>SimpleWrPoEidt.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\WeekTaskPage.xaml.cs">
       <DependentUpon>WeekTaskPage.xaml</DependentUpon>
     </Compile>
@@ -65,6 +68,9 @@
     <EmbeddedResource Update="Views\MarkDownNewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\MarkdownReader.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\MarkDownTasksViewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -75,6 +81,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\NewItemPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SimpleWrPoEidt.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\TestViewinView.xaml">

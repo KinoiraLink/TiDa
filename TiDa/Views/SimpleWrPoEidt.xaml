@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local ="clr-namespace:TiDa.ViewModels;assembly=TiDa"
+             xmlns:md="clr-namespace:MdView;assembly=MdView"
+             xmlns:mdt="clr-namespace:MdView.Templates;assembly=MdView"
+             x:Class="TiDa.Views.SimpleWrPoEidt">
+   
+    <ContentPage.BindingContext>
+        <local:SimpelWrPoEditViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="预览" Command="{Binding ChangeVIewCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content >
+        <ScrollView>
+        <StackLayout VerticalOptions="Start" Padding="0" >
+            <StackLayout IsVisible="{Binding IsEdit }" Padding="18,0,18,-0" >
+                <Button Text="拍摄图片" Command="{Binding UploadImageCommand}" Margin="0" />
+                <mdt:Image Source="{Binding ImagePath}" Margin="36,0,36,18" HeightRequest="100"></mdt:Image>
+
+                <Label Text="标题" />
+                <Entry  Text="{Binding SimpleTitle}"></Entry>
+                <Label Text="内容" />
+                <Editor Text="{Binding Content}" HeightRequest="200"></Editor>
+            </StackLayout>
+            <StackLayout IsVisible="{Binding IsPreview}" >
+                <mdt:Heading1 Text="{Binding SimpleTitle}"  TextColor="Orange" HorizontalTextAlignment="Center"/>
+                <mdt:Image Source="{Binding ImagePath}" Margin="36" />
+                <mdt:Paragraph Text="{Binding Content}" TextColor="Black" Margin="16" />
+                <!--<md:MdView Markdown="{Binding MarkdownText}"> 
+                    <md:MdView.Heading1Template>
+                        <DataTemplate>
+                            <mdt:Heading1 TextColor="Black" HorizontalTextAlignment="Center"/>
+                        </DataTemplate>
+                    </md:MdView.Heading1Template>
+                </md:MdView>-->
+            </StackLayout>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

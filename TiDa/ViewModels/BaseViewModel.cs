@@ -17,6 +17,8 @@ namespace TiDa.ViewModels
         public IDataStore<WeekTask> WeekDataStore => DependencyService.Get<IDataStore<WeekTask>>();
 
         public IDataStore<MarkDownTask> MarkDownDataStore => DependencyService.Get<IDataStore<MarkDownTask>>();
+
+        public IDataStore<SimpleWrPo> SimpleWrPoDataStore => DependencyService.Get<IDataStore<SimpleWrPo>>();
         public IWebService<User> LoginWebService => DependencyService.Get<IWebService<User>>();
 
         bool isBusy = false;

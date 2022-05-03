@@ -8,70 +8,133 @@
              x:Name="BrowseItemsPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding  AddorUpCommonTaskCommand}" />
-        <ToolbarItem Text="Refresh" Command="{Binding CommonTapped}" />
-    </ContentPage.ToolbarItems> 
+        <ToolbarItem Text="新建" Command="{Binding  AddorUpCommonTaskCommand}" />
+        <ToolbarItem Text="刷新" Command="{Binding CommonTapped}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <local:ItemsViewModel />
+    </ContentPage.BindingContext>
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
     <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadCommonTask}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <StackLayout>
-            <ScrollView>
-                <ListView Grid.Row="0" ItemsSource="{Binding CommonTasks}" >
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid Padding="0" Margin="0" RowSpacing="0" ColumnSpacing="0" x:DataType="model:CommonTask">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height ="1*" />
-                                        <RowDefinition Height="3*" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="9*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Label Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="1" 
-                                   BackgroundColor="#00BFBF" 
-                                   Text="{Binding TaskDate}"
-                                   VerticalOptions="Center"/>
-                                    <Button Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"  
-                                            Background="#0000" 
-                                            Padding="0" Margin="8" 
-                                            ImageSource="Exmenu.png" 
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}},Path=DeleteCmmonTaskCommand}"
+        <Grid>
+            <StackLayout>
+                <CollectionView ItemsSource="{Binding CommonTasks}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:CommonTask">
+                            <Grid  ColumnSpacing="0" RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding TaskDate}" Grid.Row="0" Background="#00A6A6" Grid.ColumnSpan="3"/>
+                                <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="80" Orientation="Horizontal">
+                                    <Frame Padding="0">
+                                        <CheckBox IsChecked="{Binding Done}">
+                                            <CheckBox.Margin>
+                                                <OnPlatform x:TypeArguments="Thickness">
+                                                    <On Platform="UWP" Value="16,0,0,0"  ></On>
+                                                </OnPlatform>
+                                            </CheckBox.Margin>
+                                            <CheckBox.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource 
+                                                AncestorType={x:Type local:ItemsViewModel}},
+                                                Path= DoneCommand}"
+                                                                    CommandParameter="{Binding .}">
+                                                </TapGestureRecognizer>
+                                            </CheckBox.GestureRecognizers>
+                                        </CheckBox>
+                                    </Frame>
+                                    <StackLayout HorizontalOptions="FillAndExpand" Padding="8,8,0,0" Orientation="Vertical" BackgroundColor="Beige">
+                                        <Label Text="{Binding TaskTitle}" FontSize="Title" />
+                                        <Label Text="{Binding TaskDescribe}"/>
+                                    </StackLayout>
+                                    <Frame BackgroundColor="AliceBlue" Padding="0">
+                                        <Label Text="{Binding TaskTime}" VerticalOptions="Center"></Label>
+                                    </Frame>
+                                    <Frame Padding="0">
+                                        <Button WidthRequest="35" 
+                                            Text="三" 
+                                            Command="{Binding Source={RelativeSource 
+                                        AncestorType={x:Type local:ItemsViewModel}},
+                                        Path= DeleteCmmonTaskCommand}"
                                             CommandParameter="{Binding .}"/>
-                                    <Grid  Grid.Row="1" Grid.Column="0" 
-                                   Padding="0" Margin="0" 
-                                   RowSpacing="0" ColumnSpacing="0">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height ="*" />
-                                            <RowDefinition Height="*" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="8*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <CheckBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" 
-                                          IsChecked="{Binding Done}" Margin="8,0,0,0"/>
-                                        <Label Grid.Row="0" Grid.Column="1"  
-                                       Text="{Binding TaskTitle}" FontSize="Title" />
-                                        <Label Grid.Row="0" Grid.Column="2" 
-                                       Text="{Binding TaskTime}" TextColor="#45E6CB" Margin="0,16,0,0" />
-                                        <Label Grid.Row="1" Grid.Column="1"  
-                                       Text="{Binding TaskDescribe}"  />
-                                    </Grid>
-                                    <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}},Path=AddorUpCommonTaskCommand}" 
-                                                              CommandParameter="{Binding .}"></TapGestureRecognizer>
-                                    </Grid.GestureRecognizers>
-                                </Grid>
-                            </ViewCell>
+                                    </Frame>
+                                </StackLayout>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}},Path=AddorUpCommonTaskCommand}" 
+                                                      CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </ScrollView>
-        </StackLayout>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
+            
+            <StackLayout BackgroundColor="Black" VerticalOptions="End" HeightRequest="400" IsVisible="False">
+                <CollectionView ItemsSource="{Binding CommonTasks}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:CommonTask">
+                            <Grid  ColumnSpacing="0" RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding TaskDate}" Grid.Row="0" Background="#00A6A6" Grid.ColumnSpan="3"/>
+                                <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="80" Orientation="Horizontal">
+                                    <Frame Padding="0">
+                                        <CheckBox IsChecked="{Binding Done}">
+                                            <CheckBox.Margin>
+                                                <OnPlatform x:TypeArguments="Thickness">
+                                                    <On Platform="UWP" Value="16,0,0,0"  ></On>
+                                                </OnPlatform>
+                                            </CheckBox.Margin>
+                                            <CheckBox.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource 
+                                                AncestorType={x:Type local:ItemsViewModel}},
+                                                Path= DoneCommand}"
+                                                                    CommandParameter="{Binding .}">
+                                                </TapGestureRecognizer>
+                                            </CheckBox.GestureRecognizers>
+                                        </CheckBox>
+                                    </Frame>
+                                    <StackLayout HorizontalOptions="FillAndExpand" Padding="8,8,0,0" Orientation="Vertical" BackgroundColor="Beige">
+                                        <Label Text="{Binding TaskTitle}" FontSize="Title" />
+                                        <Label Text="{Binding TaskDescribe}"/>
+                                    </StackLayout>
+                                    <Frame BackgroundColor="AliceBlue" Padding="0">
+                                        <Label Text="{Binding TaskTime}" VerticalOptions="Center"></Label>
+                                    </Frame>
+                                    <Frame Padding="0">
+                                        <Button WidthRequest="35" 
+                                            Text="三" 
+                                            Command="{Binding Source={RelativeSource 
+                                        AncestorType={x:Type local:ItemsViewModel}},
+                                        Path= DeleteCmmonTaskCommand}"
+                                            CommandParameter="{Binding .}"/>
+                                    </Frame>
+                                </StackLayout>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}},Path=AddorUpCommonTaskCommand}" 
+                                                      CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+           
+        </Grid>
     </RefreshView>
 </ContentPage>

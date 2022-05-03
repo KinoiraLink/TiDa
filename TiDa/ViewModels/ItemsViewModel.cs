@@ -16,11 +16,6 @@ namespace TiDa.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
-        private Item _selectedItem;
-
-        
-
-        PreferenceStoragecs _preferenceStorage;
 
         private CommonTask _selectedTaskId;
         public CommonTask SelectedTaskId
@@ -29,48 +24,72 @@ namespace TiDa.ViewModels
             set
             {
                 SetProperty(ref _selectedTaskId, value);
-                //OnCommonTaskSelected(value);
-                DeleteCmmonTaskCommandFunction(value);
-
             }
         }
-        
-        public ObservableCollection<Item> Items { get; }
+
 
         public ObservableCollection<CommonTask> CommonTasks { get; }
 
         //******** 绑定命令
         public Command LoadCommonTask { get; }
-        public Command LoadItemsCommand { get; }
 
         public Command DeleteCmmonTaskCommand { get; }
 
         public Command  AddorUpCommonTaskCommand { get; }
 
-        public Command AddItemCommand { get; }
-        public Command<Item> ItemTapped { get; }
 
         public Command CommonTapped { get; }
 
+        public Command DoneCommand { get; }
 
 
         public ItemsViewModel()
         {
-            Title = "Browse";
-            Items = new ObservableCollection<Item>();
+            Title = "清单";
             CommonTasks = new ObservableCollection<CommonTask>();
             LoadCommonTask = new Command(async () => await LoadCommonTaskFunction());
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             CommonTapped = new Command(OnCommonTaskSelected);
-            //ItemTapped = new Command<Item>(OnItemSelected);
-
-           // AddItemCommand = new Command<CommonTask>(OnAddItem);
 
             DeleteCmmonTaskCommand = new Command<CommonTask>(DeleteCmmonTaskCommandFunction);
             AddorUpCommonTaskCommand = new Command<CommonTask>(AddorUpCommonTaskCommandFunction);
+            DoneCommand = new Command<CommonTask>(DoneFunc);
         }
 
-        
+        private async void DoneFunc(CommonTask common)
+        {
+            IsBusy = true;
+
+            try
+            {
+                var commonTask = new CommonTask
+                {
+                    Id = common.Id,
+                    Done = true,
+                    IsDeleted = common.IsDeleted,
+                    TaskDate = common.TaskDate,
+                    TaskDescribe = common.TaskDescribe,
+                    TaskTime = common.TaskTime,
+                    TaskTitle = common.TaskTitle,
+                    Timestamp = DateTime.Now.Ticks,
+                    UserCookie = common.UserCookie
+                };
+
+                CommonTasks.Remove(common);
+                await CommonDataStore.InsertorReplace(commonTask);
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+                CommonTasks.Remove(common);
+                LoadCommonTaskFunction();
+            }
+        }
+
 
         async void AddorUpCommonTaskCommandFunction(CommonTask common)
         {
@@ -93,7 +112,22 @@ namespace TiDa.ViewModels
 
             try
             {
-                await CommonDataStore.DeleteItemAsync(common);
+                var commonTask = new CommonTask
+                {
+                    Id = common.Id,
+                    Done = common.Done,
+                    IsDeleted = true,
+                    TaskDate = common.TaskDate,
+                    TaskDescribe = common.TaskDescribe,
+                    TaskTime = common.TaskTime,
+                    TaskTitle = common.TaskTitle,
+                    Timestamp = DateTime.Now.Ticks,
+                    UserCookie = common.UserCookie
+                };
+
+                CommonTasks.Remove(common);
+                await CommonDataStore.InsertorReplace(commonTask);
+                
             }
             catch (Exception ex)
             {
@@ -102,6 +136,8 @@ namespace TiDa.ViewModels
             finally
             {
                 IsBusy = false;
+                CommonTasks.Remove(common);
+                LoadCommonTaskFunction();
             }
 
         }
@@ -135,65 +171,14 @@ namespace TiDa.ViewModels
             }
         }
 
-        async Task ExecuteLoadItemsCommand()
-        {
-            IsBusy = true;
-
-            try
-            {
-                Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                foreach (var item in items)
-                {
-                    Items.Add(item);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
         public void OnAppearing()
         {
-            IsBusy = true; 
-            SelectedItem = null;
+            IsBusy = true;
             SelectedTaskId = null;
         }
 
-        public Item SelectedItem
-        {
-            get => _selectedItem;
-            set
-            {
-                SetProperty(ref _selectedItem, value);
-                OnItemSelected(value);
-            }
-        }
+ 
 
-        private async void OnAddItem(Command obj)
-        {
-            //await Shell.Current.GoToAsync(nameof(NewItemPage));
-            
-            Preferences.Set("NavPara",12);
-            await PopupNavigation.Instance.PushAsync(new NewCommonTaskPopupPage());
-
-
-
-        }
-
-        async void OnItemSelected(Item item)
-        {
-            if (item == null)
-                return;
-
-            // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
-        }
 
         async void OnCommonTaskSelected()
         {

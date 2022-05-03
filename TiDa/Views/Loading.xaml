@@ -18,7 +18,7 @@
               HeightRequest="56">
                     <Grid.TranslationY>
                         <OnPlatform x:TypeArguments="system:Double">
-                            <On Platform="UWP" Value="-200" />
+                            <On Platform="UWP" Value="0" />
                             <On Platform="Android" Value="-0" />
                         </OnPlatform>
                     </Grid.TranslationY>
@@ -34,7 +34,7 @@
                       HeightRequest="56">
                     <Grid.TranslationY>
                         <OnPlatform x:TypeArguments="system:Double">
-                            <On Platform="UWP" Value="-200" />
+                            <On Platform="UWP" Value="0" />
                             <On Platform="Android" Value="-0" />
                         </OnPlatform>
                     </Grid.TranslationY>

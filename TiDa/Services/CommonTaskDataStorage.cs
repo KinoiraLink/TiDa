@@ -98,7 +98,7 @@ namespace TiDa.Services
 
             //=> await Connection.Table<CommonTask>().FirstOrDefaultAsync(c => c.Id == 2);
         public async Task<IEnumerable<CommonTask>> GetItemsAsync(bool forceRefresh = false)
-        => await Connection.Table<CommonTask>().ToListAsync();
+        => await Connection.Table<CommonTask>().Where(p => p.IsDeleted==false&&p.Done==false).ToListAsync();
         
 
         public Task<bool> UpdateItemAsync(CommonTask item)

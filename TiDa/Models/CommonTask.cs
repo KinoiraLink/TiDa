@@ -45,6 +45,10 @@ namespace TiDa.Models
         /// </summary>
         public bool Done { get; set; }
 
+        /// <summary>
+        /// 是否已经删除
+        /// </summary>
+        public bool IsDeleted { get; set; }
 
         /// <summary>
         /// 时间戳
