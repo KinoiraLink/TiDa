@@ -74,8 +74,9 @@ namespace TiDa.ViewModels
             this.PropertyChanged +=
                 (_, __) => LoginCommand.ChangeCanExecute();
 
-
-            if (Preferences.Get("token", 0) == 0)
+            Preferences.Set("token", "undefined");
+            var s = Preferences.Get("token", "undefined");
+            if (s.Equals("undefined"))
             {
                 IsLoginIn = true;
                 IsLoginOut = false;
@@ -124,6 +125,7 @@ namespace TiDa.ViewModels
                 Preferences.Set("token", LoginUser.token);
                 IsLoginIn = false;
                 IsLoginOut = true;
+                await Application.Current.MainPage.DisplayAlert("提示", Preferences.Get("token", "undefined"), "OK");
                 await Shell.Current.GoToAsync($"//{nameof(ItemsPage)}");
             }
 

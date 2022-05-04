@@ -50,6 +50,11 @@ namespace TiDa.Services
             throw new NotImplementedException();
         }
 
+        public async Task InserWebAsync(WeekTask item)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<bool> DeleteItemAsync(string id)
         {
             throw new NotImplementedException();
@@ -73,6 +78,9 @@ namespace TiDa.Services
         }
 
         public async Task<IEnumerable<WeekTask>> GetItemsAsync(bool forceRefresh = false)
+            => await Connection.Table<WeekTask>().ToListAsync();
+
+        public async Task<IList<WeekTask>> GetAllItemsAsync()
             => await Connection.Table<WeekTask>().ToListAsync();
 
         public async Task InitializeAsync()

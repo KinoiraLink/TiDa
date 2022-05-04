@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -58,7 +59,23 @@ namespace TiDa.UWP
                 rootFrame.NavigationFailed += OnNavigationFailed;
                 global::Xamarin.Forms.Forms.SetFlags("Shell_UWP_Experimental");
                 Xamarin.Forms.Forms.Init(e);
+                //////
+                //List<Assembly> assembliesToInclude = new List<Assembly>();
 
+                //// Add the below line for using SfRichTextEditor.
+                //assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.RichTextEditor.SfRichTextEditorRenderer).GetTypeInfo().Assembly);
+
+                //// Add the below line for using SfButton.
+                //assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.Buttons.SfButtonRenderer).GetTypeInfo().Assembly);
+
+                //// Add the below line for using SfComboBox.
+                //assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.ComboBox.SfComboBoxRenderer).GetTypeInfo().Assembly);
+
+                //// Add the below line for using SfBorder.
+                //assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.Border.SfBorderRenderer).GetTypeInfo().Assembly);
+
+                //Xamarin.Forms.Forms.Init(e, assembliesToInclude);
+                //////
                 Rg.Plugins.Popup.Popup.Init();
                 Xamarin.Forms.Forms.Init(e,Rg.Plugins.Popup.Popup.GetExtraAssemblies());
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)

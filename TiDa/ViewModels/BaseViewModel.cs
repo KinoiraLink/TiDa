@@ -21,6 +21,8 @@ namespace TiDa.ViewModels
         public IDataStore<SimpleWrPo> SimpleWrPoDataStore => DependencyService.Get<IDataStore<SimpleWrPo>>();
         public IWebService<User> LoginWebService => DependencyService.Get<IWebService<User>>();
 
+        public IDataWeb<CommonTask> CommonTaskWeb => DependencyService.Get<IDataWeb<CommonTask>>();
+
         bool isBusy = false;
         public bool IsBusy
         {

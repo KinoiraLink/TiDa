@@ -73,10 +73,11 @@ namespace TiDa.Services
             =>
                 await Connection.InsertAsync(item);
 
-        public async Task<bool> UpdateItemAsync(SimpleWrPo item)
+        public async Task InserWebAsync(SimpleWrPo item)
         {
             throw new NotImplementedException();
         }
+
 
         public async Task<bool> DeleteItemAsync(string id)
         {
@@ -84,6 +85,11 @@ namespace TiDa.Services
         }
 
         public async Task InsertorReplace(SimpleWrPo item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task UpdateItemAsync(SimpleWrPo item)
         {
             throw new NotImplementedException();
         }
@@ -100,5 +106,13 @@ namespace TiDa.Services
 
         public async Task<IEnumerable<SimpleWrPo>> GetItemsAsync(bool forceRefresh = false)
             => await Connection.Table<SimpleWrPo>().ToListAsync();
+
+        public async Task<IList<SimpleWrPo>> GetAllItemsAsync()
+            => await Connection.Table<SimpleWrPo>().ToListAsync();
+
+        Task<bool> IDataStore<SimpleWrPo>.UpdateItemAsync(SimpleWrPo item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

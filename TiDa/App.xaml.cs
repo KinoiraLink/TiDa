@@ -24,6 +24,7 @@ namespace TiDa
             DependencyService.Register<IDataStore<SimpleWrPo>, SimpleWrPoDataStorage>();
 
             DependencyService.Register<IWebService<User>,LoginWebService>();
+            DependencyService.Register<IDataWeb<CommonTask>, CommonWeb>();
 
             DependencyService.Register<WeekTaskViewModel>();
             DependencyService.Register<MarkDownViewModel>();

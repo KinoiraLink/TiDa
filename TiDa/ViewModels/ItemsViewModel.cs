@@ -182,6 +182,14 @@ namespace TiDa.ViewModels
 
         async void OnCommonTaskSelected()
         {
+            if (Preferences.Get("token", "undefined").Equals("undefined"))
+            {
+                await Application.Current.MainPage.DisplayAlert("提示", "数据同步请先登录", "Ok");
+            }
+            else
+            {
+                await CommonTaskWeb.UploadAsync(CommonTasks);
+            }
             await Shell.Current.GoToAsync($"{nameof(JumpPage)}");
         }
     }

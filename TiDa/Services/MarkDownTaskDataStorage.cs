@@ -64,6 +64,11 @@ namespace TiDa.Services
             await Connection.InsertAsync(item);
         }
 
+        public async Task InserWebAsync(MarkDownTask item)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<bool> UpdateItemAsync(MarkDownTask item)
         {
             throw new NotImplementedException();
@@ -95,6 +100,8 @@ namespace TiDa.Services
         public async Task<IEnumerable<MarkDownTask>> GetItemsAsync(bool forceRefresh = false)
         =>
             await Connection.Table<MarkDownTask>().ToArrayAsync();
-        
+
+        public async Task<IList<MarkDownTask>> GetAllItemsAsync()
+            => await Connection.Table<MarkDownTask>().ToListAsync();
     }
 }

@@ -10,6 +10,8 @@ namespace TiDa.Services
         bool IsInitialized();
         Task<bool> AddItemAsync(T item);
         Task InserItemAsync(T item);
+
+        Task InserWebAsync(T item);
         Task<bool> UpdateItemAsync(T item);
         Task<bool> DeleteItemAsync(string id);
 
@@ -17,5 +19,7 @@ namespace TiDa.Services
         Task<int> DeleteItemAsync(T item);
         Task<T> GetItemAsync(string id);
         Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
+
+        Task<IList<T>> GetAllItemsAsync();
     }
 }

@@ -37,6 +37,11 @@ namespace TiDa.Services
             throw new NotImplementedException();
         }
 
+        public async Task InserWebAsync(Item item)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<bool> UpdateItemAsync(Item item)
         {
             var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
@@ -72,6 +77,11 @@ namespace TiDa.Services
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(items);
+        }
+
+        public async Task<IList<Item>> GetAllItemsAsync()
+        {
+            throw new NotImplementedException();
         }
 
         public Task InitializeAsync()

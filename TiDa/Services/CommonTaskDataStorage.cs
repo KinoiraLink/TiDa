@@ -71,6 +71,12 @@ namespace TiDa.Services
             await Connection.InsertAsync(commonTask);
         }
 
+        public async Task InserWebAsync(CommonTask item)
+        {
+            string sql = $"INSERT INTO common_task VALUES ({item.Id},'{item.UserCookie}','{item.TaskTitle}','{item.TaskDescribe}','{item.TaskDate}','{item.TaskTime}',{item.Done},{item.Timestamp},{item.IsDeleted})";
+            await Connection.ExecuteAsync(sql);
+        }
+
         public async Task<bool> DeleteItemAsync(string id)
         {
             throw new NotImplementedException();
@@ -99,7 +105,10 @@ namespace TiDa.Services
             //=> await Connection.Table<CommonTask>().FirstOrDefaultAsync(c => c.Id == 2);
         public async Task<IEnumerable<CommonTask>> GetItemsAsync(bool forceRefresh = false)
         => await Connection.Table<CommonTask>().Where(p => p.IsDeleted==false&&p.Done==false).ToListAsync();
-        
+
+        public async Task<IList<CommonTask>> GetAllItemsAsync()
+            => await Connection.Table<CommonTask>().ToListAsync();
+
 
         public Task<bool> UpdateItemAsync(CommonTask item)
         {
