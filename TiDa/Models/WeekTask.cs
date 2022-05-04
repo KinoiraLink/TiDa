@@ -11,6 +11,8 @@ namespace TiDa.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
+
+        public int UserCookie { get; set; }
         public int WeekDay { get; set; }
 
         public int Row { get; set; }

@@ -29,6 +29,8 @@ namespace TiDa
             DependencyService.Register<WeekTaskViewModel>();
             DependencyService.Register<MarkDownViewModel>();
 
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTkzNDQxQDMyMzAyZTMxMmUzMGhaZkFMZ0ZXVzNrRVoxMXExaGptSFNEOUN2NzFxR3VxSGVSYmpQS01VV0E9");
+
             MainPage = new AppShell();
             ResourcesHelper.LoadTheme(Theme.Dark);
         }

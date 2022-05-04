@@ -109,6 +109,11 @@ namespace TiDa.Services
         public async Task<IList<CommonTask>> GetAllItemsAsync()
             => await Connection.Table<CommonTask>().ToListAsync();
 
+        public async Task InserAllItem(IList<CommonTask> list)
+        {
+            throw new NotImplementedException();
+        }
+
 
         public Task<bool> UpdateItemAsync(CommonTask item)
         {

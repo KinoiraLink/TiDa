@@ -84,6 +84,11 @@ namespace TiDa.Services
             throw new NotImplementedException();
         }
 
+        public async Task InserAllItem(IList<Item> list)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task InitializeAsync()
         {
             throw new NotImplementedException();

@@ -85,8 +85,8 @@
     </Shell.FlyoutHeader>
     <FlyoutItem  Title="首页">
         <Tab Icon="task.png" Title="清单">
-            <ShellContent Title ="一般" Route="CommonTasksView" ContentTemplate="{DataTemplate local:CommonTasksViewPage}" />
-            <ShellContent Title="周期" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}">
+            <ShellContent Title ="一般" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
+            <ShellContent Title="周期" Route="WeekTaskPage" ContentTemplate="{DataTemplate local:WeekTaskPage}">
             </ShellContent>
             <ShellContent Title="记录">
                 <ContentPage >
@@ -96,7 +96,6 @@
                 <ContentPage >
                 </ContentPage>
             </ShellContent>
-            <ShellContent Title="测试" Route="WeekTaskPage" ContentTemplate="{DataTemplate local:WeekTaskPage}" />
             <ShellContent Title="测试2" Route="MDTasksViewPage" ContentTemplate="{DataTemplate local:MarkDownTasksViewPage}" />
             <ShellContent Title="测试3" Route="TestViewinView" ContentTemplate="{DataTemplate local:TestViewinView}" />
         </Tab>

@@ -15,7 +15,6 @@ namespace TiDa.Views
     public partial class WeekTaskPage : ContentPage
     {
         private WeekTaskViewModel _weekTaskViewModel;
-        private double scaleY;
         public WeekTaskPage()
         {
             InitializeComponent();

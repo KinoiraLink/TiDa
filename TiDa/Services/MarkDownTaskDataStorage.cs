@@ -103,5 +103,10 @@ namespace TiDa.Services
 
         public async Task<IList<MarkDownTask>> GetAllItemsAsync()
             => await Connection.Table<MarkDownTask>().ToListAsync();
+
+        public async Task InserAllItem(IList<MarkDownTask> list)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

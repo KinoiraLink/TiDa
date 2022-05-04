@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -55,7 +56,7 @@ namespace TiDa.ViewModels
             DoneCommand = new Command<CommonTask>(DoneFunc);
         }
 
-        private async void DoneFunc(CommonTask common)
+        public async void DoneFunc(CommonTask common)
         {
             IsBusy = true;
 
@@ -85,6 +86,7 @@ namespace TiDa.ViewModels
             finally
             {
                 IsBusy = false;
+                
                 CommonTasks.Remove(common);
                 LoadCommonTaskFunction();
             }
@@ -102,9 +104,9 @@ namespace TiDa.ViewModels
             {
                 Preferences.Set("NavPara", 0);
             }
-            await PopupNavigation.Instance.PushAsync(new NewCommonTaskPopupPage());
+            await PopupNavigation.Instance.PushAsync(new CommonTaskNewPopupPage());
         }
-
+        
         async void DeleteCmmonTaskCommandFunction(CommonTask common)
         {
 
@@ -155,6 +157,7 @@ namespace TiDa.ViewModels
 
                 CommonTasks.Clear();
                 var commonTasks = await CommonDataStore.GetItemsAsync(true);
+
                 foreach (var commonTask in commonTasks)
                 {
                     CommonTasks.Add(commonTask);
@@ -192,5 +195,8 @@ namespace TiDa.ViewModels
             }
             await Shell.Current.GoToAsync($"{nameof(JumpPage)}");
         }
+
+
+        
     }
 }

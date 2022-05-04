@@ -21,5 +21,6 @@ namespace TiDa.Services
         Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
 
         Task<IList<T>> GetAllItemsAsync();
+        Task InserAllItem(IList<T> list);
     }
 }

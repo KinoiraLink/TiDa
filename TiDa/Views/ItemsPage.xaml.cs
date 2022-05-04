@@ -30,5 +30,9 @@ namespace TiDa.Views
             _viewModel.OnAppearing();
         }
 
+        private void CheckBox_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+
+        }
     }
 }

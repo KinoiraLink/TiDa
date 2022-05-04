@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32228.343
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32422.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiDa.UWP", "TiDa.UWP\TiDa.UWP.csproj", "{4F81BC9B-8130-4329-BCD1-6D5C8BCE8802}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiDa.Android", "TiDa.Androi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TiDa", "TiDa\TiDa.csproj", "{8CED89DE-BFBF-42B2-AD39-17DB3EEFB5D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTiDaProject", "TestTiDaProject\TestTiDaProject.csproj", "{E27CD298-F8A5-4189-B78F-71158A620971}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestTiDaProject", "TestTiDaProject\TestTiDaProject.csproj", "{E27CD298-F8A5-4189-B78F-71158A620971}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -20,7 +20,7 @@ namespace TiDa
             Routing.RegisterRoute(nameof(WeekTaskPage),typeof(WeekTaskPage));
             //Test
             //Todo be to Delete
-            Routing.RegisterRoute(nameof(NewCommonTaskPopupPage), typeof(NewCommonTaskPopupPage));
+            Routing.RegisterRoute(nameof(CommonTaskNewPopupPage), typeof(CommonTaskNewPopupPage));
            // Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
            Routing.RegisterRoute(nameof(JumpPage),typeof(JumpPage));
            Routing.RegisterRoute(nameof(Loading), typeof(Loading));

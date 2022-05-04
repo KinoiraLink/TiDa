@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Rg.Plugins.Popup.Services;
 using TEditor;
 using TEditor.Abstractions;
 using Xamarin.Forms;
@@ -18,5 +19,9 @@ namespace TiDa.Views
             InitializeComponent();
         }
 
+        private async void Button_OnClicked(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PushAsync(new Page1(), true);
+        }
     }
 }

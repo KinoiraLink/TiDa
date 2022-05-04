@@ -1,4 +1,5 @@
-﻿using System;
+using Syncfusion.ListView.XForms.UWP;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,9 +20,9 @@ namespace TiDa.UWP
     {
         public MainPage()
         {
-            this.InitializeComponent();
-
-            LoadApplication(new TiDa.App());
+this.InitializeComponent();
+SfListViewRenderer.Init();
+LoadApplication(new TiDa.App());
             
         }
     }

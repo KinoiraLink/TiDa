@@ -13,10 +13,10 @@ using Xamarin.Forms.Xaml;
 namespace TiDa.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewCommonTaskPopupPage : PopupPage
+    public partial class CommonTaskNewPopupPage : PopupPage
     {
         CommonTaskNewItemViewModel _taskNewItemViewModel;
-        public NewCommonTaskPopupPage()
+        public CommonTaskNewPopupPage()
         {
             InitializeComponent();
             var i = Preferences.Get("NavPara", 0);

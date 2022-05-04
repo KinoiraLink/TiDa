@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:richTextEditor="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+
              x:Class="TiDa.Views.HTMLDemo">
-    <ContentPage.Content>
-        <StackLayout>
-            
-        </StackLayout>
-    </ContentPage.Content>
+
+    <StackLayout>
+        <richTextEditor:SfRichTextEditor VerticalOptions="FillAndExpand" PlaceHolder="Type something"/>
+    </StackLayout>
+
 </ContentPage>

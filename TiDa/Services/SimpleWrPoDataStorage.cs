@@ -110,6 +110,11 @@ namespace TiDa.Services
         public async Task<IList<SimpleWrPo>> GetAllItemsAsync()
             => await Connection.Table<SimpleWrPo>().ToListAsync();
 
+        public async Task InserAllItem(IList<SimpleWrPo> list)
+        {
+            throw new NotImplementedException();
+        }
+
         Task<bool> IDataStore<SimpleWrPo>.UpdateItemAsync(SimpleWrPo item)
         {
             throw new NotImplementedException();

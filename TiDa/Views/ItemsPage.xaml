@@ -34,25 +34,36 @@
                                 </Grid.ColumnDefinitions>
                                 <Label Text="{Binding TaskDate}" Grid.Row="0" Background="#00A6A6" Grid.ColumnSpan="3"/>
                                 <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="80" Orientation="Horizontal">
-                                    <Frame Padding="0">
-                                        <CheckBox IsChecked="{Binding Done}">
+                                    <StackLayout Padding="0">
+                                        <CheckBox IsChecked="{Binding Done}" CheckedChanged="CheckBox_OnCheckedChanged">
                                             <CheckBox.Margin>
                                                 <OnPlatform x:TypeArguments="Thickness">
                                                     <On Platform="UWP" Value="16,0,0,0"  ></On>
                                                 </OnPlatform>
                                             </CheckBox.Margin>
-                                            <CheckBox.GestureRecognizers>
+                                            <!--<CheckBox.GestureRecognizers>
                                                 <TapGestureRecognizer Command="{Binding Source={RelativeSource 
                                                 AncestorType={x:Type local:ItemsViewModel}},
                                                 Path= DoneCommand}"
                                                                     CommandParameter="{Binding .}">
                                                 </TapGestureRecognizer>
-                                            </CheckBox.GestureRecognizers>
+                                            </CheckBox.GestureRecognizers>-->
                                         </CheckBox>
-                                    </Frame>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource 
+                                                AncestorType={x:Type local:ItemsViewModel}},
+                                                Path= DoneCommand}"
+                                                                  CommandParameter="{Binding .}">
+                                            </TapGestureRecognizer>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
                                     <StackLayout HorizontalOptions="FillAndExpand" Padding="8,8,0,0" Orientation="Vertical" BackgroundColor="Beige">
                                         <Label Text="{Binding TaskTitle}" FontSize="Title" />
                                         <Label Text="{Binding TaskDescribe}"/>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}},Path=AddorUpCommonTaskCommand}" 
+                                                                  CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                        </StackLayout.GestureRecognizers>
                                     </StackLayout>
                                     <Frame BackgroundColor="AliceBlue" Padding="0">
                                         <Label Text="{Binding TaskTime}" VerticalOptions="Center"></Label>
@@ -66,10 +77,10 @@
                                             CommandParameter="{Binding .}"/>
                                     </Frame>
                                 </StackLayout>
-                                <Grid.GestureRecognizers>
+                                <!--<Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}},Path=AddorUpCommonTaskCommand}" 
                                                       CommandParameter="{Binding .}"></TapGestureRecognizer>
-                                </Grid.GestureRecognizers>
+                                </Grid.GestureRecognizers>-->
                             </Grid>
 
                         </DataTemplate>

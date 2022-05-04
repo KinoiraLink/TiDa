@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:richTextEditor="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:pages="http://rotorgames.com"
+                  x:Class="TiDa.Views.Page1">
+    <pages:PopupPage.Animation>
+        <pages:ScaleAnimation
+            PositionIn="Center" 
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.7"
+            DurationIn="400"
+            DurationOut="300"
+            EasingOut="SinIn"
+            EasingIn="SinOut"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <StackLayout>
+        <richTextEditor:SfRichTextEditor 
+            Text="开始编辑吧" 
+            HeightRequest="300" 
+            ContentHeightRequest="200" 
+            ReadOnly="False"
+            WordWrap="BreakWord" WidthRequest="500" HtmlText="开始编辑吧"></richTextEditor:SfRichTextEditor>
+    </StackLayout>
+</pages:PopupPage>

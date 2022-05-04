@@ -1,4 +1,7 @@
-﻿using System;
+using Syncfusion.XForms.UWP.RichTextEditor;
+using Syncfusion.SfSchedule.XForms.UWP;
+using Syncfusion.ListView.XForms.UWP;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,6 +18,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Syncfusion.XForms.RichTextEditor;
 
 namespace TiDa.UWP
 {
@@ -29,6 +33,7 @@ namespace TiDa.UWP
         /// </summary>
         public App()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTkzNDQxQDMyMzAyZTMxMmUzMGhaZkFMZ0ZXVzNrRVoxMXExaGptSFNEOUN2NzFxR3VxSGVSYmpQS01VV0E9");
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
@@ -58,24 +63,23 @@ namespace TiDa.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
                 global::Xamarin.Forms.Forms.SetFlags("Shell_UWP_Experimental");
-                Xamarin.Forms.Forms.Init(e);
-                //////
-                //List<Assembly> assembliesToInclude = new List<Assembly>();
 
-                //// Add the below line for using SfRichTextEditor.
-                //assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.RichTextEditor.SfRichTextEditorRenderer).GetTypeInfo().Assembly);
 
-                //// Add the below line for using SfButton.
-                //assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.Buttons.SfButtonRenderer).GetTypeInfo().Assembly);
+                List<Assembly> assembliesToInclude = new List<Assembly>();
 
-                //// Add the below line for using SfComboBox.
-                //assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.ComboBox.SfComboBoxRenderer).GetTypeInfo().Assembly);
+                assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.RichTextEditor.SfRichTextEditorRenderer).GetTypeInfo().Assembly);
+                // Add the below line for using SfButton.
+                assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.Buttons.SfButtonRenderer).GetTypeInfo().Assembly);
 
-                //// Add the below line for using SfBorder.
-                //assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.Border.SfBorderRenderer).GetTypeInfo().Assembly);
+                // Add the below line for using SfComboBox.
+                assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.ComboBox.SfComboBoxRenderer).GetTypeInfo().Assembly);
 
-                //Xamarin.Forms.Forms.Init(e, assembliesToInclude);
-                //////
+                // Add the below line for using SfBorder.
+                assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.Border.SfBorderRenderer).GetTypeInfo().Assembly);
+
+                Xamarin.Forms.Forms.Init(e, assembliesToInclude);
+
+     
                 Rg.Plugins.Popup.Popup.Init();
                 Xamarin.Forms.Forms.Init(e,Rg.Plugins.Popup.Popup.GetExtraAssemblies());
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
