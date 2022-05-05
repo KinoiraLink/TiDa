@@ -66,7 +66,9 @@ namespace TiDa.Services
 
         public async Task InserWebAsync(MarkDownTask item)
         {
-            throw new NotImplementedException();
+            string sql = $"INSERT INTO markdown_task VALUES ({item.Id},'{item.TaskTitle}','{item.TaskContent}',{item.Timestamp},'{item.UserCookie}')";
+            await Connection.ExecuteAsync(sql);
+            //await Connection.InsertAsync(item);
         }
 
         public async Task<bool> UpdateItemAsync(MarkDownTask item)

@@ -5,12 +5,13 @@
              xmlns:md="clr-namespace:MdView;assembly=MdView"
              xmlns:mdt="clr-namespace:MdView.Templates;assembly=MdView"
              xmlns:local="clr-namespace:TiDa.ViewModels;assembly=TiDa"  
-             xmlns:model="clr-namespace:TiDa.Models;assembly=TiDa"  
-             Shell.NavBarIsVisible="False"
+             xmlns:model="clr-namespace:TiDa.Models;assembly=TiDa"
+             xmlns:helpers="clr-namespace:TiDa.Helpers;assembly=TiDa"
              x:Class="TiDa.Views.MarkDownViewPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="保存" Command="{Binding SaveCommand}" />
         <ToolbarItem Text="取消" Command="{Binding CancelCommand}" />
+        <ToolbarItem Text="预览" Clicked="MenuItem_OnClicked"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.BindingContext>
         <local:MarkDownDetailViewModel />
@@ -23,13 +24,47 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <ScrollView Grid.Row="1" Grid.Column="0" x:Name="EditorScroll" >
-                <Editor  x:Name="Editor" TextChanged="Editor_OnTextChanged" Text="{Binding TaskContent}"></Editor>
+                <StackLayout Orientation="Vertical">
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0" BackgroundColor="#00A6A6">
+                        <Button Text="一级标题" Margin="0" HorizontalOptions="Start" Clicked="Btn_Heading1"/>
+                        <Button Text="二级标题" Margin="0" HorizontalOptions="Start" Clicked="Btn_Heading2" />
+                        <Button Text="三级标题" Margin="0" HorizontalOptions="Start" Clicked="Btn_Heading3"/>
+                        <Button Text="四级标题" Margin="0" HorizontalOptions="Start" Clicked="Btn_Heading4"/>
+                        <Button Text="五级标题" Margin="0" HorizontalOptions="Start" Clicked="Btn_Heading5"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0" BackgroundColor="#00A6A6">
+                        <Button Text="斜体" Margin="0" HorizontalOptions="Start" Clicked="Btn_Italic"/>
+                        <Button Text="粗体" Margin="0" HorizontalOptions="Start" Clicked="Btn_Bold"/>
+                        <Button Text="粗斜" Margin="0" HorizontalOptions="Start" Clicked="Btn_ItalicBold"/>
+                        <Button Text="引用" Margin="0" HorizontalOptions="Start" Clicked="Btn_Quote"/>
+                        <Button Text="无序列表" Margin="0" HorizontalOptions="Start" Clicked="Btn_List"/>
+                        <Button Text="代码块" Margin="0" HorizontalOptions="Start" Clicked="Btn_Code"/>
+                    </StackLayout>
+                    <helpers:MyEditor Text="{Binding TaskContent}" 
+                                      SelectionChanged="MyEditor_OnSelectionChanged" 
+                                      x:Name="myEditor" AutoSize="TextChanges" HeightRequest="200"
+                                      TextChanged="Editor_OnTextChanged" Unfocused="MyEditor_OnUnfocused"/>
+                </StackLayout>
+                
+                <!--<Editor  x:Name="Editor" TextChanged="Editor_OnTextChanged" Text="{Binding TaskContent}"></Editor>-->
+
             </ScrollView>
-            <ScrollView Grid.Row="1" Grid.Column="1" x:Name="MdScroll" >
-                <md:MdView x:Name="MdView" Markdown="{Binding TaskContent}"  />
+            <ScrollView Grid.Row="1" Grid.Column="0" x:Name="MdScroll" >
+                <md:MdView x:Name="MdView" Markdown="{Binding TaskContent}"  >
+                    <md:MdView.Heading1Template>
+                        <DataTemplate>
+                            <mdt:Heading1 TextColor="Black" HorizontalTextAlignment="Center" />
+                        </DataTemplate>
+                    </md:MdView.Heading1Template>
+                    <md:MdView.ParagraphTemplate>
+                        <DataTemplate>
+                            <mdt:Paragraph TextColor="Black" />
+                        </DataTemplate>
+                    </md:MdView.ParagraphTemplate>
+                </md:MdView>
+
             </ScrollView>
             
          

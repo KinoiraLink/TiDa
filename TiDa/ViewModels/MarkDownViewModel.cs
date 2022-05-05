@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Rg.Plugins.Popup.Services;
 using TiDa.Models;
 using TiDa.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace TiDa.ViewModels
@@ -22,6 +23,7 @@ namespace TiDa.ViewModels
             {
                 SetProperty(ref _selecteMarkDownTask, value);
                 SaveFunction(value);
+                ReadFunc(value);
             }
         }
 
@@ -43,15 +45,31 @@ namespace TiDa.ViewModels
 
         public Command<MarkDownTask> SaveMarkDownTaskCommand { get; }
 
+        public Command<MarkDownTask> ReadCommand { get; }
+
+        public Command CommonTapped { get; }
+
         public MarkDownViewModel()
         {
             MarkDownTasks = new ObservableCollection<MarkDownTask>();
             LoadMarkDownTaskCommand = new Command(async () => await LoadFunction());
             AddMarkDownTaskCommand = new Command(AddFunction);
             SaveMarkDownTaskCommand = new Command<MarkDownTask>(SaveFunction);
+            ReadCommand = new Command<MarkDownTask>(ReadFunc);
+
+            CommonTapped = new Command(RefreshFunc);
         }
 
         
+
+        private async void ReadFunc(MarkDownTask markDownTask)
+        {
+            if (markDownTask != null)
+            {
+                await Shell.Current.GoToAsync($"//mdReadPage?{nameof(mdReadViewModel.Id)}={markDownTask.Id}");
+            }
+        }
+
 
         async Task LoadFunction()
         {
@@ -113,6 +131,20 @@ namespace TiDa.ViewModels
         async void AddFunction( )
         {
             await PopupNavigation.Instance.PushAsync(new MarkDownNewPage());
+        }
+
+        private async void RefreshFunc()
+        {
+            if (Preferences.Get("token", "undefined").Equals("undefined"))
+            {
+                await Application.Current.MainPage.DisplayAlert("提示", "数据同步请先登录", "Ok");
+            }
+            else
+            {
+                //await CommonTaskWeb.UploadAsync(CommonTasks);
+                await MarkDownWeb.UploadAsync(MarkDownTasks);
+            }
+            await Shell.Current.GoToAsync($"{nameof(JumpPage)}");
         }
 
         public void OnAppearing()

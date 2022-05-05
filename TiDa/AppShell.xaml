@@ -88,22 +88,16 @@
             <ShellContent Title ="一般" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
             <ShellContent Title="周期" Route="WeekTaskPage" ContentTemplate="{DataTemplate local:WeekTaskPage}">
             </ShellContent>
-            <ShellContent Title="记录">
-                <ContentPage >
-                </ContentPage>
-            </ShellContent>
+            <ShellContent Title="记录" Route="MDTasksViewPage" ContentTemplate="{DataTemplate local:MarkDownTasksViewPage}" />
+    
             <ShellContent Title="目标" >
                 <ContentPage >
                 </ContentPage>
             </ShellContent>
-            <ShellContent Title="测试2" Route="MDTasksViewPage" ContentTemplate="{DataTemplate local:MarkDownTasksViewPage}" />
             <ShellContent Title="测试3" Route="TestViewinView" ContentTemplate="{DataTemplate local:TestViewinView}" />
         </Tab>
         <Tab Icon="book.png" Title="书札">
-            <ShellContent>
-                <ContentPage >
-                </ContentPage>
-            </ShellContent>
+            <ShellContent Title="书架" Route="BoosView" ContentTemplate="{DataTemplate local:BoosView}" />
         </Tab>
         <Tab Icon="home.png" Title="我的">
             <ShellContent>
@@ -173,6 +167,9 @@
     </TabBar>
     <TabBar>
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
+    </TabBar>
+    <TabBar>
+        <ShellContent Route="mdReadPage" ContentTemplate="{DataTemplate local:MarkdownReader}" />
     </TabBar>
     <Shell.FlyoutFooter>
         <local:Loading  />

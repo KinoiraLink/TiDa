@@ -111,6 +111,7 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\drawable\cover.png" />
     <Content Include="Resources\drawable\Exmenu.png" />
     <Content Include="Resources\drawable\Exnew.png" />
     <AndroidResource Include="Resources\xml\network_security_config.xml">

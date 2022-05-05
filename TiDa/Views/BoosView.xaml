@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:TiDa.ViewModels;assembly=TiDa"
+             xmlns:models="clr-namespace:TiDa.Models;assembly=TiDa"
+             x:Class="TiDa.Views.BoosView">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="新建" Command="{Binding AddMarkDownTaskCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <viewModels:MarkDownViewModel />
+    </ContentPage.BindingContext>
+    <RefreshView x:DataType="viewModels:MarkDownViewModel" Command="{Binding LoadMarkDownTaskCommand}" IsRefreshing="{Binding IsBusy}">
+        <!--<ListView ItemsSource="{Binding MarkDownTasks}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:MarkDownTask">
+                    <TextCell Text="{Binding TaskTitle }"
+                              Detail="{Binding  TaskContent}"
+                              Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MarkDownViewModel}},Path=SaveMarkDownTaskCommand}"
+                              CommandParameter="{Binding .}"></TextCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>-->
+        <CollectionView x:Name="ItemsListView"
+                        ItemsSource="{Binding MarkDownTasks}"
+                        SelectionMode="None"
+                        >
+            <CollectionView.ItemsLayout>
+                <OnPlatform x:TypeArguments="IItemsLayout">
+                    <On Platform="UWP" Value="VerticalGrid, 7" />
+                    <On Platform="Android" Value="VerticalGrid, 4"></On>
+                </OnPlatform>
+            </CollectionView.ItemsLayout>
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout x:DataType="models:MarkDownTask"  Margin="16,8,8,8">
+                        <Label Text="{Binding TaskTitle}" Margin="8,8,0,0" 
+                               LineBreakMode="NoWrap" BackgroundColor="BurlyWood"  Padding="0,24,0,0"
+                               FontSize="12"
+                               HeightRequest="125"
+                               TextColor="White"
+                               HorizontalTextAlignment="Center" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MarkDownViewModel }}, Path=ReadCommand}" CommandParameter="{Binding .}"	></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

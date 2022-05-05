@@ -6,6 +6,7 @@
              x:Class="TiDa.Views.MarkDownTasksViewPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="新建" Command="{Binding AddMarkDownTaskCommand}"/>
+        <ToolbarItem Text="刷新" Command="{Binding CommonTapped}"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.BindingContext>
         <local:MarkDownViewModel />

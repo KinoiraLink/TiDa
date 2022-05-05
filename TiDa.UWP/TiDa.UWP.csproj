@@ -93,6 +93,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ExtendedControls\MyEditorRenderer.cs" />
+    <Compile Include="ExtendedControls\MyEditText.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -133,6 +135,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="about.png" />
     <Content Include="book.png" />
+    <Content Include="cover.png" />
     <Content Include="Exmenu.png" />
     <Content Include="Exnew.png" />
     <Content Include="home.png" />
@@ -185,6 +188,7 @@
       <Name>TiDa</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
