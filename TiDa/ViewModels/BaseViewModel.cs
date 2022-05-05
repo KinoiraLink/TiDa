@@ -25,6 +25,8 @@ namespace TiDa.ViewModels
 
         public IDataWeb<MarkDownTask> MarkDownWeb => DependencyService.Get<IDataWeb<MarkDownTask>>();
 
+        public IDataWeb<WeekTask> WeekTaskWeb => DependencyService.Get<IDataWeb<WeekTask>>();
+
         bool isBusy = false;
         public bool IsBusy
         {

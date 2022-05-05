@@ -31,18 +31,7 @@ namespace TiDa.ViewModels
         }
 
         public ObservableCollection<WeekTask> WeekTasks { get; }
-        public ObservableCollection<WeekTask> MonWeekTasks { get; }
-        public ObservableCollection<WeekTask> TueWeekTasks { get; }
 
-        public ObservableCollection<WeekTask> WedWeekTasks { get; }
-
-        public ObservableCollection<WeekTask> ThurWeekTasks { get; }
-
-        public ObservableCollection<WeekTask> FriWeekTasks { get; }
-
-        public ObservableCollection<WeekTask> SatWeekTasks { get; }
-
-        public ObservableCollection<WeekTask> SunWeekTasks { get; }
 
 
         //******** 绑定命令
@@ -62,28 +51,6 @@ namespace TiDa.ViewModels
             TaskTapped = new Command<WeekTask>(OnWeekTaskSelected);
         }
 
-        //private async void OnWeekTaskInsert()
-        //{
-        //    var weekTasks = new List<WeekTask>();
-        //    if (!WeekDataStore.IsInitialized())
-        //    {
-        //        await WeekDataStore.InitializeAsync();
-        //    }
-        //    var itemsAsync = await WeekDataStore.GetAllItemsAsync();
-
-        //    if (itemsAsync.Count()== 0)
-        //    {
-        //        for (int week = 1; week <= 7; week++)
-        //        {
-        //            for (int row = 1; row <= 8; row++)
-        //            {
-        //                weekTasks.Add(new WeekTask{Row = row,WeekDay = week,TaskTitle = "",TaskDescribe = "",Site = "",TaskTime = "",Timestamp = 0,UserCookie = 0});
-        //            }
-        //        }
-
-        //        await WeekDataStore.InserAllItem(weekTasks);
-        //    }
-        //}
 
         private async void OnWeekTaskSelected(WeekTask week)
         {
@@ -142,7 +109,7 @@ namespace TiDa.ViewModels
             }
             else
             {
-                //await CommonTaskWeb.UploadAsync(CommonTasks);
+                await WeekTaskWeb.UploadAsync(WeekTasks);
             }
             await Shell.Current.GoToAsync($"{nameof(JumpPage)}");
         }

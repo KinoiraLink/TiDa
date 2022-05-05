@@ -79,9 +79,9 @@ namespace TiDa.Services
 
                 foreach (var remoteMarkDownTask in remoteMarkDownList)
                 {
-                    if (localDictionary.TryGetValue(remoteMarkDownTask.Id, out var localCommonTask))
+                    if (localDictionary.TryGetValue(remoteMarkDownTask.Id, out var localMarkDownTask))
                     {
-                        if (remoteMarkDownTask.Timestamp >= localCommonTask.Timestamp)
+                        if (remoteMarkDownTask.Timestamp >= localMarkDownTask.Timestamp)
                         {
                             remoteMarkDownTask.Timestamp = DateTime.Now.Ticks;
                             localUpdate.Add(remoteMarkDownTask);
@@ -102,9 +102,9 @@ namespace TiDa.Services
                 var romoteDictionary = remoteMarkDownList.ToDictionary(p => p.Id, p => p);
                 foreach (var localMarkDownTask in localMarkDownList)
                 {
-                    if (romoteDictionary.TryGetValue(localMarkDownTask.Id, out var remoteCommonTask))
+                    if (romoteDictionary.TryGetValue(localMarkDownTask.Id, out var remoteMarkDownTask))
                     {
-                        if (localMarkDownTask.Timestamp >= remoteCommonTask.Timestamp)
+                        if (localMarkDownTask.Timestamp >= remoteMarkDownTask.Timestamp)
                         {
                             localMarkDownTask.Timestamp = DateTime.Now.Ticks;
                             romoteUpdate.Add(localMarkDownTask);

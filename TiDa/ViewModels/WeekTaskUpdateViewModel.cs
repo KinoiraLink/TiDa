@@ -89,6 +89,7 @@ namespace TiDa.ViewModels
             WeekTask.TaskDescribe = TaskDescribe;
             WeekTask.TaskTime = TaskTime.ToString();
             WeekTask.Site= Site;
+            WeekTask.Timestamp = DateTime.Now.Ticks;
             await WeekDataStore.InsertorReplace(WeekTask);
             await PopupNavigation.Instance.PopAsync(true);
         }
