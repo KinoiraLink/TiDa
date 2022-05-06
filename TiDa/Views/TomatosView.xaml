@@ -8,6 +8,7 @@
         <local:TomatosViewModel />
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="刷新" Command="{Binding RefreshCommand}" />
         <ToolbarItem Text="新建" Command="{Binding AddTomatoCommand}" />
     </ContentPage.ToolbarItems>
     <!--x:DataType="local:"-->

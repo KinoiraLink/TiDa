@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TiDa.ViewModels;assembly=TiDa"  
+             xmlns:model="clr-namespace:TiDa.Models;assembly=TiDa"  
+             x:Class="TiDa.Views.TargetsView">
+    <ContentPage.BindingContext>
+        <local:TargetsViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="刷新" Command="{Binding RefreshCommand}" />
+        <ToolbarItem Text="新建" Command="{Binding AddMinCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <RefreshView x:DataType="local:TargetsViewModel"  Command="{Binding LoadTargetCommand}" IsRefreshing="{Binding IsBusy}">
+        <CollectionView ItemsSource="{Binding TargetsLists}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="1" x:DataType="model:TargetList" >
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding MainTitle}"  BackgroundColor="#00A6A6"
+                                   HorizontalOptions="FillAndExpand"
+                                   FontSize="16"
+                                   TextColor="White"
+                                   VerticalTextAlignment="Center"/>
+                            <Button Text="增加" Command="{Binding Source={RelativeSource AncestorType={x:Type local:TargetsViewModel}}, Path=AddMinorCommand}" CommandParameter="{Binding .}"></Button>
+                        </StackLayout>
+                        
+
+                        <CollectionView ItemsSource="{Binding MinorList}" HeightRequest="200" BackgroundColor="AliceBlue">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout x:DataType="model:TargetTask" Orientation="Horizontal">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <CheckBox IsChecked="{Binding IsDone}" />
+                                            <Button Opacity="0" Command="{Binding Source={RelativeSource 
+                                        AncestorType={x:Type local:TargetsViewModel}},
+                                        Path= DoneCommand}" CommandParameter="{Binding .}" ></Button>
+                                        </Grid>
+                                        
+                                        <Label Text="{Binding MinorTitle}" 
+                                               HorizontalOptions="FillAndExpand"  
+                                               VerticalTextAlignment="Center" 
+                                               FontSize="Title"/>
+                                        
+                                        <Button Text="删除"
+                                                Command="{Binding Source={RelativeSource 
+                                        AncestorType={x:Type local:TargetsViewModel}},
+                                        Path= DeleteCommand}" CommandParameter="{Binding .}"></Button>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

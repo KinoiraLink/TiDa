@@ -35,20 +35,23 @@
                                 <Label Text="{Binding TaskDate}" Grid.Row="0" Background="#00A6A6" Grid.ColumnSpan="3"/>
                                 <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="80" Orientation="Horizontal">
                                     <StackLayout Padding="0">
-                                        <CheckBox IsChecked="{Binding Done}" CheckedChanged="CheckBox_OnCheckedChanged">
-                                            <CheckBox.Margin>
-                                                <OnPlatform x:TypeArguments="Thickness">
-                                                    <On Platform="UWP" Value="16,0,0,0"  ></On>
-                                                </OnPlatform>
-                                            </CheckBox.Margin>
-                                            <!--<CheckBox.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource 
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto">
+                                                </RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <CheckBox IsChecked="{Binding Done}" CheckedChanged="CheckBox_OnCheckedChanged">
+                                                <CheckBox.Margin>
+                                                    <OnPlatform x:TypeArguments="Thickness">
+                                                        <On Platform="UWP" Value="16,0,0,0"  ></On>
+                                                    </OnPlatform>
+                                                </CheckBox.Margin>
+                                            </CheckBox>
+                                            <Button Opacity="0" Command="{Binding Source={RelativeSource 
                                                 AncestorType={x:Type local:ItemsViewModel}},
                                                 Path= DoneCommand}"
-                                                                    CommandParameter="{Binding .}">
-                                                </TapGestureRecognizer>
-                                            </CheckBox.GestureRecognizers>-->
-                                        </CheckBox>
+                                                    CommandParameter="{Binding .}"></Button>
+                                        </Grid>
                                         <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding Source={RelativeSource 
                                                 AncestorType={x:Type local:ItemsViewModel}},
@@ -104,8 +107,8 @@
                                 <Label Text="{Binding TaskDate}" Grid.Row="0" Background="#00A6A6" Grid.ColumnSpan="3"/>
                                 <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="80" Orientation="Horizontal">
                                     <Frame Padding="0">
-                                        <CheckBox IsChecked="{Binding Done}">
-                                            <CheckBox.Margin>
+                                        <CheckBox IsChecked="{Binding Done}" >
+                                            <CheckBox.Margin >
                                                 <OnPlatform x:TypeArguments="Thickness">
                                                     <On Platform="UWP" Value="16,0,0,0"  ></On>
                                                 </OnPlatform>
@@ -127,7 +130,7 @@
                                         <Label Text="{Binding TaskTime}" VerticalOptions="Center"></Label>
                                     </Frame>
                                     <Frame Padding="0">
-                                        <Button WidthRequest="35" 
+                                        <Button WidthRequest="35"  
                                             Text="三" 
                                             Command="{Binding Source={RelativeSource 
                                         AncestorType={x:Type local:ItemsViewModel}},

@@ -25,6 +25,7 @@ namespace TiDa.ViewModels
             set
             {
                 SetProperty(ref _selectedTaskId, value);
+                DoneFunc(value);
             }
         }
 
@@ -60,35 +61,38 @@ namespace TiDa.ViewModels
         {
             IsBusy = true;
 
-            try
+            if (common != null)
             {
-                var commonTask = new CommonTask
+                try
                 {
-                    Id = common.Id,
-                    Done = true,
-                    IsDeleted = common.IsDeleted,
-                    TaskDate = common.TaskDate,
-                    TaskDescribe = common.TaskDescribe,
-                    TaskTime = common.TaskTime,
-                    TaskTitle = common.TaskTitle,
-                    Timestamp = DateTime.Now.Ticks,
-                    UserCookie = common.UserCookie
-                };
+                    var commonTask = new CommonTask
+                    {
+                        Id = common.Id,
+                        Done = true,
+                        IsDeleted = common.IsDeleted,
+                        TaskDate = common.TaskDate,
+                        TaskDescribe = common.TaskDescribe,
+                        TaskTime = common.TaskTime,
+                        TaskTitle = common.TaskTitle,
+                        Timestamp = DateTime.Now.Ticks,
+                        UserCookie = common.UserCookie
+                    };
 
-                CommonTasks.Remove(common);
-                await CommonDataStore.InsertorReplace(commonTask);
+                    CommonTasks.Remove(common);
+                    await CommonDataStore.InsertorReplace(commonTask);
 
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-                
-                CommonTasks.Remove(common);
-                LoadCommonTaskFunction();
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
+                finally
+                {
+                    IsBusy = false;
+
+                    CommonTasks.Remove(common);
+                    LoadCommonTaskFunction();
+                }
             }
         }
 

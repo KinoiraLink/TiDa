@@ -144,6 +144,8 @@
     <Content Include="menu.png" />
     <Content Include="new.png" />
     <Content Include="Properties\Default.rd.xml" />
+    <Content Include="select.png" />
+    <Content Include="selected.png" />
     <Content Include="task.png" />
   </ItemGroup>
   <ItemGroup>

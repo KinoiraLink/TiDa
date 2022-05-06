@@ -1,27 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TiDa.Models;
 using TiDa.ViewModels;
-using TiDa.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace TiDa.Views
 {
-    public partial class ItemsPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class TargetsView : ContentPage
     {
-        ItemsViewModel _viewModel;
-
-        public ItemsPage()
+        TargetsViewModel _viewModel;
+        public TargetsView()
         {
             InitializeComponent();
-            
-
-            BindingContext = _viewModel = new ItemsViewModel();
+            BindingContext = _viewModel = new TargetsViewModel();
         }
 
         protected override void OnAppearing()
@@ -29,9 +24,6 @@ namespace TiDa.Views
             base.OnAppearing();
             _viewModel.OnAppearing();
         }
-
-        private void CheckBox_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-        }
     }
+
 }

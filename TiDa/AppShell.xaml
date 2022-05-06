@@ -89,11 +89,7 @@
             <ShellContent Title="周期" Route="WeekTaskPage" ContentTemplate="{DataTemplate local:WeekTaskPage}">
             </ShellContent>
             <ShellContent Title="记录" Route="MDTasksViewPage" ContentTemplate="{DataTemplate local:MarkDownTasksViewPage}" />
-    
-            <ShellContent Title="目标" >
-                <ContentPage >
-                </ContentPage>
-            </ShellContent>
+            <ShellContent Title="目标" Route="TargetsView" ContentTemplate="{DataTemplate local:TargetsView}" />
             <ShellContent Title="测试3" Route="TestViewinView" ContentTemplate="{DataTemplate local:TestViewinView}" />
         </Tab>
         <Tab Icon="book.png" Title="书札">
@@ -154,7 +150,7 @@
         <Tab>
             <ShellContent Title="HTML" Route="HTMLDemo" ContentTemplate="{DataTemplate local:HTMLDemo}" />
         </Tab>
-    </FlyoutItem>
+    </FlyoutItem> 
     <FlyoutItem Title="番茄时间">
         <Tab>
             <ShellContent Title="TomatoTime" Route="TomatosView" ContentTemplate="{DataTemplate local:TomatosView}" />

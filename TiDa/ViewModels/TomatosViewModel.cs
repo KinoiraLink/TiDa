@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TiDa.Models;
 using TiDa.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace TiDa.ViewModels
@@ -33,6 +34,8 @@ namespace TiDa.ViewModels
 
         public Command AddTomatoCommand { get; }
 
+        public Command RefreshCommand { get; }
+
         //******** 构造函数
 
         public TomatosViewModel()
@@ -40,7 +43,10 @@ namespace TiDa.ViewModels
             TomatoTasks = new ObservableCollection<TomatoTask>();
             LoadTomatoTask = new Command(async () => await LoadFunc());
             AddTomatoCommand = new Command(AddFunc);
+            RefreshCommand = new Command(RefreshFunc);
         }
+
+        
 
         private async void AddFunc()
         {
@@ -72,6 +78,19 @@ namespace TiDa.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        private async void RefreshFunc()
+        {
+            if (Preferences.Get("token", "undefined").Equals("undefined"))
+            {
+                await Application.Current.MainPage.DisplayAlert("提示", "数据同步请先登录", "Ok");
+            }
+            else
+            {
+                //await CommonTaskWeb.UploadAsync(CommonTasks);
+            }
+            await Shell.Current.GoToAsync($"{nameof(JumpPage)}");
         }
 
         public void OnAppearing()
