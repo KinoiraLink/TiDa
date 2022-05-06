@@ -69,7 +69,9 @@ namespace TiDa.Services
 
         public async Task InserWebAsync(TomatoTask item)
         {
-            throw new NotImplementedException();
+            string sql = $"INSERT INTO common_task VALUES ({item.Id},'{item.UserCookie}','{item.TaskTitle}','{item.TaskDescribe}','{item.TaskTime}',{item.Timestamp})";
+            //string sql = $"INSERT INTO common_task VALUES ({item.Id},'{item.UserCookie}','{item.TaskTitle}','{item.TaskDescribe}','{item.TaskDate}','{item.TaskTime}',{item.Done},{item.Timestamp},{item.IsDeleted})";
+            //await Connection.ExecuteAsync(sql);
         }
 
         public async Task<bool> UpdateItemAsync(TomatoTask item)
@@ -84,7 +86,7 @@ namespace TiDa.Services
 
         public async Task InsertorReplace(TomatoTask item)
         {
-            throw new NotImplementedException();
+            await Connection.UpdateAsync(item);
         }
 
         public async Task<int> DeleteItemAsync(TomatoTask item)
@@ -101,9 +103,7 @@ namespace TiDa.Services
             => await Connection.Table<TomatoTask>().ToListAsync();
 
         public async Task<IList<TomatoTask>> GetAllItemsAsync()
-        {
-            throw new NotImplementedException();
-        }
+            => await Connection.Table<TomatoTask>().ToListAsync();
 
         public async Task InserAllItem(IList<TomatoTask> list)
         {

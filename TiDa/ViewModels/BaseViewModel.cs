@@ -31,6 +31,8 @@ namespace TiDa.ViewModels
 
         public IDataWeb<WeekTask> WeekTaskWeb => DependencyService.Get<IDataWeb<WeekTask>>();
 
+        public IDataWeb<TomatoTask> TomoTaskWeb => DependencyService.Get<IDataWeb<TomatoTask>>();
+
         bool isBusy = false;
         public bool IsBusy
         {

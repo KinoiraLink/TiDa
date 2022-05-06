@@ -88,7 +88,7 @@ namespace TiDa.ViewModels
             }
             else
             {
-                //await CommonTaskWeb.UploadAsync(CommonTasks);
+                await TomoTaskWeb.UploadAsync(TomatoTasks);
             }
             await Shell.Current.GoToAsync($"{nameof(JumpPage)}");
         }
