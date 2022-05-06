@@ -19,6 +19,8 @@ namespace TiDa.ViewModels
         public IDataStore<MarkDownTask> MarkDownDataStore => DependencyService.Get<IDataStore<MarkDownTask>>();
 
         public IDataStore<SimpleWrPo> SimpleWrPoDataStore => DependencyService.Get<IDataStore<SimpleWrPo>>();
+
+        public IDataStore<TomatoTask> TomatoDataStore => DependencyService.Get<IDataStore<TomatoTask>>();
         public IWebService<User> LoginWebService => DependencyService.Get<IWebService<User>>();
 
         public IDataWeb<CommonTask> CommonTaskWeb => DependencyService.Get<IDataWeb<CommonTask>>();

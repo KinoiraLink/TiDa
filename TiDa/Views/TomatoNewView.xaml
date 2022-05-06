@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TiDa.ViewModels;assembly=TiDa"
+             xmlns:model="clr-namespace:TiDa.Models;assembly=TiDa"
+             x:Class="TiDa.Views.TomatoNewView">
+    <ContentPage.BindingContext>
+        <local:TomatoNewViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="保存" Command="{Binding SaveCommand}"></ToolbarItem>
+        <ToolbarItem  Text="退出" Command="{Binding CancelCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <AbsoluteLayout x:Name="absoluteLayout"
+                            HeightRequest="200"
+                            SizeChanged="OnAbsoluteLayoutSizeChanged">
+                <BoxView Rotation="{Binding HourHandRotation}" x:Name="hourHand" Color="#B5484B" />
+                <BoxView Rotation="{Binding MinuteHandRotation}" x:Name="minuteHand" Color="#3CCFB7" />
+                <BoxView Rotation="{Binding SecondHandRotation}" x:Name="secondHand" Color="#FACD91" />
+
+            </AbsoluteLayout>
+            <Label Text="标题" />
+            <Entry Text="{Binding TaskTitle}" />
+            <Label Text="描述" />
+            <Editor Text="{Binding TaskDescribe}" />
+            <Label HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span  Text="{Binding AHour}"
+                              FontSize="Title"  />
+                        <Span Text=":"
+                              FontSize="Title" />
+                        <Span Text="{Binding AMinute}"
+                              FontSize="Title" />
+                        <Span Text=":"
+                              FontSize="Title" />
+                        <Span  Text="{Binding ASecond}"
+                              FontSize="Title" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Button Command="{Binding TimeKeeper}" Text="计时"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

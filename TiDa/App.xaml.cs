@@ -22,6 +22,7 @@ namespace TiDa
             DependencyService.Register<IDataStore<WeekTask>,WeekTaskDataStorage>();
             DependencyService.Register<IDataStore<MarkDownTask>, MarkDownTaskDataStorage>();
             DependencyService.Register<IDataStore<SimpleWrPo>, SimpleWrPoDataStorage>();
+            DependencyService.Register<IDataStore<TomatoTask>,TomatoDataStorage>();
 
             DependencyService.Register<IWebService<User>,LoginWebService>();
             DependencyService.Register<IDataWeb<CommonTask>, CommonWeb>();

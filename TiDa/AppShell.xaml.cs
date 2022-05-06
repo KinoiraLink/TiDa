@@ -26,6 +26,7 @@ namespace TiDa
            Routing.RegisterRoute(nameof(Loading), typeof(Loading));
             Routing.RegisterRoute(nameof(MarkDownViewPage), typeof(MarkDownViewPage));
            Routing.RegisterRoute(nameof(MarkDownTasksViewPage), typeof(MarkDownTasksViewPage));
+           Routing.RegisterRoute(nameof(TomatoNewView), typeof(TomatoNewView));
 
         }
     }

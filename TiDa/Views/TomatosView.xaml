@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TiDa.ViewModels;assembly=TiDa"
+             xmlns:model="clr-namespace:TiDa.Models;assembly=TiDa"
+             x:Class="TiDa.Views.TomatosView">
+    <ContentPage.BindingContext>
+        <local:TomatosViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="新建" Command="{Binding AddTomatoCommand}" />
+    </ContentPage.ToolbarItems>
+    <!--x:DataType="local:"-->
+    <RefreshView x:DataType="local:TomatosViewModel"  Command="{Binding LoadTomatoTask }" IsRefreshing="{Binding IsBusy}">
+        <CollectionView x:Name="ItemsListView"
+                        ItemsSource="{Binding TomatoTasks}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate><!--x:DataType="model:"-->
+                    <Grid Padding="10" x:DataType="model:TomatoTask" BackgroundColor="#F15326">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding TaskTitle}" HorizontalTextAlignment="Center" FontSize="Title"  TextColor="#00A6A6"/>
+                        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding TaskDescribe}" TextColor="White" />
+                        <Label Grid.Row="1" Grid.Column="2" Text="{Binding TaskTime}" TextColor="Aquamarine" />
+                        <!--<Grid.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:}}, Path=ItemTapped}"		
+                                CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </Grid.GestureRecognizers>-->
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

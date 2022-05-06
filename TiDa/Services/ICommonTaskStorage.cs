@@ -107,6 +107,23 @@ namespace TiDa.Services
         public const string VersionKey = nameof(SimpleWrPoStorageConstants) + "." + nameof(Version);
     }
 
+    public static class TomatoTaskStorageConstants
+    {
+        /// <summary>
+        /// 收藏数据库版本号
+        /// </summary>
+        public const int Version = 1;
+
+        /// <summary>
+        /// 默认版本号
+        /// </summary>
+        public const int DefultVersion = 0;
+        /// <summary>
+        /// 收藏数据库版本号的键。
+        /// </summary>
+        public const string VersionKey = nameof(TomatoTaskStorageConstants) + "." + nameof(Version);
+    }
+
 
     public class commonTaskStroageUpdateEventArgs : EventArgs
     {
