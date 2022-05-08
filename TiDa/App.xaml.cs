@@ -30,7 +30,7 @@ namespace TiDa
             DependencyService.Register<IDataWeb<MarkDownTask>, MarkDownWeb>();
             DependencyService.Register<IDataWeb<WeekTask>, WeekWeb>();
             DependencyService.Register<IDataWeb<TomatoTask>, TomatoWeb>();
-
+            DependencyService.Register<IDataWeb<TargetTask>, TargetWeb>();
             DependencyService.Register<WeekTaskViewModel>();
             DependencyService.Register<MarkDownViewModel>();
 

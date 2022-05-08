@@ -263,7 +263,7 @@ namespace TiDa.ViewModels
             }
             else
             {
-                //await CommonTaskWeb.UploadAsync(CommonTasks);
+                await TargTaskTaskWeb.UploadAsync(minorList);
             }
             await Shell.Current.GoToAsync($"{nameof(JumpPage)}");
         }

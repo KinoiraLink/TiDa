@@ -74,7 +74,8 @@ namespace TiDa.Services
 
         public async Task InserWebAsync(TargetTask item)
         {
-            throw new NotImplementedException();
+            string sql = $"INSERT INTO target_task VALUES ({item.Id},'{item.UserCookie}','{item.MainTitle}','{item.MinorTitle}',{item.Timestamp},{item.IsDone},{item.IsDelete})";
+            await Connection.ExecuteAsync(sql);
         }
 
         public async Task<bool> UpdateItemAsync(TargetTask item)
