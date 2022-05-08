@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using TiDa.Models;
+using TiDa.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace TiDa.ViewModels
@@ -25,11 +27,27 @@ namespace TiDa.ViewModels
 
         public Command<SimpleWrPo> SimpleTapped { get; }
 
+        public Command RefreshCommand { get; }
+
         public SimpelWrPosViewModel()
         {
             SimpleWrPos = new ObservableCollection<SimpleWrPo>();
             LoadSimpleCommand = new Command(async () => await LoadFunc());
             SimpleTapped = new Command<SimpleWrPo>(SelectFunc);
+            RefreshCommand = new Command(RefreshFunc);
+        }
+
+        private async void RefreshFunc()
+        {
+            if (Preferences.Get("token", "undefined").Equals("undefined"))
+            {
+                await Application.Current.MainPage.DisplayAlert("提示", "数据同步请先登录", "Ok");
+            }
+            else
+            {
+                await SimpleWrPoWeb.UploadAsync(SimpleWrPos);
+            }
+            await Shell.Current.GoToAsync($"{nameof(JumpPage)}");
         }
 
         private void SelectFunc(SimpleWrPo simpleWrPo)

@@ -74,7 +74,7 @@ namespace TiDa.ViewModels
             this.PropertyChanged +=
                 (_, __) => LoginCommand.ChangeCanExecute();
 
-            Preferences.Set("token", "undefined");
+            
             var s = Preferences.Get("token", "undefined");
             if (s.Equals("undefined"))
             {

@@ -35,6 +35,8 @@ namespace TiDa.ViewModels
 
         public IDataWeb<TargetTask> TargTaskTaskWeb => DependencyService.Get<IDataWeb<TargetTask>>();
 
+        public IDataWeb<SimpleWrPo> SimpleWrPoWeb => DependencyService.Get<IDataWeb<SimpleWrPo>>();
+
         bool isBusy = false;
         public bool IsBusy
         {

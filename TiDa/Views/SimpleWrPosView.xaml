@@ -8,6 +8,9 @@
     <ContentPage.BindingContext>
         <local:SimpelWrPosViewModel />
     </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="刷新" Command="{Binding RefreshCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <RefreshView x:DataType="local:SimpelWrPosViewModel" Command="{Binding LoadSimpleCommand}" IsRefreshing="{Binding IsBusy}">
         <CollectionView 
                         ItemsSource="{Binding SimpleWrPos }"

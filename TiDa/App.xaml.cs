@@ -4,6 +4,7 @@ using TiDa.Models;
 using TiDa.Services;
 using TiDa.ViewModels;
 using TiDa.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,6 +15,7 @@ namespace TiDa
         public App()
         {
             InitializeComponent();
+
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<CommonTaskDataStorage>();
             DependencyService.Register<WeekTaskDataStorage>();
@@ -31,6 +33,10 @@ namespace TiDa
             DependencyService.Register<IDataWeb<WeekTask>, WeekWeb>();
             DependencyService.Register<IDataWeb<TomatoTask>, TomatoWeb>();
             DependencyService.Register<IDataWeb<TargetTask>, TargetWeb>();
+            DependencyService.Register<IDataWeb<SimpleWrPo>, SimpleWrPoWeb>();
+
+
+
             DependencyService.Register<WeekTaskViewModel>();
             DependencyService.Register<MarkDownViewModel>();
 
@@ -42,6 +48,7 @@ namespace TiDa
 
         protected override void OnStart()
         {
+            Preferences.Set("token", "undefined");  
         }
 
         protected override void OnSleep()

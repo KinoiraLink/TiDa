@@ -75,7 +75,8 @@ namespace TiDa.Services
 
         public async Task InserWebAsync(SimpleWrPo item)
         {
-            throw new NotImplementedException();
+            string sql = $"INSERT INTO simple_wrpo VALUES ({item.Id},'{item.ImagePath}','{item.Title}','{item.Content}',{item.Timestamp},'{item.UserCookie}')";
+            await Connection.ExecuteAsync(sql);
         }
 
 
@@ -86,7 +87,7 @@ namespace TiDa.Services
 
         public async Task InsertorReplace(SimpleWrPo item)
         {
-            throw new NotImplementedException();
+            await Connection.UpdateAsync(item);
         }
 
         public async Task UpdateItemAsync(SimpleWrPo item)
