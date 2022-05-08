@@ -26,7 +26,14 @@ namespace TiDa.ViewModels
             } 
         }
 
+        private int DoingCount = 0;
+
+        private int DoneId = 0;
+
         public ObservableCollection<TargetList> TargetsLists { get; }
+
+        public ObservableCollection<TargetTask> IsDoneTargetTasks { get; }
+
         public List<TargetTask> minorList { get; }
 
         public Command LoadTargetCommand { get; }
@@ -46,6 +53,7 @@ namespace TiDa.ViewModels
         {
             TargetsLists = new ObservableCollection<TargetList>();
             minorList = new List<TargetTask>();
+            IsDoneTargetTasks = new ObservableCollection<TargetTask>();
             LoadTargetCommand = new Command(async () => await LoadFunc());
             AddMinCommand = new Command(AddMinFunc);
             AddMinorCommand = new Command<TargetList>(AddMinorFunc);
@@ -73,23 +81,50 @@ namespace TiDa.ViewModels
                         IsDone = true,
                         Timestamp = DateTime.Now.Ticks
                     };
-                    //var commonTask = new CommonTask
-                    //{
-                    //    Id = common.Id,
-                    //    Done = common.Done,
-                    //    IsDeleted = true,
-                    //    TaskDate = common.TaskDate,
-                    //    TaskDescribe = common.TaskDescribe,
-                    //    TaskTime = common.TaskTime,
-                    //    TaskTitle = common.TaskTitle,
-                    //    Timestamp = DateTime.Now.Ticks,
-                    //    UserCookie = common.UserCookie
-                    //};
-
-                    //CommonTasks.Remove(common);
                     await TargetDataStore.InsertorReplace(targetTask);
 
+                    var allItemsAsync = await TargetDataStore.GetAllItemsAsync();
+                    //判断是否全部做完
+                    await Task.Run(() =>
+                    {
+                        
+                        foreach (var task in allItemsAsync)
+                        {
+                            if (task.MainTitle == target.MainTitle)
+                            {
+                                IsDoneTargetTasks.Add(task);
+                            }
 
+                        }
+
+                        foreach (var isDoneTargetTask in IsDoneTargetTasks)
+                        {
+                            if (!isDoneTargetTask.IsDone && isDoneTargetTask.MainTitle != isDoneTargetTask.MinorTitle)
+                            {
+                                DoingCount += 1;
+                            }
+
+                            if (isDoneTargetTask.MainTitle == isDoneTargetTask.MinorTitle)
+                            {
+                                DoneId = isDoneTargetTask.Id;
+                            }
+
+                        }
+                    });
+                    
+
+                    if (DoingCount ==0)
+                    {
+                        await TargetDataStore.InsertorReplace(new TargetTask
+                        {
+                            Id=DoneId,
+                            MainTitle = target.MainTitle,
+                            MinorTitle = target.MainTitle,
+                            IsDelete = target.IsDelete,
+                            IsDone = true,
+                            Timestamp = DateTime.Now.Ticks
+                        });
+                    }
 
                 }
                 catch (Exception ex)
@@ -99,7 +134,9 @@ namespace TiDa.ViewModels
                 finally
                 {
                     IsBusy = false;
-                    //CommonTasks.Remove(common);
+
+                    IsDoneTargetTasks.Clear();
+                    DoingCount = 0;
                     await Shell.Current.GoToAsync($"{nameof(JumpPage)}");
                 }
             }
@@ -119,7 +156,7 @@ namespace TiDa.ViewModels
                         MainTitle = target.MainTitle,
                         MinorTitle = target.MinorTitle,
                         IsDelete = true,
-                        IsDone = target.IsDone,
+                        IsDone = true,
                         Timestamp = DateTime.Now.Ticks
                     };
                     //var commonTask = new CommonTask

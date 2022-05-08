@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using TiDa.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using MdView.Templates;
+using Newtonsoft.Json;
+using TiDa.Views;
 
 namespace TiDa.ViewModels
 {
@@ -71,6 +75,8 @@ namespace TiDa.ViewModels
 
         public Command ChangeVIewCommand { get; }
 
+        public Command GoListCommand { get; }
+
         public SimpelWrPoEditViewModel()
         {
             if (SimpleWrPoDataStore.IsInitialized())
@@ -81,10 +87,16 @@ namespace TiDa.ViewModels
             CancelCommand = new Command(CancelFunc);
             UploadImageCommand = new Command(TakePhotoAsync);
             ChangeVIewCommand = new Command(ChangeFunc);
+            GoListCommand = new Command(GoListFunc);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
 
         }
+
+        private async void GoListFunc()
+        =>
+            await Shell.Current.GoToAsync(nameof(SimpleWrPosView));
+        
 
         private void ChangeFunc()
         {
@@ -113,42 +125,62 @@ namespace TiDa.ViewModels
 
         async void TakePhotoAsync()
         {
-            try
+            string imgName = await TakeImageAction("123");
+            if (imgName == null)
             {
-                var photo = await MediaPicker.CapturePhotoAsync();
-                await LoadPhotoAsync(photo);
-                Console.WriteLine($"CapturePhotoAsync COMPLETED: {PhotoPath}");
-                ImagePath = PhotoPath;
-            }
-            catch (FeatureNotSupportedException fnsEx)
-            {
-                // Feature is not supported on the device
-            }
-            catch (PermissionException pEx)
-            {
-                // Permissions not granted
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"CapturePhotoAsync THREW: {ex.Message}");
-            }
-        }
-
-        async Task LoadPhotoAsync(FileResult photo)
-        {
-            // canceled
-            if (photo == null)
-            {
-                PhotoPath = null;
                 return;
             }
-            // save the file into local storage
-            var newFile = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
-            using (var stream = await photo.OpenReadAsync())
-            using (var newStream = File.OpenWrite(newFile))
-                await stream.CopyToAsync(newStream);
 
-            PhotoPath = newFile;
+            var imagePath = JsonConvert.DeserializeObject<ImagePath>(imgName);
+            ImagePath = $"http://localhost:3000/images/{imagePath.filePath}";
+        }
+
+
+
+
+        async Task<string> TakeImageAction(string s)
+        {
+            string action = await Application.Current.MainPage.DisplayActionSheet("提示", "取消", "确认", "拍照", "从相册选择");
+            FileResult pickFile = null;
+            switch (action)
+            {
+                case "拍照":
+                    var photo = await MediaPicker.CapturePhotoAsync();
+                    if (photo == null)
+                        return null;
+                    pickFile = photo;
+                    break;
+                case "从相册选择":
+         
+                    var fileb = await MediaPicker.PickPhotoAsync();
+
+                    if (fileb == null)
+                        return null;
+                    pickFile = fileb;
+                    break;
+            }
+            if (pickFile != null)
+            {
+                //上传图片到服务器
+                HttpClient client = new HttpClient();
+                #region
+                MultipartFormDataContent form = new MultipartFormDataContent();
+                StreamContent fileContent = new StreamContent(await pickFile.OpenReadAsync());
+                fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+                fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data");
+                fileContent.Headers.ContentDisposition.FileName = System.DateTime.Now.ToString("yyyMMddHHmmss") + ".jpg";
+                //fileContent.Headers.ContentDisposition.FileName = "ig";
+                fileContent.Headers.ContentDisposition.Name = "img";
+                form.Add(fileContent);
+                #endregion
+                HttpResponseMessage res = await client.PostAsync("http://10.36.12.2:3000/upload/image", form);
+                var uploadModel = await res.Content.ReadAsStringAsync();
+                return uploadModel;
+            }
+            else
+            {
+                return "";
+            }
         }
     }
 }

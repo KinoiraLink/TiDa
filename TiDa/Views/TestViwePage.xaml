@@ -1,13 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:richTextEditor="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TiDa.Views.TestViwePage">
     <ContentPage.Content>
         <StackLayout>
-            <DatePicker Format="D" 
-                        x:Name="TestDatePick"
-                         ></DatePicker>
-            <Label x:Name="TestLabel"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

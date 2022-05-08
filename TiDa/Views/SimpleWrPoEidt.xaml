@@ -10,7 +10,9 @@
         <local:SimpelWrPoEditViewModel />
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="预览" Command="{Binding ChangeVIewCommand}"></ToolbarItem>
+        <ToolbarItem Text="保存" Command="{Binding SaveCommand}" />
+        <ToolbarItem Text="预览" Command="{Binding ChangeVIewCommand}" />
+        <ToolbarItem Text="往期" Command="{Binding GoListCommand }"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content >
         <ScrollView>
@@ -24,18 +26,7 @@
                 <Label Text="内容" />
                 <Editor Text="{Binding Content}" HeightRequest="200"></Editor>
             </StackLayout>
-            <StackLayout IsVisible="{Binding IsPreview}" >
-                <mdt:Heading1 Text="{Binding SimpleTitle}"  TextColor="Orange" HorizontalTextAlignment="Center"/>
-                <mdt:Image Source="{Binding ImagePath}" Margin="36" />
-                <mdt:Paragraph Text="{Binding Content}" TextColor="Black" Margin="16" />
-                <!--<md:MdView Markdown="{Binding MarkdownText}"> 
-                    <md:MdView.Heading1Template>
-                        <DataTemplate>
-                            <mdt:Heading1 TextColor="Black" HorizontalTextAlignment="Center"/>
-                        </DataTemplate>
-                    </md:MdView.Heading1Template>
-                </md:MdView>-->
-            </StackLayout>
+            
         </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mdt="clr-namespace:MdView.Templates;assembly=MdView"
+             xmlns:local="clr-namespace:TiDa.ViewModels;assembly=TiDa"
+             x:Class="TiDa.Views.SimpleWrPoRead">
+    <ContentPage.BindingContext>
+        <local:SimpelWrPoEditViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout IsVisible="{Binding IsPreview}" >
+                <mdt:Heading1 Text="{Binding SimpleTitle}"  TextColor="Orange" HorizontalTextAlignment="Center"/>
+                <mdt:Image Source="{Binding ImagePath}" Margin="36" />
+                <mdt:Paragraph Text="{Binding Content}" TextColor="Black" Margin="16" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

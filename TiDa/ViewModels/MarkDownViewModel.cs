@@ -122,6 +122,11 @@ namespace TiDa.ViewModels
 
             if (markDownTask !=null)
             {
+                if (Device.RuntimePlatform == Device.Android)
+                {
+                    await Shell.Current.GoToAsync($"//mdReadPage?{nameof(mdReadViewModel.Id)}={markDownTask.Id}");
+                }
+
                 await Shell.Current.GoToAsync($"//MarkPage?{nameof(MarkDownDetailViewModel.Id)}={markDownTask.Id}");
             }
 

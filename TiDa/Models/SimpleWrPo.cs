@@ -19,5 +19,8 @@ namespace TiDa.Models
 
         public long Timestamp { get; set; }
 
+
+        public string UserCookie { get; set; }
+
     }
 }

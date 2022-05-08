@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local ="clr-namespace:TiDa.ViewModels;assembly=TiDa"
+             xmlns:model ="clr-namespace:TiDa.Models;assembly=TiDa"
+             xmlns:mdt ="clr-namespace:MdView.Templates;assembly=MdView"
+             x:Class="TiDa.Views.SimpleWrPosView">
+    <ContentPage.BindingContext>
+        <local:SimpelWrPosViewModel />
+    </ContentPage.BindingContext>
+    <RefreshView x:DataType="local:SimpelWrPosViewModel" Command="{Binding LoadSimpleCommand}" IsRefreshing="{Binding IsBusy}">
+        <CollectionView 
+                        ItemsSource="{Binding SimpleWrPos }"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout x:DataType="model:SimpleWrPo" Orientation="Horizontal">
+                        <mdt:Image Source="{Binding ImagePath}" HeightRequest="100" WidthRequest="100" />
+                        <StackLayout Padding="10" >
+                            <Label Text="{Binding Title}" 
+                                   FontSize="16" />
+                            <Label Text="{Binding  Content}" 
+                                   LineBreakMode="WordWrap" />
+                        </StackLayout>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

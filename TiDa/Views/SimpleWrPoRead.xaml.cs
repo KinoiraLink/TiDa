@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace TiDa.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TestViwePage : ContentPage
+    public partial class SimpleWrPoRead : ContentPage
     {
-        public TestViwePage()
+        public SimpleWrPoRead()
         {
             InitializeComponent();
         }

@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <PackageReference Include="MdView" Version="0.7.0" />
+    <PackageReference Include="Microcharts.Forms" Version="0.9.5.9" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
@@ -25,7 +26,7 @@
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     <PackageReference Include="Syncfusion.Licensing" Version="20.1.0.52" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="20.1.0.52" />
-    <PackageReference Include="Syncfusion.Xamarin.SfRichTextEditor" Version="20.1.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRichTextEditor" Version="19.4.0.56" />
     <PackageReference Include="Syncfusion.Xamarin.SfSchedule" Version="20.1.0.52" />
     <PackageReference Include="TEditor2" Version="1.4.4" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
@@ -102,6 +103,12 @@
     <EmbeddedResource Update="Views\SimpleWrPoEidt.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\SimpleWrPoRead.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SimpleWrPosView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\TargetsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -115,6 +122,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\TMinorNewView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\TodoChartView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\TomatoNewView.xaml">

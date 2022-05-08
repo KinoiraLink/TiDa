@@ -162,6 +162,9 @@
     <PackageReference Include="MdView">
       <Version>0.7.0</Version>
     </PackageReference>
+    <PackageReference Include="Microcharts.Forms">
+      <Version>0.9.5.9</Version>
+    </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>2.1.0</Version>
     </PackageReference>
@@ -172,7 +175,7 @@
       <Version>20.1.0.52</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRichTextEditor">
-      <Version>20.1.0.51</Version>
+      <Version>19.4.0.56</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfSchedule">
       <Version>20.1.0.52</Version>

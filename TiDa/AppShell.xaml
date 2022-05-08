@@ -156,6 +156,13 @@
             <ShellContent Title="TomatoTime" Route="TomatosView" ContentTemplate="{DataTemplate local:TomatosView}" />
         </Tab>
     </FlyoutItem>
+
+    <FlyoutItem Title="Todo统计">
+        <Tab>
+            <ShellContent Title="TodoChart" Route="TodoChartView" ContentTemplate="{DataTemplate local:TodoChartView}" />
+        </Tab>
+    </FlyoutItem>
+
     <!--
         TabBar lets you define content that won't show up in a flyout menu. When this content is active
         the flyout menu won't be available. This is useful for creating areas of the application where 

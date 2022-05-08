@@ -104,13 +104,11 @@ namespace TiDa.Services
 
         public async Task<IEnumerable<TargetTask>> GetItemsAsync(bool forceRefresh = false)
         =>
-            await Connection.Table<TargetTask>().Where(p =>p.IsDelete==false).ToListAsync();
+            await Connection.Table<TargetTask>().Where(p =>p.IsDelete==false).OrderBy(p =>p.IsDone).ToListAsync();
         
 
         public async Task<IList<TargetTask>> GetAllItemsAsync()
-        {
-            throw new NotImplementedException();
-        }
+        => await Connection.Table<TargetTask>().ToListAsync();
 
         public async Task InserAllItem(IList<TargetTask> list)
         {

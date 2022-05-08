@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TiDa.ViewModels;assembly=TiDa"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             x:Class="TiDa.Views.TodoChartView">
+    <ContentPage.BindingContext>
+        <local:TodoChartViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="生成" Command="{Binding LoadCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <!--<RefreshView x:DataType="local:TodoChartViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy}">-->
+    <ScrollView>
+        <StackLayout Orientation="Vertical">
+            <Label Text="一般清单总体情况:" HorizontalOptions="Center" TextColor="#00A6AA" FontSize="Title"></Label>
+            <microcharts:ChartView Chart="{Binding ComDonutChart}"    HeightRequest="200" />
+            <Label Text="一般清单一周:" HorizontalOptions="Center" TextColor="#00A6AA" FontSize="Title"></Label>
+            <microcharts:ChartView Chart="{Binding WeekComBarChart}" HeightRequest="200"></microcharts:ChartView>
+            <Label Text="记录清单一周:" HorizontalOptions="Center" TextColor="#00A6AA" FontSize="Title"></Label>
+            <microcharts:ChartView Chart="{Binding WeekMarLineChart}" HeightRequest="200"></microcharts:ChartView>
+            <Label Text="番茄时间清单一周:" HorizontalOptions="Center" TextColor="#00A6AA" FontSize="Title"></Label>
+            <microcharts:ChartView Chart="{Binding WeekTomPointChart}" HeightRequest="200"></microcharts:ChartView>
+
+        </StackLayout>
+    </ScrollView>
+<!--</RefreshView>-->
+</ContentPage>

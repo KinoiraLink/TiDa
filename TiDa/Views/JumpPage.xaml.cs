@@ -15,7 +15,7 @@ namespace TiDa.Views
         public JumpPage()
         {
             InitializeComponent();
-            Jumpto();
+            //Jumpto();
         }
 
         public async void Jumpto()
@@ -26,7 +26,8 @@ namespace TiDa.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            await Shell.Current.GoToAsync("..",false);
+            Jumpto();
+            //await Shell.Current.GoToAsync("..",false);
         }
 
         private async  void Button_OnClicked(object sender, EventArgs e)

@@ -10,25 +10,20 @@ using Xamarin.Forms.Xaml;
 namespace TiDa.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TargetsView : ContentPage
+    public partial class SimpleWrPosView : ContentPage
     {
-        TargetsViewModel _viewModel;
-        public TargetsView()
+        SimpelWrPosViewModel simpelWrPosViewModel;
+        public SimpleWrPosView()
         {
             InitializeComponent();
-            BindingContext = _viewModel = new TargetsViewModel();
+            BindingContext = simpelWrPosViewModel = new SimpelWrPosViewModel();
         }
+
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            _viewModel.OnAppearing();
-        }
-
-        private void VisualElement_OnSizeChanged(object sender, EventArgs e)
-        {
-
+            simpelWrPosViewModel.OnAppearing();
         }
     }
-
 }

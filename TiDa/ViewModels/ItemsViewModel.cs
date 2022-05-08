@@ -91,7 +91,7 @@ namespace TiDa.ViewModels
                     IsBusy = false;
 
                     CommonTasks.Remove(common);
-                    LoadCommonTaskFunction();
+                    await Shell.Current.GoToAsync($"{nameof(JumpPage)}");
                 }
             }
         }
@@ -143,7 +143,7 @@ namespace TiDa.ViewModels
             {
                 IsBusy = false;
                 CommonTasks.Remove(common);
-                LoadCommonTaskFunction();
+                await Shell.Current.GoToAsync($"{nameof(JumpPage)}");
             }
 
         }

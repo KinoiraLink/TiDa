@@ -65,7 +65,8 @@ namespace TiDa.UWP
                 global::Xamarin.Forms.Forms.SetFlags("Shell_UWP_Experimental");
 
 
-                List<Assembly> assembliesToInclude = new List<Assembly>();
+List<Assembly> assembliesToInclude = new List<Assembly>();
+assembliesToInclude.Add(typeof(SfRichTextEditorRenderer).GetTypeInfo().Assembly);
 
                 assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.RichTextEditor.SfRichTextEditorRenderer).GetTypeInfo().Assembly);
                 // Add the below line for using SfButton.

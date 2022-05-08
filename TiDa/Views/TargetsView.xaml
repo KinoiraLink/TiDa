@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:TiDa.ViewModels;assembly=TiDa"  
-             xmlns:model="clr-namespace:TiDa.Models;assembly=TiDa"  
+             xmlns:model="clr-namespace:TiDa.Models;assembly=TiDa"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
              x:Class="TiDa.Views.TargetsView">
     <ContentPage.BindingContext>
         <local:TargetsViewModel />
@@ -27,7 +28,13 @@
                         </StackLayout>
                         
 
-                        <CollectionView ItemsSource="{Binding MinorList}" HeightRequest="200" BackgroundColor="AliceBlue">
+                        <CollectionView ItemsSource="{Binding MinorList}"  VerticalOptions="Fill" SizeChanged="VisualElement_OnSizeChanged" BackgroundColor="AliceBlue" x:Name="MinorList">
+                            <CollectionView.HeightRequest>
+                                <OnPlatform x:TypeArguments="system:Double">
+                                    <On Platform="UWP" Value="100" />
+                                    <On Platform="Android" Value="200"></On>
+                                </OnPlatform>
+                            </CollectionView.HeightRequest>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout x:DataType="model:TargetTask" Orientation="Horizontal">

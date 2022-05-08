@@ -17,11 +17,5 @@ xmlns:richTextEditor="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Sy
             HasBackgroundAnimation="True"/>
     </pages:PopupPage.Animation>
     <StackLayout>
-        <richTextEditor:SfRichTextEditor 
-            Text="开始编辑吧" 
-            HeightRequest="300" 
-            ContentHeightRequest="200" 
-            ReadOnly="False"
-            WordWrap="BreakWord" WidthRequest="500" HtmlText="开始编辑吧"></richTextEditor:SfRichTextEditor>
     </StackLayout>
 </pages:PopupPage>

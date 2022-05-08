@@ -87,7 +87,7 @@ namespace TiDa.ViewModels
             var Id = Preferences.Get("NavPara", 0);
             if (Id == 0)
             {
-                TaskDate = DateTime.UtcNow;
+                TaskDate = DateTime.Now;
                 
             }
             else
