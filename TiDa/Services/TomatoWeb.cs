@@ -161,5 +161,10 @@ namespace TiDa.Services
             }
             return tomatoTasks;
         }
+
+        public async Task DeleteAsync(TomatoTask item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

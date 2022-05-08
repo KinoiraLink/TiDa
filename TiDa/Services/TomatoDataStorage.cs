@@ -109,5 +109,10 @@ namespace TiDa.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task RomoveItemAsync(TomatoTask item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

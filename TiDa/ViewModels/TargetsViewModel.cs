@@ -83,11 +83,11 @@ namespace TiDa.ViewModels
                     };
                     await TargetDataStore.InsertorReplace(targetTask);
 
-                    var allItemsAsync = await TargetDataStore.GetAllItemsAsync();
+                    
                     //判断是否全部做完
-                    await Task.Run(() =>
+                    await Task.Run(async () =>
                     {
-                        
+                        var allItemsAsync = await TargetDataStore.GetAllItemsAsync();
                         foreach (var task in allItemsAsync)
                         {
                             if (task.MainTitle == target.MainTitle)
@@ -137,7 +137,7 @@ namespace TiDa.ViewModels
 
                     IsDoneTargetTasks.Clear();
                     DoingCount = 0;
-                    await Shell.Current.GoToAsync($"{nameof(JumpPage)}");
+                    await Shell.Current.GoToAsync("//index/task/ItemsPage");
                 }
             }
         }

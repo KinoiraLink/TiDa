@@ -168,5 +168,14 @@ namespace TiDa.Services
 
             return targetTasks;
         }
+
+        public async Task DeleteAsync(TargetTask item)
+        {
+            var deleteList = new List<TargetTask>();
+            deleteList.Add(item);
+            var json = JsonConvert.SerializeObject(deleteList);
+            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            response = await httpClient.PostAsync("http://localhost:3000/upload/targetdelete", content);
+        }
     }
 }

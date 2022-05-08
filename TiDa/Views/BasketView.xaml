@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local ="clr-namespace:TiDa.ViewModels;assembly=TiDa"
+             xmlns:model ="clr-namespace:TiDa.Models;assembly=TiDa"
+             x:Class="TiDa.Views.BasketView">
+
+    <ContentPage.BindingContext>
+        <local:BasketViewModel />
+    </ContentPage.BindingContext>
+
+    <RefreshView x:DataType="local:BasketViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy}">
+        <StackLayout>
+            <Label Text="一般清单" HorizontalOptions="FillAndExpand" BackgroundColor="#00A6A6" TextColor="White" FontSize="Title" HorizontalTextAlignment="Center" />
+            <CollectionView
+                            ItemsSource="{Binding CommonTasks}"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="20,0,20,0" x:DataType="model:CommonTask" Orientation="Horizontal" HeightRequest="30">
+                            <Label Text="{Binding TaskTitle}" VerticalOptions="Center"  />
+                            <Button Text="还原" 
+                                    HorizontalOptions="End" 
+                                    BackgroundColor="YellowGreen" 
+                                    IsVisible="{Binding IsDeleted}" 
+                                    HeightRequest="20"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:BasketViewModel}}, Path= BackCommand}"
+                                    CommandParameter="{Binding .}"/>
+                            <Button Text="删除" 
+                                    HorizontalOptions="EndAndExpand" 
+                                    BackgroundColor="Red"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:BasketViewModel}}, Path= DeComCommand}"
+                                    CommandParameter="{Binding .}"
+                                    />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="目标清单" 
+                   HorizontalOptions="FillAndExpand" 
+                   BackgroundColor="CornflowerBlue" 
+                   TextColor="White" 
+                   FontSize="Title" 
+                   HorizontalTextAlignment="Center" />
+            <CollectionView
+                ItemsSource="{Binding  TargetTasks}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="20,0,20,0" x:DataType="model:TargetTask" Orientation="Horizontal" HeightRequest="30">
+                            <Label Text="{Binding    MinorTitle}" VerticalOptions="Center"  />
+                            <Button Text="还原" 
+                                    HorizontalOptions="End" 
+                                    BackgroundColor="YellowGreen" 
+                                    IsVisible="{Binding  IsDelete}" 
+                                    HeightRequest="20"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:BasketViewModel}}, 
+                                Path= BackTarCommand}"
+                                    CommandParameter="{Binding .}"/>
+                            
+                            <Button Text="删除" 
+                                    HorizontalOptions="EndAndExpand" 
+                                    BackgroundColor="Red"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:BasketViewModel}}, 
+                                Path= DeTarCommand}"
+                                    CommandParameter="{Binding .}"
+                            />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="记录清单" 
+                   HorizontalOptions="FillAndExpand" 
+                   BackgroundColor="DarkSeaGreen" 
+                   TextColor="White" 
+                   FontSize="Title" 
+                   HorizontalTextAlignment="Center" />
+            <CollectionView
+                ItemsSource="{Binding  MarkDownTasks}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="20,0,20,0" x:DataType="model:MarkDownTask" Orientation="Horizontal" HeightRequest="30">
+                            <Label Text="{Binding   TaskTitle}" VerticalOptions="Center"  />
+                            <Button Text="删除" 
+                                    HorizontalOptions="EndAndExpand" 
+                                    BackgroundColor="Red"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:BasketViewModel}}, Path= DeMarCommand}"
+                                    CommandParameter="{Binding .}"
+                            />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+
+    </RefreshView>
+</ContentPage>

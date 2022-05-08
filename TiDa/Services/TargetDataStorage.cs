@@ -115,5 +115,10 @@ namespace TiDa.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task RomoveItemAsync(TargetTask item)
+        {
+            await Connection.DeleteAsync(item);
+        }
     }
 }

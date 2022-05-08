@@ -162,5 +162,10 @@ namespace TiDa.Services
             }
             return weekTasks;
         }
+
+        public async Task DeleteAsync(WeekTask item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

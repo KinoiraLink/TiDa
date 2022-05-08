@@ -168,5 +168,14 @@ namespace TiDa.Services
 
             return markDownTasks;
         }
+
+        public async Task DeleteAsync(MarkDownTask item)
+        {
+            var deleteList = new List<MarkDownTask>();
+            deleteList.Add(item);
+            var json = JsonConvert.SerializeObject(deleteList);
+            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            response = await httpClient.PostAsync("http://localhost:3000/upload/markdowndelete", content);
+        }
     }
 }

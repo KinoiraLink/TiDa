@@ -22,5 +22,7 @@ namespace TiDa.Services
 
         Task<IList<T>> GetAllItemsAsync();
         Task InserAllItem(IList<T> list);
+
+        Task RomoveItemAsync(T item);
     }
 }

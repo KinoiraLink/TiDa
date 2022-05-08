@@ -166,5 +166,10 @@ namespace TiDa.Services
 
             return simpleWrPos;
         }
+
+        public async Task DeleteAsync(SimpleWrPo item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

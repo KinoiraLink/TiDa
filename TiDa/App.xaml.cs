@@ -41,14 +41,14 @@ namespace TiDa
             DependencyService.Register<MarkDownViewModel>();
 
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTkzNDQxQDMyMzAyZTMxMmUzMGhaZkFMZ0ZXVzNrRVoxMXExaGptSFNEOUN2NzFxR3VxSGVSYmpQS01VV0E9");
-
+            Preferences.Set("token", "undefined");
             MainPage = new AppShell();
             ResourcesHelper.LoadTheme(Theme.Dark);
         }
 
         protected override void OnStart()
         {
-            Preferences.Set("token", "undefined");  
+             
         }
 
         protected override void OnSleep()

@@ -83,14 +83,13 @@
             </Grid>
         </ContentView>
     </Shell.FlyoutHeader>
-    <FlyoutItem  Title="首页">
-        <Tab Icon="task.png" Title="清单">
+    <FlyoutItem  Title="首页" Route="index">
+        <Tab Icon="task.png" Title="清单" Route="task">
             <ShellContent Title ="一般" Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
             <ShellContent Title="周期" Route="WeekTaskPage" ContentTemplate="{DataTemplate local:WeekTaskPage}">
             </ShellContent>
             <ShellContent Title="记录" Route="MDTasksViewPage" ContentTemplate="{DataTemplate local:MarkDownTasksViewPage}" />
             <ShellContent Title="目标" Route="TargetsView" ContentTemplate="{DataTemplate local:TargetsView}" />
-            <ShellContent Title="测试3" Route="TestViewinView" ContentTemplate="{DataTemplate local:TestViewinView}" />
         </Tab>
         <Tab Icon="book.png" Title="书札">
             <ShellContent Title="书架" Route="BoosView" ContentTemplate="{DataTemplate local:BoosView}" />
@@ -135,22 +134,11 @@
             </ShellContent>
         </Tab>
     </FlyoutItem>
-    <FlyoutItem Title="测试-随记随拍">
+    <FlyoutItem Title="随记随拍">
         <Tab>
-            <ShellContent Title="测试-随记随拍" Route="SimpleWrPoEidt" ContentTemplate="{DataTemplate local:SimpleWrPoEidt}" />
+            <ShellContent Title="随记随拍" Route="SimpleWrPoEidt" ContentTemplate="{DataTemplate local:SimpleWrPoEidt}" />
         </Tab>
     </FlyoutItem>
-
-    <FlyoutItem Title="测试-Markdown阅读">
-        <Tab>
-            <ShellContent Title="测试-Markdown阅读" Route="MarkdownReader" ContentTemplate="{DataTemplate local:MarkdownReader}" />
-        </Tab>
-    </FlyoutItem>
-    <FlyoutItem Title="HTML">
-        <Tab>
-            <ShellContent Title="HTML" Route="HTMLDemo" ContentTemplate="{DataTemplate local:HTMLDemo}" />
-        </Tab>
-    </FlyoutItem> 
     <FlyoutItem Title="番茄时间">
         <Tab>
             <ShellContent Title="TomatoTime" Route="TomatosView" ContentTemplate="{DataTemplate local:TomatosView}" />
@@ -160,6 +148,12 @@
     <FlyoutItem Title="Todo统计">
         <Tab>
             <ShellContent Title="TodoChart" Route="TodoChartView" ContentTemplate="{DataTemplate local:TodoChartView}" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="纸篓">
+        <Tab>
+            <ShellContent Title="Basket" Route="BasketView" ContentTemplate="{DataTemplate local:BasketView}" />
         </Tab>
     </FlyoutItem>
 

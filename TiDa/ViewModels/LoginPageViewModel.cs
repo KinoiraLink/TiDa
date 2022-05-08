@@ -90,7 +90,7 @@ namespace TiDa.ViewModels
 
         private async void ReturnFunc()
         {
-            Preferences.Set("token", 0);
+            Preferences.Set("token", "undefined");
             IsLoginIn = true;
             IsLoginOut = false;
             await Shell.Current.GoToAsync($"//{nameof(ItemsPage)}");
@@ -98,7 +98,7 @@ namespace TiDa.ViewModels
 
         private async void GoOutFunc()
         {
-            Preferences.Set("token", 0);
+            Preferences.Set("token", "undefined");
             IsLoginIn = true;
             IsLoginOut = false;
             await Shell.Current.GoToAsync($"..");

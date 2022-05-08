@@ -89,6 +89,11 @@ namespace TiDa.Services
             throw new NotImplementedException();
         }
 
+        public async Task RomoveItemAsync(Item item)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task InitializeAsync()
         {
             throw new NotImplementedException();

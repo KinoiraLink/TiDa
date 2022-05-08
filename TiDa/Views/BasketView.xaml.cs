@@ -3,31 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using TiDa.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace TiDa.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class JumpPage : ContentPage
+    public partial class BasketView : ContentPage
     {
-        public JumpPage()
+        BasketViewModel viewModel;
+        public BasketView()
         {
             InitializeComponent();
-            //Jumpto();
-        }
-
-        public async void Jumpto()
-        {
-            await Shell.Current.GoToAsync("..",true);
+            BindingContext = viewModel = new BasketViewModel();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-             Jumpto();
-            //await Shell.Current.GoToAsync("..",false);
+            viewModel.OnAppearing();
         }
     }
 }

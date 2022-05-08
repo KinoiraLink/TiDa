@@ -84,6 +84,11 @@ namespace TiDa.Services
         public async Task InserAllItem(IList<WeekTask> list)
             => await Connection.InsertAllAsync(list);
 
+        public async Task RomoveItemAsync(WeekTask item)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task InitializeAsync()
         {
             await Connection.CreateTableAsync<WeekTask>();

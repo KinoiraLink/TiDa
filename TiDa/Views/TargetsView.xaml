@@ -18,7 +18,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="1" x:DataType="model:TargetList" >
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" Padding="0,0,20,0">
                             <Label Text="{Binding MainTitle}"  BackgroundColor="#00A6A6"
                                    HorizontalOptions="FillAndExpand"
                                    FontSize="16"
@@ -37,7 +37,7 @@
                             </CollectionView.HeightRequest>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <StackLayout x:DataType="model:TargetTask" Orientation="Horizontal">
+                                    <StackLayout x:DataType="model:TargetTask" Orientation="Horizontal" Padding="20,0,20,0">
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto" />

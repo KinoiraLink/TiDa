@@ -116,6 +116,11 @@ namespace TiDa.Services
             throw new NotImplementedException();
         }
 
+        public async Task RomoveItemAsync(SimpleWrPo item)
+        {
+            throw new NotImplementedException();
+        }
+
         Task<bool> IDataStore<SimpleWrPo>.UpdateItemAsync(SimpleWrPo item)
         {
             throw new NotImplementedException();

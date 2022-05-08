@@ -167,5 +167,14 @@ namespace TiDa.Services
             return commonTasks;
 
         }
+
+        public async Task DeleteAsync(CommonTask item)
+        {
+            var deleteList = new List<CommonTask>();
+            deleteList.Add(item);
+            var json = JsonConvert.SerializeObject(deleteList);
+            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            response = await httpClient.PostAsync("http://localhost:3000/upload/commondelete", content);
+        }
     }
 }
