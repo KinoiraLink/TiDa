@@ -48,7 +48,7 @@ namespace TiDa.Services
                 var commonTask = new CommonTask { UserCookie = Preferences.Get("token", "undefined") };
                 var json = JsonConvert.SerializeObject(commonTask);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                response = await httpClient.PostAsync("http://localhost:3000/upload/commonget", content);
+                response = await httpClient.PostAsync("http://121.37.91.77:3000/upload/commonget", content);
                 json = null;
                 json = await response.Content.ReadAsStringAsync();
                 if (json != null)
@@ -134,7 +134,7 @@ namespace TiDa.Services
                 {
                     var json = JsonConvert.SerializeObject(romoteInsert);
                     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                    response = await httpClient.PostAsync("http://localhost:3000/upload/commonsave", content);
+                    response = await httpClient.PostAsync("http://121.37.91.77:3000/upload/commonsave", content);
                     json = await response.Content.ReadAsStringAsync();
                     var commonTaskList = JsonConvert.DeserializeObject<IList<CommonTask>>(json);
                     
@@ -152,7 +152,7 @@ namespace TiDa.Services
                 {
                     var json = JsonConvert.SerializeObject(romoteUpdate);
                     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                    response = await httpClient.PostAsync("http://localhost:3000/upload/commonupdate", content);
+                    response = await httpClient.PostAsync("http://121.37.91.77:3000/upload/commonupdate", content);
                     json = await response.Content.ReadAsStringAsync();
                     var commonTaskList = JsonConvert.DeserializeObject<IList<CommonTask>>(json);
 
@@ -174,7 +174,7 @@ namespace TiDa.Services
             deleteList.Add(item);
             var json = JsonConvert.SerializeObject(deleteList);
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            response = await httpClient.PostAsync("http://localhost:3000/upload/commondelete", content);
+            response = await httpClient.PostAsync("http://121.37.91.77:3000/upload/commondelete", content);
         }
     }
 }

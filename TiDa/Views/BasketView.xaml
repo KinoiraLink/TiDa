@@ -17,7 +17,7 @@
                             SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="20,0,20,0" x:DataType="model:CommonTask" Orientation="Horizontal" HeightRequest="30">
+                        <StackLayout Padding="20,0,20,0" x:DataType="model:CommonTask" Orientation="Horizontal" >
                             <Label Text="{Binding TaskTitle}" VerticalOptions="Center"  />
                             <Button Text="还原" 
                                     HorizontalOptions="End" 
@@ -48,7 +48,7 @@
                 SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="20,0,20,0" x:DataType="model:TargetTask" Orientation="Horizontal" HeightRequest="30">
+                        <StackLayout Padding="20,0,20,0" x:DataType="model:TargetTask" Orientation="Horizontal" >
                             <Label Text="{Binding    MinorTitle}" VerticalOptions="Center"  />
                             <Button Text="还原" 
                                     HorizontalOptions="End" 
@@ -82,7 +82,7 @@
                 SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="20,0,20,0" x:DataType="model:MarkDownTask" Orientation="Horizontal" HeightRequest="30">
+                        <StackLayout Padding="20,0,20,0" x:DataType="model:MarkDownTask" Orientation="Horizontal">
                             <Label Text="{Binding   TaskTitle}" VerticalOptions="Center"  />
                             <Button Text="删除" 
                                     HorizontalOptions="EndAndExpand" 

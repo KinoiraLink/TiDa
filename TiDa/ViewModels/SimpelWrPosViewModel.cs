@@ -65,6 +65,11 @@ namespace TiDa.ViewModels
 
             try
             {
+                if (!SimpleWrPoDataStore.IsInitialized())
+                {
+                    await SimpleWrPoDataStore.InitializeAsync();
+                }
+
                 SimpleWrPos.Clear();
                 var simpleWrPos = await SimpleWrPoDataStore.GetItemsAsync(true);
                 foreach (var simpleWrPo in simpleWrPos)

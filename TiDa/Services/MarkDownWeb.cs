@@ -52,7 +52,7 @@ namespace TiDa.Services
                 var markDownTask = new MarkDownTask { UserCookie = Preferences.Get("token", "undefined") };
                 var json = JsonConvert.SerializeObject(markDownTask);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                response = await httpClient.PostAsync("http://localhost:3000/upload/markdownget", content);
+                response = await httpClient.PostAsync("http://121.37.91.77:3000/upload/markdownget", content);
                 json = null;
                 json = await response.Content.ReadAsStringAsync();
 
@@ -118,16 +118,18 @@ namespace TiDa.Services
                 }
 
             });
+            
+                foreach (var markDownTask in localInsert)
+                {
+                    await MarkDownDataStore.InserWebAsync(markDownTask);
+                }
 
-            foreach (var markDownTask in localInsert)
-            {
-                await MarkDownDataStore.InserWebAsync(markDownTask);
-            }
+                foreach (var markDownTask in localUpdate)
+                {
+                    await MarkDownDataStore.InsertorReplace(markDownTask);
+                }
 
-            foreach (var markDownTask in localUpdate)
-            {
-                await MarkDownDataStore.InsertorReplace(markDownTask);
-            }
+            
 
             //网络服务
             if (romoteInsert.Count > 0)
@@ -136,7 +138,7 @@ namespace TiDa.Services
                 {
                     var json = JsonConvert.SerializeObject(romoteInsert);
                     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                    response = await httpClient.PostAsync("http://localhost:3000/upload/markdownsave", content);
+                    response = await httpClient.PostAsync("http://121.37.91.77:3000/upload/markdownsave", content);
                     json = await response.Content.ReadAsStringAsync();
                     var markDownTaskList = JsonConvert.DeserializeObject<IList<MarkDownTask>>(json);
 
@@ -154,7 +156,7 @@ namespace TiDa.Services
                 {
                     var json = JsonConvert.SerializeObject(romoteUpdate);
                     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                    response = await httpClient.PostAsync("http://localhost:3000/upload/markdownupdate", content);
+                    response = await httpClient.PostAsync("http://121.37.91.77:3000/upload/markdownupdate", content);
                     json = await response.Content.ReadAsStringAsync();
                     var markDownTaskList = JsonConvert.DeserializeObject<IList<MarkDownTask>>(json);
 
@@ -175,7 +177,7 @@ namespace TiDa.Services
             deleteList.Add(item);
             var json = JsonConvert.SerializeObject(deleteList);
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            response = await httpClient.PostAsync("http://localhost:3000/upload/markdowndelete", content);
+            response = await httpClient.PostAsync("http://121.37.91.77:3000/upload/markdowndelete", content);
         }
     }
 }

@@ -69,9 +69,9 @@ namespace TiDa.Services
 
         public async Task InserWebAsync(TomatoTask item)
         {
-            string sql = $"INSERT INTO common_task VALUES ({item.Id},'{item.UserCookie}','{item.TaskTitle}','{item.TaskDescribe}','{item.TaskTime}',{item.Timestamp})";
+            string sql = $"INSERT INTO tomato_task VALUES ({item.Id},'{item.UserCookie}','{item.TaskTitle}','{item.TaskDescribe}','{item.TaskTime}',{item.Timestamp})";
             //string sql = $"INSERT INTO common_task VALUES ({item.Id},'{item.UserCookie}','{item.TaskTitle}','{item.TaskDescribe}','{item.TaskDate}','{item.TaskTime}',{item.Done},{item.Timestamp},{item.IsDeleted})";
-            //await Connection.ExecuteAsync(sql);
+            await Connection.ExecuteAsync(sql);
         }
 
         public async Task<bool> UpdateItemAsync(TomatoTask item)

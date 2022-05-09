@@ -132,7 +132,7 @@ namespace TiDa.ViewModels
             }
 
             var imagePath = JsonConvert.DeserializeObject<ImagePath>(imgName);
-            ImagePath = $"http://localhost:3000/images/{imagePath.filePath}";
+            ImagePath = $"http://121.37.91.77:3000/images/{imagePath.filePath}";
         }
 
 
@@ -173,7 +173,7 @@ namespace TiDa.ViewModels
                 fileContent.Headers.ContentDisposition.Name = "img";
                 form.Add(fileContent);
                 #endregion
-                HttpResponseMessage res = await client.PostAsync("http://10.36.12.2:3000/upload/image", form);
+                HttpResponseMessage res = await client.PostAsync("http://121.37.91.77:3000/upload/image", form);
                 var uploadModel = await res.Content.ReadAsStringAsync();
                 return uploadModel;
             }

@@ -31,9 +31,11 @@ namespace TiDa.Services
 
             try
             {
-                var json = JsonConvert.SerializeObject(item); //http://121.37.91.77:3000/login/register
+                //http://121.37.91.77:3000/login/register
+                //http://localhost:3000/login/register
+                var json = JsonConvert.SerializeObject(item); 
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                response = await httpClient.PostAsync("http://localhost:3000/login/register", content); 
+                response = await httpClient.PostAsync("http://121.37.91.77:3000/login/register", content); 
                 json = await response.Content.ReadAsStringAsync();
                 var user = JsonConvert.DeserializeObject<User>(json);
                 //user = users[0];
@@ -54,7 +56,7 @@ namespace TiDa.Services
             {
                 var json = JsonConvert.SerializeObject(item);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                response = await httpClient.PostAsync("http://10.36.12.2:3000/login/register", content);
+                response = await httpClient.PostAsync("http://121.37.91.77:3000/login/register", content);
                 var Json = await response.Content.ReadAsStringAsync();
                 var users = JsonConvert.DeserializeObject<IList<User>>(Json);
                 user = users[0];

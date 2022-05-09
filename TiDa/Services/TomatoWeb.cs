@@ -49,7 +49,7 @@ namespace TiDa.Services
                 var tomatoTask = new TomatoTask { UserCookie = Preferences.Get("token", "undefined") };
                 var json = JsonConvert.SerializeObject(tomatoTask);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                response = await httpClient.PostAsync("http://localhost:3000/upload/tomatoget", content);
+                response = await httpClient.PostAsync("http://121.37.91.77:3000/upload/tomatoget", content);
                 json = null;
                 json = await response.Content.ReadAsStringAsync();
                 if (json != null)
@@ -130,7 +130,7 @@ namespace TiDa.Services
                 {
                     var json = JsonConvert.SerializeObject(romoteInsert);
                     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                    response = await httpClient.PostAsync("http://localhost:3000/upload/tomatosave", content);
+                    response = await httpClient.PostAsync("http://121.37.91.77:3000/upload/tomatosave", content);
                     json = await response.Content.ReadAsStringAsync();
                     var tomatoTaskList = JsonConvert.DeserializeObject<IList<TomatoTask>>(json);
 
@@ -148,7 +148,7 @@ namespace TiDa.Services
                 {
                     var json = JsonConvert.SerializeObject(romoteUpdate);
                     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                    response = await httpClient.PostAsync("http://localhost:3000/upload/tomatoupdate", content);
+                    response = await httpClient.PostAsync("http://121.37.91.77:3000/upload/tomatoupdate", content);
                     json = await response.Content.ReadAsStringAsync();
                     var tomatoTaskList = JsonConvert.DeserializeObject<IList<TomatoTask>>(json);
 

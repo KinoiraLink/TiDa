@@ -126,8 +126,11 @@ namespace TiDa.ViewModels
                 {
                     await Shell.Current.GoToAsync($"//mdReadPage?{nameof(mdReadViewModel.Id)}={markDownTask.Id}");
                 }
-
-                await Shell.Current.GoToAsync($"//MarkPage?{nameof(MarkDownDetailViewModel.Id)}={markDownTask.Id}");
+                else
+                {
+                    await Shell.Current.GoToAsync($"//MarkPage?{nameof(MarkDownDetailViewModel.Id)}={markDownTask.Id}");
+                }
+                
             }
 
             
