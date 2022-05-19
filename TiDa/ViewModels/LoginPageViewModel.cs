@@ -123,6 +123,7 @@ namespace TiDa.ViewModels
                 
                 await Application.Current.MainPage.DisplayAlert("提示", LoginUser.msg, "OK");
                 Preferences.Set("token", LoginUser.token);
+                Preferences.Set("account", Account);
                 IsLoginIn = false;
                 IsLoginOut = true;
                 await Application.Current.MainPage.DisplayAlert("提示", Preferences.Get("token", "undefined"), "OK");

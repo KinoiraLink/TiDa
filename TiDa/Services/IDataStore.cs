@@ -24,5 +24,7 @@ namespace TiDa.Services
         Task InserAllItem(IList<T> list);
 
         Task RomoveItemAsync(T item);
+
+        Task<int> GetItemsCount();
     }
 }

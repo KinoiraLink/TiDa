@@ -176,5 +176,17 @@ namespace TiDa.Services
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
             response = await httpClient.PostAsync("http://121.37.91.77:3000/upload/commondelete", content);
         }
+
+        public async Task<int> CountAsync(CommonTask item)
+        {
+            var json = JsonConvert.SerializeObject(item);
+            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            response = await httpClient.PostAsync("http://121.37.91.77:3000/upload/commonget", content);
+            json = null;
+            json = await response.Content.ReadAsStringAsync();
+            var i = JsonConvert.DeserializeObject<IList<CommonTask>>(json);
+            return i.Count;
+
+        }
     }
 }

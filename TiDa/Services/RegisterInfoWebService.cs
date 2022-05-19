@@ -1,65 +1,62 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using TiDa.Models;
 
 namespace TiDa.Services
 {
-    public class LoginWebService : IWebService<User>
+    public class RegisterInfoWebService : IWebService<UserInfo>
     {
-
         //******** 私有变量
         private HttpClient httpClient;
-        private User user;
+        private UserInfo userInfo;
         private HttpResponseMessage response;
+        private IList<UserInfo> users;
 
         //******** 构造函数
-        public LoginWebService()
+        public RegisterInfoWebService()
         {
             httpClient = new HttpClient();
-            user = new User();
+            userInfo = new UserInfo();
             response = new HttpResponseMessage();
+            users = new List<UserInfo>();
         }
 
-        //继承方法
-        public async Task<User> LgoinAsync(User item)
+        public async Task<UserInfo> LgoinAsync(UserInfo userInfo)
         {
+            users.Add(userInfo);
             response = null;
-
             try
             {
-                //http://121.37.91.77:3000/login/register
-                //http://localhost:3000/login/register
-                var json = JsonConvert.SerializeObject(item); 
+                var json = JsonConvert.SerializeObject(userInfo);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                response = await httpClient.PostAsync("http://121.37.91.77:3000/login/loginin", content); 
+                response = await httpClient.PostAsync("http://121.37.91.77:3000/login/getinfo", content);
                 json = await response.Content.ReadAsStringAsync();
-                var user = JsonConvert.DeserializeObject<User>(json);
-                //user = users[0];
-                return user;
+                var infolList = JsonConvert.DeserializeObject<List<UserInfo>>(json);
+                var info = infolList[0];
+                return info;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
+
         }
 
-        public async Task<User> RegisterAsync(User item)
+        public async Task<UserInfo> RegisterAsync(UserInfo userInfo)
         {
+            users.Add(userInfo);
             response = null;
-
             try
             {
-                var json = JsonConvert.SerializeObject(item);
+                var json = JsonConvert.SerializeObject(users);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                response = await httpClient.PostAsync("http://121.37.91.77:3000/login/register", content);
-                var Json = await response.Content.ReadAsStringAsync();
-                var user = JsonConvert.DeserializeObject<User>(Json);
-                return user;
+                response = await httpClient.PostAsync("http://121.37.91.77:3000/login/saveinfo", content);
+                return userInfo;
             }
             catch (Exception e)
             {

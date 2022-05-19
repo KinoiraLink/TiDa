@@ -15,10 +15,11 @@
     <RefreshView x:DataType="local:TomatosViewModel"  Command="{Binding LoadTomatoTask }" IsRefreshing="{Binding IsBusy}">
         <CollectionView x:Name="ItemsListView"
                         ItemsSource="{Binding TomatoTasks}"
-                        SelectionMode="None">
+                        SelectionMode="None"
+                        ItemsLayout="VerticalGrid, 2">
             <CollectionView.ItemTemplate>
                 <DataTemplate><!--x:DataType="model:"-->
-                    <Grid Padding="10" x:DataType="model:TomatoTask" BackgroundColor="#F15326">
+                    <Grid Padding="10" x:DataType="model:TomatoTask" BackgroundColor="White">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -28,9 +29,9 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding TaskTitle}" HorizontalTextAlignment="Center" FontSize="Title"  TextColor="#00A6A6"/>
-                        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding TaskDescribe}" TextColor="White" />
-                        <Label Grid.Row="1" Grid.Column="2" Text="{Binding TaskTime}" TextColor="Aquamarine" />
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding TaskTitle}" FontSize="Title"  TextColor="#00A6A6"/>
+                        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding TaskDescribe}" TextColor="OrangeRed"  />
+                        <Label Grid.Row="1" Grid.Column="2" Text="{Binding TaskTime}" TextColor="Red" />
                         <!--<Grid.GestureRecognizers>
                             <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"

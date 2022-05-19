@@ -53,6 +53,7 @@ namespace TiDa.ViewModels
 
         private bool ValidateSave()
         {
+            //输入标题是否为空或是空格
             return !String.IsNullOrWhiteSpace(TaskTitle);
         }
 
@@ -62,9 +63,10 @@ namespace TiDa.ViewModels
         public WeekTaskUpdateViewModel()
         {
             CancelCommand = new Command(() => PopupNavigation.Instance.PopAsync(true));
-
+            //当ValidateSave为True，才启用改命令
             SaveCommand = new Command(OnSave, ValidateSave);
             Loaded();
+            //当属性值发发生变化时触发该事件
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
         }
@@ -91,6 +93,7 @@ namespace TiDa.ViewModels
             WeekTask.Site= Site;
             WeekTask.Timestamp = DateTime.Now.Ticks;
             await WeekDataStore.InsertorReplace(WeekTask);
+            //弹出当前页
             await PopupNavigation.Instance.PopAsync(true);
         }
 

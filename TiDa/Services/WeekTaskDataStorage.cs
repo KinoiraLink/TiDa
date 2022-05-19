@@ -50,7 +50,8 @@ namespace TiDa.Services
 
         public async Task InserWebAsync(WeekTask item)
         {
-            throw new NotImplementedException();
+            string sql = $"INSERT INTO week_task VALUES ({item.Id},'{item.TaskTitle}','{item.TaskDescribe}','{item.TaskTime}','{item.Site}',{item.Timestamp},'{item.UserCookie}')";
+            await Connection.ExecuteAsync(sql);
         }
 
         public Task<bool> DeleteItemAsync(string id)
@@ -88,6 +89,9 @@ namespace TiDa.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<int> GetItemsCount()
+        => await Connection.Table<WeekTask>().CountAsync();
 
         public async Task InitializeAsync()
         {

@@ -82,11 +82,14 @@ namespace TiDa.ViewModels
 
         }
 
+        //新增或是更新一般事务记录
         private async void AddorUp()
         {
+            //从偏好存储中取出一般清单列表页传来的参数
             var Id = Preferences.Get("NavPara", 0);
             if (Id == 0)
             {
+                //如果是一条新纪录，把日期设置为现在
                 TaskDate = DateTime.Now;
                 
             }
@@ -101,8 +104,6 @@ namespace TiDa.ViewModels
                 var time = common.TaskTime.Split(':');
                 TaskTime= new TimeSpan(int.Parse(time[0]), int.Parse(time[1]), 0);
             }
-
-            
         }
 
         async void DeleteCmmonTaskCommandFunction(CommonTask commonTask)

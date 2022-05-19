@@ -9,11 +9,11 @@ namespace TiDa.Helpers
     {
         public static readonly BindableProperty SelectionChangedProperty =
             BindableProperty.Create("SelectionChanged", typeof(EventHandler), typeof(MyEditor), null);
-
+        //当光标移动时触发该事件
         public event EventHandler SelectionChanged;
-
+        //光标当前位置
         public int PressedPos;
-
+        //光标选中的文字
         public string SelectionText;
 
         public void SelectionChange()

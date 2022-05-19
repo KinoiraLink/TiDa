@@ -121,6 +121,9 @@ namespace TiDa.Services
             throw new NotImplementedException();
         }
 
+        public async Task<int> GetItemsCount()
+        => await Connection.Table<SimpleWrPo>().CountAsync();
+
         Task<bool> IDataStore<SimpleWrPo>.UpdateItemAsync(SimpleWrPo item)
         {
             throw new NotImplementedException();

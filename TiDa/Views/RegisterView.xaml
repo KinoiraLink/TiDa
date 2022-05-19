@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TiDa.ViewModels;assembly=TiDa"
+             xmlns:mdt="clr-namespace:MdView.Templates;assembly=MdView"
+             x:Class="TiDa.Views.RegisterView">
+    <ContentPage.BindingContext>
+        <local:RegisterViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout Padding="10,0,10,0" VerticalOptions="Start">
+            <Image HeightRequest="56" WidthRequest="56" Source="logo.png" Margin="0,8,0,0"></Image>
+            <StackLayout>
+                <Label Text="账号：" />
+                <Entry Text="{Binding Account}" />
+            </StackLayout>
+            <StackLayout >
+                <Label Text="密码：" />
+                <Entry Text="{Binding Pwd}" IsPassword="True" x:Name="Pwd"></Entry>
+            </StackLayout>
+            <StackLayout >
+                <Label Text="确认密码：" />
+                <Entry IsPassword="True" x:Name="RePwd" PropertyChanged="RePwd_OnPropertyChanged" ></Entry>
+                <Label x:Name="PwdValid" Text="请再一次输入密码"></Label>
+            </StackLayout>
+
+            <StackLayout >
+                <Label Text="昵称：" />
+                <Entry Text="{Binding  NickName}"></Entry>
+            </StackLayout>
+
+            <StackLayout >
+                <Label Text="邮箱：" />
+                <Entry Text="{Binding Email}" PropertyChanged="Email_OnPropertyChanged" x:Name="Email"></Entry>
+                <Label x:Name="EmailValid" Text="请输入正确的邮箱(可选)"></Label>
+            </StackLayout>
+            <StackLayout >
+                <Button Text="上传头像" Command="{Binding UploadImageCommand}" Margin="0" />
+                <Frame WidthRequest="90" HeightRequest="90" CornerRadius="50" IsClippedToBounds="True">
+                    <mdt:Image Source="{Binding ImagePath}"  />
+                </Frame>
+            </StackLayout>
+
+            <Button VerticalOptions="Center" Text="注册" Command="{Binding RegisterCommand}" x:Name="Register"/>
+            <Button VerticalOptions="Center" Text="游客服务" Command="{Binding ReutrnCommand}" />
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -28,6 +28,7 @@ namespace TiDa
             DependencyService.Register<IDataStore<TargetTask>, TargetDataStorage>();
 
             DependencyService.Register<IWebService<User>,LoginWebService>();
+            DependencyService.Register<IWebService<UserInfo>, RegisterInfoWebService>();
             DependencyService.Register<IDataWeb<CommonTask>, CommonWeb>();
             DependencyService.Register<IDataWeb<MarkDownTask>, MarkDownWeb>();
             DependencyService.Register<IDataWeb<WeekTask>, WeekWeb>();

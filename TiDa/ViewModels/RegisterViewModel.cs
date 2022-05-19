@@ -1,59 +1,64 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using TiDa.Models;
-using Xamarin.Essentials;
-using Xamarin.Forms;
-using MdView.Templates;
 using Newtonsoft.Json;
-using TiDa.Views;
-using Xamarin.Forms.Internals;
-using System.Drawing.Imaging;
-using System.Linq;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using TiDa.Models;
+using TiDa.Views;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace TiDa.ViewModels
 {
-    public class SimpelWrPoEditViewModel : BaseViewModel
+    public  class RegisterViewModel : BaseViewModel
     {
+        private User _registerUser;
 
-
-        public string PhotoPath = null;
-        private string _simpleTitle;
-
-        
-        private bool _isEdit = true;
-        public bool IsEdit
+        public User RegisterUser
         {
-            get => _isEdit;
-            set => SetProperty(ref _isEdit, value);
+            get => _registerUser;
+            set => SetProperty(ref _registerUser, value);
+        }
+        private string _acount;
+
+        public string Account
+        {
+            get => _acount;
+            set => SetProperty(ref _acount, value);
         }
 
-        private bool _isPreview = false;
+        private string _pwd;
 
-        public bool IsPreview
+        public string Pwd
         {
-            get => _isPreview;
-            set => SetProperty(ref _isPreview, value);
+            get => _pwd;
+            set => SetProperty(ref _pwd, value);
         }
 
-        public string SimpleTitle
+        private bool ValidateSave()
         {
-            get => _simpleTitle;
-            set => SetProperty(ref _simpleTitle, value);
+            return !String.IsNullOrWhiteSpace(_acount)
+                   && !String.IsNullOrWhiteSpace(_pwd);
         }
 
-        private string _content;
+        private string _nickName;
 
-        public string Content
+        public string NickName
         {
-            get => _content;
-            set => SetProperty(ref _content, value);
+            get => _nickName;
+            set => SetProperty(ref _nickName, value);
+        }
+
+        private string _email;
+
+        public string Email
+        {
+            get => _email;
+            set => SetProperty(ref _email, value);
         }
 
         private string _imagePath;
@@ -64,68 +69,43 @@ namespace TiDa.ViewModels
             set => SetProperty(ref _imagePath, value);
         }
 
+        public Command RegisterCommand { get; set; }
 
+        public Command UploadImageCommand { get; set; }
+        public Command ReutrnCommand { get; }
 
-
-        private bool ValidateSave()
+        public RegisterViewModel()
         {
-            return !String.IsNullOrWhiteSpace(_simpleTitle);
-        }
+            RegisterCommand = new Command(RegisterFunc,ValidateSave);
 
-        public Command SaveCommand { get; }
-
-        public Command CancelCommand { get; }
-
-        public Command UploadImageCommand { get; }
-
-        public Command ChangeVIewCommand { get; }
-
-        public Command GoListCommand { get; }
-
-        public SimpelWrPoEditViewModel()
-        {
-            if (SimpleWrPoDataStore.IsInitialized())
-            {
-                SimpleWrPoDataStore.InitializeAsync();
-            }
-            SaveCommand = new Command(SaveFunc, ValidateSave);
-            CancelCommand = new Command(CancelFunc);
             UploadImageCommand = new Command(TakePhotoAsync);
-            ChangeVIewCommand = new Command(ChangeFunc);
-            GoListCommand = new Command(GoListFunc);
+
+            ReutrnCommand = new Command(ReturnFunc);
             this.PropertyChanged +=
-                (_, __) => SaveCommand.ChangeCanExecute();
-
+                (_, __) => RegisterCommand.ChangeCanExecute();
         }
 
-        private async void GoListFunc()
-        =>
-            await Shell.Current.GoToAsync(nameof(SimpleWrPosView));
-        
-
-        private void ChangeFunc()
+        private async void RegisterFunc()
         {
-            IsEdit = !IsEdit;
-            IsPreview = !IsPreview;
+            var user = new User();
+            user.account = Account;
+            user.pwd = Pwd;
+            RegisterUser = await LoginWebService.RegisterAsync(user);
+            if (RegisterUser.msg.Equals("注册成功"))
+            {
+                var userInfo = new UserInfo();
+                userInfo.UserCookie = RegisterUser.token;
+                userInfo.NickName = NickName;
+                userInfo.Email = Email;
+                userInfo.ImagePath = ImagePath;
+                await RegisterWebService.RegisterAsync(userInfo);
+            }
+
+            if (RegisterUser.msg.Equals("已有此用户"))
+            {
+                await Application.Current.MainPage.DisplayAlert("提示", RegisterUser.msg, "OK");
+            }
         }
-
-        private async void SaveFunc()
-        {
-            var simpleWrPo = new SimpleWrPo();
-            simpleWrPo.Title = SimpleTitle;
-            simpleWrPo.Content = Content;
-            simpleWrPo.ImagePath = ImagePath;
-            simpleWrPo.Timestamp = DateTime.Now.Ticks;
-            await SimpleWrPoDataStore.InserItemAsync(simpleWrPo);
-            await Shell.Current.GoToAsync("..");
-
-        }
-
-        private async void CancelFunc()
-        {
-            await Shell.Current.GoToAsync("..");
-        }
-
 
 
         async void TakePhotoAsync()
@@ -139,9 +119,10 @@ namespace TiDa.ViewModels
             var imagePath = JsonConvert.DeserializeObject<ImagePath>(imgName);
             ImagePath = $"http://121.37.91.77:3000/images/{imagePath.filePath}";
         }
-
-
-
+        private async void ReturnFunc()
+        {
+            await Shell.Current.GoToAsync($"//{nameof(ItemsPage)}");
+        }
 
         async Task<string> TakeImageAction(string s)
         {
@@ -150,10 +131,6 @@ namespace TiDa.ViewModels
             switch (action)
             {
                 case "拍照":
-                    //if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-                    //{
-                    //    await Application.Current.MainPage.DisplayAlert("错误提示", "未找到可用摄像头", "确认");
-                    //}
                     var photo = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions()
                     {
                         CompressionQuality = 40,
@@ -167,10 +144,7 @@ namespace TiDa.ViewModels
                     pickFile = photo;
                     break;
                 case "从相册选择":
-                    if (!CrossMedia.Current.IsPickPhotoSupported)
-                    {
-                        await Application.Current.MainPage.DisplayAlert("错误提示", "未获得权限读取相册", "确认");
-                    }
+
                     var fileb = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions()
                     {
                         CompressionQuality = 40,
@@ -187,7 +161,7 @@ namespace TiDa.ViewModels
             }
             if (pickFile != null)
             {
-                
+
                 //上传图片到服务器
                 HttpClient client = new HttpClient();
                 #region
@@ -202,11 +176,6 @@ namespace TiDa.ViewModels
                 #endregion
                 HttpResponseMessage res = await client.PostAsync("http://121.37.91.77:3000/upload/image", form);
                 var uploadModel = await res.Content.ReadAsStringAsync();
-                if (uploadModel != null)
-                {
-                    await Application.Current.MainPage.DisplayAlert("错误提示", "未上传图片", "确认");
-                }
-
                 return uploadModel;
             }
             else
@@ -214,9 +183,5 @@ namespace TiDa.ViewModels
                 return "";
             }
         }
-
-
-
-      
     }
 }

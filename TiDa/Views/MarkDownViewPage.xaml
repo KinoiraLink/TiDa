@@ -44,7 +44,7 @@
                     </StackLayout>
                     <helpers:MyEditor Text="{Binding TaskContent}" 
                                       SelectionChanged="MyEditor_OnSelectionChanged" 
-                                      x:Name="myEditor" AutoSize="TextChanges" HeightRequest="200"
+                                      x:Name="myEditor" AutoSize="TextChanges" HeightRequest="470"
                                       TextChanged="Editor_OnTextChanged" Unfocused="MyEditor_OnUnfocused"/>
                 </StackLayout>
                 

@@ -129,17 +129,16 @@ namespace TiDa.ViewModels
             isAdd = false;
             await Shell.Current.GoToAsync("..");
         }
-
+        //计时器功能函数
         private void KeeperFunc()
         {
             isAdd = !isAdd;
+            //StartTimer需要一个返回类型为布尔类型且返回值为trued的方法触发，第一个参数为触发时间间隔
             Device.StartTimer(TimeSpan.FromSeconds(1.0), OnTimer);
         }
-
+        //计时器的计时时间
         bool OnTimer()
         {
-
-
             oneSecond += 1;
             if (oneSecond == 60)
             {
@@ -154,38 +153,15 @@ namespace TiDa.ViewModels
             ASecond = oneSecond.ToString();
             AMinute = oneMin.ToString();
             AHour = oneHour.ToString();
-
-
-
-
-            ////时钟相关
-            //DateTime dateTime = DateTime.Now;
-            //HourHandRotation = 30 * (dateTime.Hour % 12) + 0.5 * dateTime.Minute;
-            //MinuteHandRotation = 6 * dateTime.Minute + 0.1 * dateTime.Second;
-
-            //double t = dateTime.Millisecond / 1000.0;
-
-            //if (t < 0.5)
-            //{
-            //    t = 0.5 * Easing.SpringIn.Ease(t / 0.5);
-            //}
-            //else
-            //{
-            //    t = 0.5 * (1 + Easing.SpringOut.Ease((t - 0.5) / 0.5));
-            //}
-
-            //SecondHandRotation = 6 * (dateTime.Second + t);
             return isAdd;
         }
-
+        //钟表的计时
         bool OnTimerTick()
         {
             DateTime dateTime = DateTime.Now;
             HourHandRotation = 30 * (dateTime.Hour % 12) + 0.5 * dateTime.Minute;
             MinuteHandRotation = 6 * dateTime.Minute + 0.1 * dateTime.Second;
-
             double t = dateTime.Millisecond / 1000.0;
-
             if (t < 0.5)
             {
                 t = 0.5 * Easing.SpringIn.Ease(t / 0.5);
@@ -194,9 +170,7 @@ namespace TiDa.ViewModels
             {
                 t = 0.5 * (1 + Easing.SpringOut.Ease((t - 0.5) / 0.5));
             }
-
             SecondHandRotation = 6 * (dateTime.Second + t);
-
             return true;
         }
     }

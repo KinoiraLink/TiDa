@@ -167,5 +167,10 @@ namespace TiDa.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<int> CountAsync(WeekTask item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local ="clr-namespace:TiDa.ViewModels;assembly=TiDa"
+             x:Class="TiDa.Views.HtmlEditor">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  Clicked="MenuItem_Get" Text="获取"></ToolbarItem>
+        <ToolbarItem Clicked="MenuItem_Set" Text="保存"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <!--<Label Text="{Binding Content}"></Label>-->
+        <WebView Source="{Binding EditorSource}" VerticalOptions="FillAndExpand" x:Name="webView" ></WebView>
+    </StackLayout>
+</ContentPage>

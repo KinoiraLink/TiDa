@@ -94,6 +94,11 @@ namespace TiDa.Services
             throw new NotImplementedException();
         }
 
+        public async Task<int> GetItemsCount()
+        {
+            throw new NotImplementedException();
+        }
+
         public Task InitializeAsync()
         {
             throw new NotImplementedException();

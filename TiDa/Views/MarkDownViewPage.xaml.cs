@@ -566,16 +566,12 @@ namespace TiDa.Views
             }
         }
 
+
+        //将代码块插入文本当中
         private void Btn_Code(object sender, EventArgs e)
         {
             string insert = null;
             insert = myEditor.Text;
-
-            //myEditor.Text = insert;
-            //insert = null;
-            //myEditor.Text.Insert(PointterPos, "A");
-            //string forstring = null;
-            //int endPosition = 0;
             string obestring = null;
             if (myEditor.PressedPos - myEditor.SelectionText.Length < 0)
             {
@@ -618,6 +614,7 @@ namespace TiDa.Views
             }
         }
 
+        //获取光标当前位置和选中文本
         private void MyEditor_OnSelectionChanged(object sender, EventArgs e)
         {
             PointterPos = (sender as MyEditor).PressedPos;

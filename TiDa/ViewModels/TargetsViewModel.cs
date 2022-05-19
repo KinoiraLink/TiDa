@@ -111,8 +111,7 @@ namespace TiDa.ViewModels
 
                         }
                     });
-                    
-
+                    //如果已经做完，更新目标状态
                     if (DoingCount ==0)
                     {
                         await TargetDataStore.InsertorReplace(new TargetTask

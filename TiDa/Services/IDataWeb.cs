@@ -12,6 +12,8 @@ namespace TiDa.Services
         Task<IList<T>> UploadAsync(IList<T> item);
         Task DeleteAsync(T item);
 
+        Task<int> CountAsync(T item);
+
 
     }
 }

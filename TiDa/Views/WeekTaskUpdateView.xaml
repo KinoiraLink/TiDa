@@ -53,6 +53,7 @@
                     <TapGestureRecognizer Command="{Binding SaveCommand}"></TapGestureRecognizer>
                 </Label.GestureRecognizers>
             </Label>
+            
         </Grid>
     </StackLayout>
 </pages:PopupPage>

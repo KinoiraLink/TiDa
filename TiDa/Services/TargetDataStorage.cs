@@ -120,5 +120,8 @@ namespace TiDa.Services
         {
             await Connection.DeleteAsync(item);
         }
+
+        public async Task<int> GetItemsCount()
+        => await Connection.Table<TargetTask>().CountAsync();
     }
 }

@@ -24,6 +24,7 @@ namespace TiDa.ViewModels
         public IDataStore<TargetTask> TargetDataStore => DependencyService.Get<IDataStore<TargetTask>>();
 
         public IWebService<User> LoginWebService => DependencyService.Get<IWebService<User>>();
+        public IWebService<UserInfo> RegisterWebService => DependencyService.Get<IWebService<UserInfo>>();
 
         public IDataWeb<CommonTask> CommonTaskWeb => DependencyService.Get<IDataWeb<CommonTask>>();
 

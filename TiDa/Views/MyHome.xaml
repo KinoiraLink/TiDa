@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local ="clr-namespace:TiDa.ViewModels;assembly=TiDa"
+             x:Class="TiDa.Views.MyHome">
+    <ContentPage.BindingContext>
+        <local:MyHomeViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="10,0,10,0" VerticalOptions="Start">
+            <Image HeightRequest="56" WidthRequest="56" Source="logo.png" Margin="0,8,0,0" />
+            <StackLayout Orientation="Horizontal">
+                <Frame WidthRequest="40" HeightRequest="40" CornerRadius="50" IsClippedToBounds="True" BackgroundColor="AliceBlue"  HorizontalOptions="Start">
+                    <Image Source="{Binding Info.ImagePath}" Aspect="AspectFill"  />
+                </Frame>
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="{Binding Info.NickName}" FontSize="Title" TextColor="#00A6A6" />
+                    <Label Text="{Binding Account}" TextColor="DarkGray" />
+                </StackLayout>
+                <StackLayout HorizontalOptions="End">
+                    <Button Text="我的账户" />
+                    <Button Text="注销"></Button>
+                </StackLayout>
+            </StackLayout>
+            <Grid>
+                <Grid.BindingContext>
+                    <local:MyHomeViewModel />
+                </Grid.BindingContext>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="本地一般清单条目" HorizontalTextAlignment="Center" BackgroundColor="#00A6A6" TextColor="White"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding LCommonCount}" HorizontalTextAlignment="Center" BackgroundColor="Gainsboro"/>
+                <Label Grid.Row="1" Grid.Column="0" Text="远程一般清单条目" HorizontalTextAlignment="Center" BackgroundColor="#00A6A6" />
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding RCommonCount}" HorizontalTextAlignment="Center" BackgroundColor="Gainsboro"/>
+                <Label Grid.Row="2" Grid.Column="0" Text="本地周期清单条目" HorizontalTextAlignment="Center" BackgroundColor="#00A6A6" TextColor="White" />
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding LWeekCount}" HorizontalTextAlignment="Center" BackgroundColor="Gainsboro"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Text="远程周期清单条目" HorizontalTextAlignment="Center" BackgroundColor="#00A6A6" />
+                <Label Grid.Row="3" Grid.Column="1" Text="56" HorizontalTextAlignment="Center" BackgroundColor="Gainsboro"/>
+
+                <Label Grid.Row="4" Grid.Column="0" Text="本地记录清单条目" HorizontalTextAlignment="Center" BackgroundColor="#00A6A6" TextColor="White" />
+                <Label Grid.Row="4" Grid.Column="1" Text="{Binding LMarkCount}" HorizontalTextAlignment="Center" BackgroundColor="Gainsboro"/>
+
+                <Label Grid.Row="5" Grid.Column="0" Text="远程记录清单条目" HorizontalTextAlignment="Center" BackgroundColor="#00A6A6" />
+                <Label Grid.Row="5" Grid.Column="1" Text="{Binding RMarkCount}" HorizontalTextAlignment="Center" BackgroundColor="Gainsboro"/>
+
+                <Label Grid.Row="6" Grid.Column="0" Text="本地目标清单条目" HorizontalTextAlignment="Center" BackgroundColor="#00A6A6" TextColor="White" />
+                <Label Grid.Row="6" Grid.Column="1" Text="{Binding LTargetCount}" HorizontalTextAlignment="Center" BackgroundColor="Gainsboro"/>
+
+                <Label Grid.Row="7" Grid.Column="0" Text="远程目标清单条目" HorizontalTextAlignment="Center" BackgroundColor="#00A6A6" />
+                <Label Grid.Row="7" Grid.Column="1" Text="{Binding RTargetCount}" HorizontalTextAlignment="Center" BackgroundColor="Gainsboro"/>
+                
+                <Label Grid.Row="8" Grid.Column="0" Text="本地番茄时间条目" HorizontalTextAlignment="Center" BackgroundColor="#00A6A6" TextColor="White" />
+                <Label Grid.Row="8" Grid.Column="1" Text="{Binding LTomatoCount}" HorizontalTextAlignment="Center" BackgroundColor="Gainsboro"/>
+
+                <Label Grid.Row="9" Grid.Column="0" Text="远程番茄时间条目" HorizontalTextAlignment="Center" BackgroundColor="#00A6A6" />
+                <Label Grid.Row="9" Grid.Column="1" Text="{Binding RTomatoCount}" HorizontalTextAlignment="Center" BackgroundColor="Gainsboro"/>
+
+                <Label Grid.Row="10" Grid.Column="0" Text="本地随记随拍条目" HorizontalTextAlignment="Center" BackgroundColor="#00A6A6" TextColor="White" />
+                <Label Grid.Row="10" Grid.Column="1" Text="{Binding LSimpleCount}" HorizontalTextAlignment="Center" BackgroundColor="Gainsboro"/>
+
+                <Label Grid.Row="11" Grid.Column="0" Text="远程随记随拍条目" HorizontalTextAlignment="Center" BackgroundColor="#00A6A6" />
+                <Label Grid.Row="11" Grid.Column="1" Text="{Binding RSimpleCount}" HorizontalTextAlignment="Center" BackgroundColor="Gainsboro"/>
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

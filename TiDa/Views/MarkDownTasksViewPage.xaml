@@ -15,12 +15,15 @@
         <ListView ItemsSource="{Binding MarkDownTasks}">
             <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:MarkDownTask">
-                        <TextCell Text="{Binding TaskTitle }"
+                        <!--Text为笔记标题，Detail为笔记简介-->
+                        <!--XAML文件中数据只能绑定到绑定上下文的子标签项-->
+                    <TextCell Text="{Binding TaskTitle }"
                                   Detail="{Binding  TaskContent}"
-                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:MarkDownViewModel}},Path=SaveMarkDownTaskCommand}"
+                                  DetailColor="CadetBlue"
+                                  Command="{Binding Source={RelativeSource AncestorType={x:Type local:MarkDownViewModel}},Path=SaveMarkDownTaskCommand}"
                                   CommandParameter="{Binding .}"></TextCell>
                     </DataTemplate>
-                </ListView.ItemTemplate>
+            </ListView.ItemTemplate>
         </ListView>
     </RefreshView>
 </ContentPage>

@@ -96,16 +96,18 @@ namespace TiDa.ViewModels
             }
         }
 
-
+        //跳转一般清单详情页
         async void AddorUpCommonTaskCommandFunction(CommonTask common)
         {
+            //非空，则为点击事务记录本身，跳转事务详情页
             if (common!=null)
             {
-                
+                //由于使用PopupPage，PopupPage本身不支持参数导航，使用偏好存储传参，可能影响程序
                 Preferences.Set("NavPara", common.Id);
             }
             else
             {
+                //SQLite中数据编号从1开始
                 Preferences.Set("NavPara", 0);
             }
             await PopupNavigation.Instance.PushAsync(new CommonTaskNewPopupPage());
@@ -148,12 +150,14 @@ namespace TiDa.ViewModels
 
         }
 
+        //加载数据
         public async Task LoadCommonTaskFunction()
         {
             IsBusy = true;
 
             try
             {
+                //数据库是否初始化，如果没有就初始化,就初始化
                 if (!CommonDataStore.IsInitialized())
                 {
                     await CommonDataStore.InitializeAsync();
@@ -166,7 +170,6 @@ namespace TiDa.ViewModels
                 {
                     CommonTasks.Add(commonTask);
                 }
-
             }
             catch (Exception ex)
             {

@@ -31,7 +31,7 @@
                         <CollectionView ItemsSource="{Binding MinorList}"  VerticalOptions="Fill" SizeChanged="VisualElement_OnSizeChanged" BackgroundColor="AliceBlue" x:Name="MinorList">
                             <CollectionView.HeightRequest>
                                 <OnPlatform x:TypeArguments="system:Double">
-                                    <On Platform="UWP" Value="100" />
+                                    <On Platform="UWP" Value="150" />
                                     <On Platform="Android" Value="200"></On>
                                 </OnPlatform>
                             </CollectionView.HeightRequest>

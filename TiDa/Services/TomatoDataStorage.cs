@@ -114,5 +114,8 @@ namespace TiDa.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<int> GetItemsCount()
+        => await Connection.Table<TomatoTask>().CountAsync();
     }
 }
