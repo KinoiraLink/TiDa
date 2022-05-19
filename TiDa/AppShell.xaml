@@ -131,6 +131,7 @@
             <ShellContent Title="Basket" Route="BasketView" ContentTemplate="{DataTemplate local:BasketView}" />
         </Tab>
     </FlyoutItem>
+
     <!--<FlyoutItem Title="HTML编辑器">
         <Tab>
             <ShellContent Title="Html" Route="HtmlEditor" ContentTemplate="{DataTemplate local:HtmlEditor}" />

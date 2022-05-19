@@ -18,6 +18,8 @@ namespace TiDa.ViewModels
     public class ItemsViewModel : BaseViewModel
     {
 
+        INotificationManager notificationManager;
+
         private CommonTask _selectedTaskId;
         public CommonTask SelectedTaskId
         {
@@ -31,6 +33,8 @@ namespace TiDa.ViewModels
 
 
         public ObservableCollection<CommonTask> CommonTasks { get; }
+
+        public ObservableCollection<CommonTask> TodayTasks { get; }
 
         //******** 绑定命令
         public Command LoadCommonTask { get; }
@@ -49,12 +53,23 @@ namespace TiDa.ViewModels
         {
             Title = "清单";
             CommonTasks = new ObservableCollection<CommonTask>();
+            TodayTasks = new ObservableCollection<CommonTask>();
             LoadCommonTask = new Command(async () => await LoadCommonTaskFunction());
             CommonTapped = new Command(OnCommonTaskSelected);
 
             DeleteCmmonTaskCommand = new Command<CommonTask>(DeleteCmmonTaskCommandFunction);
             AddorUpCommonTaskCommand = new Command<CommonTask>(AddorUpCommonTaskCommandFunction);
             DoneCommand = new Command<CommonTask>(DoneFunc);
+
+
+            notificationManager = DependencyService.Get<INotificationManager>();
+            notificationManager.NotificationReceived += (sender, eventArgs) =>
+            {
+                var evtData = (NotificationEventArgs)eventArgs;
+                //ShowNotification(evtData.Title, evtData.Message);
+            };
+
+            Device.StartTimer(TimeSpan.FromSeconds(30.0), ShowMessage);
         }
 
         public async void DoneFunc(CommonTask common)
@@ -154,7 +169,10 @@ namespace TiDa.ViewModels
         public async Task LoadCommonTaskFunction()
         {
             IsBusy = true;
-
+            string Today=DateTime.Now.Year.ToString() + "." + 
+                         DateTime.Now.Month.ToString() + "." + 
+                         DateTime.Now.Day.ToString() + " " + 
+                         DateTime.Now.DayOfWeek.ToString();
             try
             {
                 //数据库是否初始化，如果没有就初始化,就初始化
@@ -169,6 +187,10 @@ namespace TiDa.ViewModels
                 foreach (var commonTask in commonTasks)
                 {
                     CommonTasks.Add(commonTask);
+                    if (commonTask.TaskDate.Equals(Today))
+                    {
+                        TodayTasks.Add(commonTask);
+                    }
                 }
             }
             catch (Exception ex)
@@ -204,6 +226,32 @@ namespace TiDa.ViewModels
         }
 
 
-        
+        public bool ShowMessage()
+        {
+            string title;
+            string message;
+            if (TodayTasks.Count != 0)
+            {
+                foreach (var commonTask in TodayTasks)
+                {
+                    var time = commonTask.TaskTime.Split(':');
+                    int hours = Int32.Parse(time[0]);
+                    if (DateTime.Now.Hour+1 == hours)
+                    {
+                        title = commonTask.TaskTitle; 
+                        message = commonTask.TaskDescribe+"\n将在1小时后开始";
+                        notificationManager.SendNotification(title, message);
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+
+
+
+        }
+
+
     }
 }
