@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
@@ -8,6 +9,9 @@ using Android.OS;
 namespace TiDa.Droid
 {
     [Activity(Label = "TiDa", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
+    [IntentFilter(
+        new[] { Xamarin.Essentials.Platform.Intent.ActionAppAction },
+        Categories = new[] { Android.Content.Intent.CategoryDefault })]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -32,6 +36,18 @@ namespace TiDa.Droid
         {
             base.OnBackPressed();
             Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed);
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            Xamarin.Essentials.Platform.OnResume(this);
+        }
+
+        protected override void OnNewIntent(Intent intent)
+        {
+            base.OnNewIntent(intent);
+            Xamarin.Essentials.Platform.OnNewIntent(intent);
         }
     }
 }

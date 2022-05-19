@@ -41,15 +41,50 @@ namespace TiDa
             DependencyService.Register<WeekTaskViewModel>();
             DependencyService.Register<MarkDownViewModel>();
 
+            AppActions.OnAppAction += AppActions_OnAppAction;
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTkzNDQxQDMyMzAyZTMxMmUzMGhaZkFMZ0ZXVzNrRVoxMXExaGptSFNEOUN2NzFxR3VxSGVSYmpQS01VV0E9");
             Preferences.Set("token", "undefined");
-            MainPage = new AppShell();
             ResourcesHelper.LoadTheme(Theme.Dark);
+            MainPage = new AppShell();
+           
+        }
+
+        private void AppActions_OnAppAction(object sender, AppActionEventArgs e)
+        {
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                if (e.AppAction.Id == "simple_wrpo")
+                    await Shell.Current.GoToAsync("//" + nameof(SimpleWrPoEidt));
+                if (e.AppAction.Id == "tomato")
+                    await Shell.Current.GoToAsync("//" + nameof(TomatosView));
+                if (e.AppAction.Id == "common")
+                    await Shell.Current.GoToAsync("//" + nameof(ItemsPage));
+                if (e.AppAction.Id == "week")
+                    await Shell.Current.GoToAsync("//" + nameof(WeekTaskPage));
+                if (e.AppAction.Id == "markdown")
+                    await Shell.Current.GoToAsync("//" + nameof(MarkDownTasksViewPage));
+                if (e.AppAction.Id == "markdown")
+                    await Shell.Current.GoToAsync("//" + nameof(TargetsView));
+
+            });
         }
 
         protected override void OnStart()
         {
-             
+            try
+            {
+                AppActions.SetAsync(new AppAction("simple_wrpo", "随记随拍"), 
+                    new AppAction("tomato", "番茄时间"),
+                    new AppAction("common","一般清单"),
+                    new AppAction("week","周期列表"),
+                    new AppAction("markdown","记录清单"),
+                    new AppAction("target","目标清单"));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         protected override void OnSleep()
