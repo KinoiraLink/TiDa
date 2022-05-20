@@ -68,8 +68,12 @@ namespace TiDa.ViewModels
                 var evtData = (NotificationEventArgs)eventArgs;
                 //ShowNotification(evtData.Title, evtData.Message);
             };
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                Device.StartTimer(TimeSpan.FromSeconds(30.0), ShowMessage);
+            }
 
-            Device.StartTimer(TimeSpan.FromSeconds(30.0), ShowMessage);
+            
         }
 
         public async void DoneFunc(CommonTask common)
