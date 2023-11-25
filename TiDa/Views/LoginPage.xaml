@@ -21,7 +21,7 @@
             </StackLayout>
             <StackLayout >
                 <Label Text="密码：" />
-                <Entry Text="{Binding Pwd}"></Entry>
+                <Entry Text="{Binding Pwd}" IsPassword="True"></Entry>
             </StackLayout>
             <Button VerticalOptions="Center" Text="登录" Command="{Binding LoginCommand}"/>
             <Button VerticalOptions="Center" Text="游客服务" Command="{Binding ReutrnCommand}" />

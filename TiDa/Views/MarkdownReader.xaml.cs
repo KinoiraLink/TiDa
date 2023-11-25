@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using TiDa.ViewModels;
@@ -8,6 +10,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MdView.Templates;
+using Xamarin.Forms.Internals;
 
 namespace TiDa.Views
 {
@@ -21,9 +24,12 @@ namespace TiDa.Views
         public MarkdownReader()
         {
             InitializeComponent();
-            Slider.Minimum = 0;
+
+
+                Slider.Minimum = 0;
             BindingContext = viewModel = new mdReadViewModel();
             
+
 
         }
 
@@ -59,26 +65,27 @@ namespace TiDa.Views
 
         private void Btn_Noght(object sender, EventArgs e)
         {
+            
             isNight = !isNight;
             if (isNight==true)
             {
-                if (Device.RuntimePlatform == Device.Android)
-                {
-                    BackGround.BackgroundColor = Color.DarkGray;
-                }
-
-                if (Device.RuntimePlatform == Device.UWP)
-                {
-                    BackGround.BackgroundColor = Color.Black;
-                    BackGround.Opacity = 0.6;
-                }
-
                 
+                    textColor.BackgroundColor = Color.Black; ;
+
+                    DataTemplate Para_Color = new DataTemplate();
+                    Para_Color = (DataTemplate)this.Resources["Para_night"];
+                    textColor.ParagraphTemplate= Para_Color;
+
+
             }
             else
             {
-                BackGround.BackgroundColor = Color.White;
-                BackGround.Opacity = 1;
+                textColor.BackgroundColor = Color.FromRgb(
+                    227, 237, 205);
+                
+                DataTemplate Para_Color = new DataTemplate();
+                Para_Color = (DataTemplate)this.Resources["Para_light"];
+                textColor.ParagraphTemplate = Para_Color;
             }
         }
 

@@ -58,6 +58,26 @@
                             <mdt:Heading1 TextColor="Black" HorizontalTextAlignment="Center" />
                         </DataTemplate>
                     </md:MdView.Heading1Template>
+                    <md:MdView.Heading2Template>
+                        <DataTemplate>
+                            <mdt:Heading2 TextColor="Black" HorizontalTextAlignment="Center" />
+                        </DataTemplate>
+                    </md:MdView.Heading2Template>
+                    <md:MdView.Heading3Template>
+                        <DataTemplate>
+                            <mdt:Heading3 TextColor="Black" HorizontalTextAlignment="Center" />
+                        </DataTemplate>
+                    </md:MdView.Heading3Template>
+                    <md:MdView.Heading4Template>
+                        <DataTemplate>
+                            <mdt:Heading4 TextColor="Black" HorizontalTextAlignment="Center" />
+                        </DataTemplate>
+                    </md:MdView.Heading4Template>
+                    <md:MdView.Heading5Template>
+                        <DataTemplate>
+                            <mdt:Heading5 TextColor="Black" HorizontalTextAlignment="Center" />
+                        </DataTemplate>
+                    </md:MdView.Heading5Template>
                     <md:MdView.ParagraphTemplate>
                         <DataTemplate>
                             <mdt:Paragraph TextColor="Black" />

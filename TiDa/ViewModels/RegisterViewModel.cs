@@ -152,11 +152,6 @@ namespace TiDa.ViewModels
                         PhotoSize = PhotoSize.Small,
                     }).ConfigureAwait(true);
                     pickFile = fileb;
-                    //var fileb = await MediaPicker.PickPhotoAsync();
-
-                    //if (fileb == null)
-                    //    return null;
-                    //pickFile = fileb;
                     break;
             }
             if (pickFile != null)

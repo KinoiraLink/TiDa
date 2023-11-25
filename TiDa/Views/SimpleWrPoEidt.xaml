@@ -28,9 +28,9 @@
             </StackLayout>
 
             <StackLayout IsVisible="{Binding IsPreview }" Padding="18,0,18,-0" >
-                    <mdt:Heading1 Text="{Binding SimpleTitle}" TextColor="Orange" HorizontalTextAlignment="Center"/>
-                <mdt:Image Source="{Binding ImagePath}" Margin="36,0,36,18" HeightRequest="100" />
-                <mdt:Paragraph Text="{Binding Content}" TextColor="Black" Margin="16" />
+                    <mdt:Heading1 Text="{Binding SimpleTitle}" TextColor="Black" HorizontalTextAlignment="Center"/>
+                <mdt:Image Source="{Binding ImagePath}" Margin="36,0,36,18" />
+                <mdt:Paragraph Text="{Binding Content}" TextColor="#00A6A6" Margin="16" />
 
                 </StackLayout>
             </StackLayout>

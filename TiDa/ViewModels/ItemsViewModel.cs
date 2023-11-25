@@ -61,16 +61,16 @@ namespace TiDa.ViewModels
             AddorUpCommonTaskCommand = new Command<CommonTask>(AddorUpCommonTaskCommandFunction);
             DoneCommand = new Command<CommonTask>(DoneFunc);
 
-
-            notificationManager = DependencyService.Get<INotificationManager>();
-            notificationManager.NotificationReceived += (sender, eventArgs) =>
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                notificationManager = DependencyService.Get<INotificationManager>();
+                notificationManager.NotificationReceived += (sender, eventArgs) =>
             {
                 var evtData = (NotificationEventArgs)eventArgs;
                 //ShowNotification(evtData.Title, evtData.Message);
             };
-            if (Device.RuntimePlatform == Device.Android)
-            {
-                Device.StartTimer(TimeSpan.FromSeconds(30.0), ShowMessage);
+            
+            Device.StartTimer(TimeSpan.FromSeconds(30.0), ShowMessage);
             }
 
             

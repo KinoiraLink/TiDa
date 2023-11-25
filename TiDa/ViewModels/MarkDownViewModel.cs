@@ -123,14 +123,14 @@ namespace TiDa.ViewModels
             if (markDownTask !=null)
             {
                 //运行平台是安卓时跳转至阅读页
-                if (Device.RuntimePlatform == Device.Android)
-                {
-                    await Shell.Current.GoToAsync($"//mdReadPage?{nameof(mdReadViewModel.Id)}={markDownTask.Id}");
-                }
-                else
-                {
+                //if (Device.RuntimePlatform == Device.Android)
+                //{
+                //    await Shell.Current.GoToAsync($"//mdReadPage?{nameof(mdReadViewModel.Id)}={markDownTask.Id}");
+                //}
+                //else
+                //{
                     await Shell.Current.GoToAsync($"//MarkPage?{nameof(MarkDownDetailViewModel.Id)}={markDownTask.Id}");
-                }
+                //}
                 //await Shell.Current.GoToAsync($"//Editor?{nameof(HtmlEditorViewModel.Id)}={markDownTask.Id}");
 
             }

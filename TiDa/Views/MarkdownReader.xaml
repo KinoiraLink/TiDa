@@ -8,11 +8,29 @@
     <ContentPage.BindingContext>
         <viewModels:mdReadViewModel />
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <DataTemplate x:Key="Para_night">
+            <mdt:Paragraph  TextColor="White" BackgroundColor="Black"   />
+        </DataTemplate>
+        <DataTemplate x:Key="Para_light">
+            <mdt:Paragraph  TextColor="Black" BackgroundColor="White"  />
+        </DataTemplate>
+        <DataTemplate x:Key="Qute_light">
+            <mdt:Paragraph  TextColor="Orange" BackgroundColor="#00A6A6"  />
+        </DataTemplate>
+        <DataTemplate x:Key="Code_light">
+            <mdt:Paragraph  TextColor="Orange" BackgroundColor="Gainsboro"    />
+        </DataTemplate>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid BackgroundColor="White" Opacity="1" x:Name="BackGround" >
             
             <ScrollView x:Name="ScrollView">
-                <md:MdView  Markdown="{Binding TaskContent}" x:Name="textColor">
+                <md:MdView  Markdown="{Binding TaskContent}" 
+                            x:Name="textColor" 
+                            ParagraphTemplate="{StaticResource Para_light}" 
+                 
+                            >
                     <md:MdView.Heading1Template>
                         <DataTemplate>
                             <mdt:Heading1  TextColor="MediumSlateBlue"  HorizontalOptions="Center"></mdt:Heading1>
@@ -23,23 +41,44 @@
                             <mdt:Heading2  TextColor="MediumSlateBlue" HorizontalOptions="Center"></mdt:Heading2>
                         </DataTemplate>
                     </md:MdView.Heading2Template>
-                    <md:MdView.ParagraphTemplate>
+
+                    <md:MdView.Heading3Template>
                         <DataTemplate>
-                            <mdt:Paragraph  TextColor="Black" x:Name="ParagraphColor" /> 
+                            <mdt:Heading3  TextColor="MediumSlateBlue" HorizontalOptions="Center"></mdt:Heading3>
                         </DataTemplate>
-                    </md:MdView.ParagraphTemplate>
+                    </md:MdView.Heading3Template>
+                    <md:MdView.Heading4Template>
+                        <DataTemplate>
+                            <mdt:Heading4  TextColor="MediumSlateBlue" HorizontalOptions="Center"></mdt:Heading4>
+                        </DataTemplate>
+                    </md:MdView.Heading4Template>
+                    <md:MdView.Heading5Template>
+                        <DataTemplate>
+                            <mdt:Heading5  TextColor="MediumSlateBlue" HorizontalOptions="Center"></mdt:Heading5>
+                        </DataTemplate>
+                    </md:MdView.Heading5Template>
+                    <md:MdView.Heading6Template>
+                        <DataTemplate>
+                            <mdt:Heading6  TextColor="MediumSlateBlue" HorizontalOptions="Center"></mdt:Heading6>
+                        </DataTemplate>
+                    </md:MdView.Heading6Template>
                     <md:MdView.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"></TapGestureRecognizer>
                     </md:MdView.GestureRecognizers>
                 </md:MdView>
 
+
                 <ScrollView.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"></TapGestureRecognizer>
                 </ScrollView.GestureRecognizers>
             </ScrollView>
-            <StackLayout BackgroundColor="#00A6A6"  VerticalOptions="StartAndExpand" Orientation="Horizontal"   HorizontalOptions="FillAndExpand" x:Name="top">
+            <StackLayout BackgroundColor="#00A6A6"  
+                         VerticalOptions="StartAndExpand" 
+                         Orientation="Horizontal"   
+                         HorizontalOptions="FillAndExpand" 
+                         x:Name="top">
                 <Button  Text="返回" HorizontalOptions="Start" Command="{Binding CancelCommand}"/>
-                <Label Text="{Binding TaskTitle}" HorizontalTextAlignment="Center"  VerticalOptions="Center" TextColor="White"></Label>
+                <Label Text="数据结构" TextColor="White" FontSize="16" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,0,80,0"></Label>
                 
             </StackLayout>
             <StackLayout BackgroundColor="#00A6A6" VerticalOptions="EndAndExpand"  x:Name="bottom" >
@@ -48,12 +87,18 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Slider x:Name="Slider" ValueChanged="Slider_OnValueChanged" BackgroundColor="AliceBlue"/>
-                    <StackLayout Grid.Row="1" Orientation="Horizontal">
-                        <Button  Clicked="Btn_Speak" Text="朗读"  HorizontalOptions="Center"/>
+                    <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="Center">
                         <Button Text="夜间模式"   Clicked="Btn_Noght" HorizontalOptions="Center" />
                         <Button Text="护眼模式" Clicked="Btn_Green" HorizontalOptions="Center"></Button>
+                        <Button Text="背景颜色" Clicked="Btn_Green" HorizontalOptions="Center"></Button>
+                    </StackLayout>
+                    <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="Center">
+                        <Button  Clicked="Btn_Speak" Text="朗读"  HorizontalOptions="Center"/>
+                        <Button Text="间距" Clicked="Btn_Green" HorizontalOptions="Center"></Button>
+                        <Button Text="字体大小" Clicked="Btn_Green" HorizontalOptions="Center"></Button>
                     </StackLayout>
                     
                 </Grid>

@@ -6,7 +6,6 @@ xmlns:richTextEditor="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Sy
              x:Class="TiDa.Views.HTMLDemo">
 
     <StackLayout>
-        <richTextEditor:SfRichTextEditor VerticalOptions="FillAndExpand" PlaceHolder="Type something"/>
     </StackLayout>
 
 </ContentPage>

@@ -167,16 +167,17 @@ namespace TiDa.ViewModels
                     pickFile = photo;
                     break;
                 case "从相册选择":
-                    if (!CrossMedia.Current.IsPickPhotoSupported)
-                    {
-                        await Application.Current.MainPage.DisplayAlert("错误提示", "未获得权限读取相册", "确认");
-                    }
-                    var fileb = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions()
-                    {
-                        CompressionQuality = 40,
-                        CustomPhotoSize = 35,
-                        PhotoSize = PhotoSize.Small,
-                    }).ConfigureAwait(true);
+                    //if (!CrossMedia.Current.IsPickPhotoSupported)
+                    //{
+                    //    await Application.Current.MainPage.DisplayAlert("错误提示", "未获得权限读取相册", "确认");
+                    //}
+                    //var fileb = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions()
+                    //{
+                    //    CompressionQuality = 40,
+                    //    CustomPhotoSize = 35,
+                    //    PhotoSize = PhotoSize.Small,
+                    //}).ConfigureAwait(true);
+                    var fileb = await CrossMedia.Current.PickPhotoAsync();
                     pickFile = fileb;
                     //var fileb = await MediaPicker.PickPhotoAsync();
 
@@ -202,7 +203,7 @@ namespace TiDa.ViewModels
                 #endregion
                 HttpResponseMessage res = await client.PostAsync("http://121.37.91.77:3000/upload/image", form);
                 var uploadModel = await res.Content.ReadAsStringAsync();
-                if (uploadModel != null)
+                if (uploadModel == null)
                 {
                     await Application.Current.MainPage.DisplayAlert("错误提示", "未上传图片", "确认");
                 }

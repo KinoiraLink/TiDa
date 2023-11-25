@@ -20,7 +20,7 @@
                     <StackLayout x:DataType="model:SimpleWrPo" Orientation="Horizontal">
                         <mdt:Image Source="{Binding ImagePath}" HeightRequest="100" WidthRequest="100" />
                         <StackLayout Padding="10" >
-                            <Label Text="{Binding Title}" 
+                            <Label Text="{Binding Title}"  TextColor="Orange"
                                    FontSize="16" />
                             <Label Text="{Binding  Content}" 
                                    LineBreakMode="WordWrap" />

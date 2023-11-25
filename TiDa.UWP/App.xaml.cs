@@ -1,4 +1,5 @@
 using Syncfusion.XForms.UWP.RichTextEditor;
+
 using Syncfusion.SfSchedule.XForms.UWP;
 using Syncfusion.ListView.XForms.UWP;
 using System;
@@ -18,8 +19,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Syncfusion.XForms.RichTextEditor;
-
 namespace TiDa.UWP
 {
     /// <summary>
@@ -64,11 +63,11 @@ namespace TiDa.UWP
                 rootFrame.NavigationFailed += OnNavigationFailed;
                 global::Xamarin.Forms.Forms.SetFlags("Shell_UWP_Experimental");
 
+                List<Assembly> assembliesToInclude = new List<Assembly>();
 
-List<Assembly> assembliesToInclude = new List<Assembly>();
-assembliesToInclude.Add(typeof(SfRichTextEditorRenderer).GetTypeInfo().Assembly);
-
+                // Add the below line for using SfRichTextEditor.
                 assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.RichTextEditor.SfRichTextEditorRenderer).GetTypeInfo().Assembly);
+
                 // Add the below line for using SfButton.
                 assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.Buttons.SfButtonRenderer).GetTypeInfo().Assembly);
 
@@ -80,7 +79,8 @@ assembliesToInclude.Add(typeof(SfRichTextEditorRenderer).GetTypeInfo().Assembly)
 
                 Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 
-     
+
+
                 Rg.Plugins.Popup.Popup.Init();
                 Xamarin.Forms.Forms.Init(e,Rg.Plugins.Popup.Popup.GetExtraAssemblies());
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
